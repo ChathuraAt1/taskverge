@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\InstallController;
 use App\Livewire\AdminPanel;
 use App\Livewire\Checkout;
 use App\Livewire\CheckoutSuccess;
@@ -21,6 +22,10 @@ use Illuminate\Support\Facades\Route;
 // Public Technical Product Landing Page & Contact
 Route::view('/', 'landing')->name('home');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+
+// System & Database Installer (gated via ENABLE_INSTALLER_ROUTE in .env)
+Route::get('/install', [InstallController::class, 'index'])->name('install.index');
+Route::post('/install', [InstallController::class, 'execute'])->name('install.execute');
 
 // Guest Authentication Routes
 Route::middleware('guest')->group(function () {

@@ -28,15 +28,76 @@
                 </a>
             </div>
 
-            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
-                <a href="{{ route('home') }}#about" class="hover:text-white transition-colors">About Us</a>
-                <a href="{{ route('home') }}#what-it-does" class="hover:text-white transition-colors">Capabilities</a>
-                <a href="{{ route('home') }}#how-it-works" class="hover:text-white transition-colors">How It Works</a>
-                <a href="{{ route('home') }}#testimonials" class="hover:text-white transition-colors">Stories</a>
-                <a href="{{ route('home') }}#benefits" class="hover:text-white transition-colors">Benefits</a>
-                <a href="{{ route('home') }}#why-different" class="hover:text-white transition-colors">Why TaskVerge</a>
-                <a href="{{ route('home') }}#pricing" class="hover:text-white transition-colors">Pricing</a>
-                <a href="{{ route('home') }}#contact" class="hover:text-white transition-colors">Contact</a>
+            @php
+                $navItems = [
+                    ['id' => 'about', 'label' => 'About Us'],
+                    ['id' => 'what-it-does', 'label' => 'Capabilities'],
+                    ['id' => 'how-it-works', 'label' => 'How It Works'],
+                    ['id' => 'testimonials', 'label' => 'Stories'],
+                    ['id' => 'benefits', 'label' => 'Benefits'],
+                    ['id' => 'why-different', 'label' => 'Why TaskVerge'],
+                    ['id' => 'pricing', 'label' => 'Pricing'],
+                    ['id' => 'contact', 'label' => 'Contact'],
+                ];
+            @endphp
+            <nav 
+                x-data="{
+                    activeSection: '',
+                    init() {
+                        if (window.location.hash) {
+                            this.activeSection = window.location.hash.replace('#', '');
+                        }
+                        const sections = ['about', 'what-it-does', 'how-it-works', 'testimonials', 'benefits', 'why-different', 'pricing', 'contact'];
+                        
+                        const updateActive = () => {
+                            const scrollPos = window.scrollY + 220;
+                            let current = '';
+                            for (let i = sections.length - 1; i >= 0; i--) {
+                                const el = document.getElementById(sections[i]);
+                                if (el && el.offsetTop <= scrollPos) {
+                                    current = sections[i];
+                                    break;
+                                }
+                            }
+                            if (window.scrollY < 180 && !window.location.hash) {
+                                current = '';
+                            }
+                            if (current) {
+                                this.activeSection = current;
+                            }
+                        };
+                        
+                        window.addEventListener('scroll', updateActive, { passive: true });
+                        this.$nextTick(updateActive);
+                    }
+                }"
+                class="hidden md:flex items-center gap-1 lg:gap-1.5 text-xs lg:text-sm font-medium text-slate-300"
+            >
+                @foreach($navItems as $item)
+                    <a 
+                        href="{{ route('home') }}#{{ $item['id'] }}" 
+                        @click="activeSection = '{{ $item['id'] }}'"
+                        :class="activeSection === '{{ $item['id'] }}' 
+                            ? 'text-white font-semibold shadow-sm' 
+                            : 'text-slate-300 hover:text-white hover:bg-slate-900/40'"
+                        class="relative px-3 py-1.5 rounded-full transition-all duration-300 group overflow-hidden"
+                    >
+                        <!-- Radial green gradient from link middle fading to transparent at the ends -->
+                        <span 
+                            x-show="activeSection === '{{ $item['id'] }}'"
+                            x-cloak
+                            x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="opacity-0 scale-90"
+                            x-transition:enter-end="opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-200"
+                            x-transition:leave-start="opacity-100 scale-100"
+                            x-transition:leave-end="opacity-0 scale-90"
+                            class="absolute inset-0 pointer-events-none rounded-full"
+                            style="background: radial-gradient(circle at center, rgba(16, 185, 129, 0.45) 0%, rgba(16, 185, 129, 0.22) 40%, rgba(5, 150, 105, 0.08) 70%, transparent 100%); border: 1px solid rgba(16, 185, 129, 0.35); box-shadow: 0 0 16px rgba(16, 185, 129, 0.25);"
+                        ></span>
+                        <span class="relative z-10">{{ $item['label'] }}</span>
+                    </a>
+                @endforeach
             </nav>
 
             <div class="flex items-center gap-3">
