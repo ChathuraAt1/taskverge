@@ -1387,11 +1387,85 @@
             <div class="lg:col-span-5 rounded-3xl border border-slate-800 bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 sm:p-8 flex flex-col justify-between shadow-2xl space-y-6">
                 <div>
                     <h3 class="text-xl font-bold text-white">Send Us a Message</h3>
-                    <p class="text-xs text-slate-400 mt-1">All submissions route directly to <strong class="text-emerald-400 font-mono">our team</strong> with full ticket telemetry.</p>
+                    <p class="text-xs text-slate-400 mt-1">All submissions route directly to <strong class="text-emerald-400 font-mono">help@taskverge.net</strong> with full ticket telemetry.</p>
                 </div>
 
-                <form method="POST" action="{{ route('contact.submit') }}" class="space-y-4">
+                <form 
+                    x-data="{
+                        submitting: false,
+                        sent: false,
+                        successMessage: '',
+                        errorMessage: '',
+                        fieldErrors: {},
+                        async submitContact(e) {
+                            if (this.submitting) return;
+                            this.submitting = true;
+                            this.errorMessage = '';
+                            this.fieldErrors = {};
+                            
+                            const form = e.target;
+                            const formData = new FormData(form);
+
+                            try {
+                                const response = await fetch(form.action, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Accept': 'application/json',
+                                        'X-Requested-With': 'XMLHttpRequest'
+                                    },
+                                    body: formData
+                                });
+
+                                const data = await response.json();
+
+                                if (response.ok && data.success) {
+                                    this.sent = true;
+                                    this.successMessage = data.message || 'Thank you! Your message has been sent to our team at help@taskverge.net.';
+                                    form.reset();
+                                } else if (response.status === 422 && data.errors) {
+                                    this.fieldErrors = data.errors;
+                                    const firstKey = Object.keys(data.errors)[0];
+                                    this.errorMessage = data.errors[firstKey][0];
+                                } else {
+                                    this.errorMessage = data.message || 'Unable to submit your message. Please try again.';
+                                }
+                            } catch (err) {
+                                this.errorMessage = 'A network error occurred. Please check your connection and try again.';
+                            } finally {
+                                this.submitting = false;
+                            }
+                        }
+                    }"
+                    @submit.prevent="submitContact($event)"
+                    method="POST" 
+                    action="{{ route('contact.submit') }}" 
+                    class="space-y-4"
+                >
                     @csrf
+
+                    <!-- Async Success Feedback -->
+                    <div x-show="sent" x-cloak x-transition class="rounded-2xl bg-emerald-500/10 border border-emerald-500/30 p-4 text-xs font-medium text-emerald-300 flex items-start gap-3 shadow-lg shadow-emerald-950/40">
+                        <svg class="h-5 w-5 text-emerald-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <div class="flex-1">
+                            <p class="font-bold text-emerald-300">Message Delivered</p>
+                            <p class="text-slate-300 text-[11px] mt-0.5" x-text="successMessage"></p>
+                        </div>
+                        <button type="button" @click="sent = false" class="text-slate-400 hover:text-white text-base leading-none">&times;</button>
+                    </div>
+
+                    <!-- Async Error Feedback -->
+                    <div x-show="errorMessage" x-cloak x-transition class="rounded-2xl bg-rose-500/10 border border-rose-500/30 p-4 text-xs font-medium text-rose-300 flex items-start gap-3">
+                        <svg class="h-5 w-5 text-rose-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                        </svg>
+                        <div class="flex-1">
+                            <p class="font-bold text-rose-300">Submission Notice</p>
+                            <p class="text-rose-200 text-[11px] mt-0.5" x-text="errorMessage"></p>
+                        </div>
+                        <button type="button" @click="errorMessage = ''" class="text-slate-400 hover:text-white text-base leading-none">&times;</button>
+                    </div>
 
                     <div>
                         <label for="contact_name" class="block text-xs font-semibold text-slate-300 mb-1">Your Full Name <span class="text-emerald-400">*</span></label>
@@ -1404,6 +1478,9 @@
                             placeholder="e.g. Alex Morgan"
                             class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-colors"
                         />
+                        <template x-if="fieldErrors.name">
+                            <p class="text-[11px] text-rose-400 mt-1" x-text="fieldErrors.name[0]"></p>
+                        </template>
                         @error('name')
                             <p class="text-[11px] text-rose-400 mt-1">{{ $message }}</p>
                         @enderror
@@ -1421,6 +1498,9 @@
                                 placeholder="name@company.com"
                                 class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-colors"
                             />
+                            <template x-if="fieldErrors.email">
+                                <p class="text-[11px] text-rose-400 mt-1" x-text="fieldErrors.email[0]"></p>
+                            </template>
                             @error('email')
                                 <p class="text-[11px] text-rose-400 mt-1">{{ $message }}</p>
                             @enderror
@@ -1476,19 +1556,36 @@
                             placeholder="Tell us about your team size, workflow requirements, or question..."
                             class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-colors resize-none"
                         >{{ old('message') }}</textarea>
+                        <template x-if="fieldErrors.message">
+                            <p class="text-[11px] text-rose-400 mt-1" x-text="fieldErrors.message[0]"></p>
+                        </template>
                         @error('message')
                             <p class="text-[11px] text-rose-400 mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
+                    <!-- Cloudflare Turnstile Verification -->
+                    <div class="pt-1">
+                        <x-turnstile action="contact" />
+                    </div>
+
                     <button 
                         type="submit" 
-                        class="w-full rounded-xl bg-emerald-600 hover:bg-emerald-500 py-3 text-xs font-bold text-white transition-all shadow-xl shadow-emerald-600/30 flex items-center justify-center gap-2"
+                        :disabled="submitting"
+                        class="w-full rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-60 disabled:cursor-not-allowed py-3 text-xs font-bold text-white transition-all shadow-xl shadow-emerald-600/30 flex items-center justify-center gap-2"
                     >
-                        <span>Send Message to help@taskverge.net</span>
-                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                        <svg x-show="submitting" x-cloak class="h-4 w-4 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
                         </svg>
+                        <span x-show="submitting" x-cloak>Sending Inquiry...</span>
+
+                        <span x-show="!submitting" class="inline-flex items-center gap-2">
+                            <span>Send Message to help@taskverge.net</span>
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                            </svg>
+                        </span>
                     </button>
                 </form>
             </div>
