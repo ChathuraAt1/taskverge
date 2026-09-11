@@ -1252,7 +1252,249 @@
         </div>
     </section>
 
-    <!-- 10. FINAL CALL TO ACTION LAUNCHPAD -->
+    <!-- 10. CONTACT US: 2 Branch Locations with Google Maps & Live Support Form -->
+    <section id="contact" class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto" x-data="{ activeBranch: 'sf' }">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">Get in Touch</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Contact Our Global Teams</h2>
+            <p class="text-sm sm:text-base text-slate-400 mt-2">Have a question about deployment, enterprise SLA, or custom pipelines? We are here to help.</p>
+        </div>
+
+        @if(session('contact_status'))
+            <div class="mb-10 max-w-4xl mx-auto rounded-2xl bg-emerald-500/10 border border-emerald-500/30 p-5 text-sm font-medium text-emerald-300 flex items-center gap-3 shadow-lg shadow-emerald-950/40">
+                <svg class="h-5 w-5 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{{ session('contact_status') }}</span>
+            </div>
+        @endif
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            <!-- Left Column: 2 Branches with Interactive Google Maps & Contact Numbers (7 Cols) -->
+            <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
+                <!-- Branch Selector Pills -->
+                <div class="flex items-center justify-between flex-wrap gap-3 pb-2 border-b border-slate-800">
+                    <div class="text-xs font-bold text-slate-300 uppercase tracking-wider">Operational Branches</div>
+                    <div class="inline-flex rounded-xl bg-slate-900 border border-slate-800 p-1">
+                        <button 
+                            type="button" 
+                            @click="activeBranch = 'sf'" 
+                            class="px-4 py-1.5 rounded-lg text-xs font-bold transition-all"
+                            :class="activeBranch === 'sf' ? 'bg-emerald-600 text-white shadow-md' : 'text-slate-400 hover:text-white'"
+                        >
+                            San Francisco HQ
+                        </button>
+                        <button 
+                            type="button" 
+                            @click="activeBranch = 'london'" 
+                            class="px-4 py-1.5 rounded-lg text-xs font-bold transition-all"
+                            :class="activeBranch === 'london' ? 'bg-emerald-600 text-white shadow-md' : 'text-slate-400 hover:text-white'"
+                        >
+                            London EMEA Hub
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Branch 1: San Francisco -->
+                <div x-show="activeBranch === 'sf'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-4">
+                    <div class="rounded-2xl border border-slate-800 bg-slate-950 p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl">
+                        <div>
+                            <div class="inline-flex items-center gap-2 text-xs font-bold text-emerald-400 uppercase tracking-wider">
+                                <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                Global Headquarters
+                            </div>
+                            <h3 class="text-xl font-bold text-white mt-1">TaskVerge Americas • San Francisco</h3>
+                            <p class="text-xs text-slate-400 mt-1">500 Howard Street, Suite 400, San Francisco, CA 94105, United States</p>
+                        </div>
+                        <div class="space-y-1 sm:text-right border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-800/80">
+                            <div class="text-xs text-slate-400 font-mono">Direct Support Phone</div>
+                            <a href="tel:+14158022040" class="text-sm font-bold text-emerald-300 hover:text-emerald-200 transition-colors font-mono">+1 (415) 802-2040</a>
+                            <div class="text-[11px] text-slate-500 font-mono">Mon–Fri 8:00 AM – 6:00 PM PST</div>
+                        </div>
+                    </div>
+
+                    <!-- San Francisco Embedded Google Map -->
+                    <div class="rounded-3xl border border-slate-800 overflow-hidden shadow-2xl h-[300px] relative bg-slate-900">
+                        <iframe 
+                            title="TaskVerge San Francisco Headquarters Map"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.084883391295!2d-122.39893462348566!3d37.78801997198207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085807cb67d5e4b%3A0x6e5c8e390c2ebaa8!2s500%20Howard%20St%2C%20San%20Francisco%2C%20CA%2094105!5e0!3m2!1sen!2sus!4v1710000000000!5m2!1sen!2sus" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0; filter: invert(90%) hue-rotate(180deg) contrast(1.1);" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            class="w-full h-full"
+                        ></iframe>
+                    </div>
+                </div>
+
+                <!-- Branch 2: London -->
+                <div x-show="activeBranch === 'london'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-4">
+                    <div class="rounded-2xl border border-slate-800 bg-slate-950 p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl">
+                        <div>
+                            <div class="inline-flex items-center gap-2 text-xs font-bold text-teal-400 uppercase tracking-wider">
+                                <span class="h-2 w-2 rounded-full bg-teal-400 animate-pulse"></span>
+                                EMEA Operations Hub
+                            </div>
+                            <h3 class="text-xl font-bold text-white mt-1">TaskVerge Europe • London</h3>
+                            <p class="text-xs text-slate-400 mt-1">25 Bank Street, Canary Wharf, London E14 5JP, United Kingdom</p>
+                        </div>
+                        <div class="space-y-1 sm:text-right border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-800/80">
+                            <div class="text-xs text-slate-400 font-mono">EMEA Support Phone</div>
+                            <a href="tel:+442079460830" class="text-sm font-bold text-teal-300 hover:text-teal-200 transition-colors font-mono">+44 (20) 7946 0830</a>
+                            <div class="text-[11px] text-slate-500 font-mono">Mon–Fri 9:00 AM – 6:00 PM GMT</div>
+                        </div>
+                    </div>
+
+                    <!-- London Embedded Google Map -->
+                    <div class="rounded-3xl border border-slate-800 overflow-hidden shadow-2xl h-[300px] relative bg-slate-900">
+                        <iframe 
+                            title="TaskVerge London EMEA Hub Map"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.541460309855!2d-0.021578623438965934!3d51.503299711019625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487602b9e693b7a5%3A0x6d88c0378b8719bc!2s25%20Bank%20St%2C%20London%20E14%205JP%2C%20UK!5e0!3m2!1sen!2suk!4v1710000000000!5m2!1sen!2suk" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0; filter: invert(90%) hue-rotate(180deg) contrast(1.1);" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            class="w-full h-full"
+                        ></iframe>
+                    </div>
+                </div>
+
+                <!-- Unified Shared Email Badge for Both Branches -->
+                <div class="rounded-2xl border border-emerald-500/30 bg-gradient-to-r from-emerald-950/40 via-slate-950 to-teal-950/40 p-4 flex items-center justify-between flex-wrap gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="h-10 w-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
+                            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-400 uppercase font-bold tracking-wider">Universal Support Inbox</span>
+                            <div class="text-sm font-bold text-white">help@taskverge.net</div>
+                        </div>
+                    </div>
+                    <a href="mailto:help@taskverge.net" class="inline-flex items-center gap-1 text-xs font-bold text-emerald-400 hover:text-emerald-300 font-mono transition-colors">
+                        Send Direct Email &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Column: Interactive Contact Form (5 Cols) -->
+            <div class="lg:col-span-5 rounded-3xl border border-slate-800 bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 sm:p-8 flex flex-col justify-between shadow-2xl space-y-6">
+                <div>
+                    <h3 class="text-xl font-bold text-white">Send Us a Message</h3>
+                    <p class="text-xs text-slate-400 mt-1">All submissions route directly to <strong class="text-emerald-400 font-mono">help@taskverge.net</strong> with full ticket telemetry.</p>
+                </div>
+
+                <form method="POST" action="{{ route('contact.submit') }}" class="space-y-4">
+                    @csrf
+
+                    <div>
+                        <label for="contact_name" class="block text-xs font-semibold text-slate-300 mb-1">Your Full Name <span class="text-emerald-400">*</span></label>
+                        <input 
+                            type="text" 
+                            id="contact_name" 
+                            name="name" 
+                            value="{{ old('name', Auth::user()?->name) }}"
+                            required 
+                            placeholder="e.g. Alex Morgan"
+                            class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-colors"
+                        />
+                        @error('name')
+                            <p class="text-[11px] text-rose-400 mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label for="contact_email" class="block text-xs font-semibold text-slate-300 mb-1">Email Address <span class="text-emerald-400">*</span></label>
+                            <input 
+                                type="email" 
+                                id="contact_email" 
+                                name="email" 
+                                value="{{ old('email', Auth::user()?->email) }}"
+                                required 
+                                placeholder="name@company.com"
+                                class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-colors"
+                            />
+                            @error('email')
+                                <p class="text-[11px] text-rose-400 mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div>
+                            <label for="contact_phone" class="block text-xs font-semibold text-slate-300 mb-1">Phone (Optional)</label>
+                            <input 
+                                type="tel" 
+                                id="contact_phone" 
+                                name="phone" 
+                                value="{{ old('phone') }}"
+                                placeholder="+1 (555) 000-0000"
+                                class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-colors"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label for="contact_branch" class="block text-xs font-semibold text-slate-300 mb-1">Select Branch</label>
+                            <select 
+                                id="contact_branch" 
+                                name="branch"
+                                class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2.5 text-xs text-white focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-colors"
+                            >
+                                <option value="San Francisco HQ (Americas)">San Francisco HQ (Americas)</option>
+                                <option value="London EMEA Hub (Europe)">London EMEA Hub (Europe)</option>
+                                <option value="General Global Support">General Global Support</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="contact_subject" class="block text-xs font-semibold text-slate-300 mb-1">Subject</label>
+                            <input 
+                                type="text" 
+                                id="contact_subject" 
+                                name="subject" 
+                                value="{{ old('subject') }}"
+                                placeholder="Enterprise / Support"
+                                class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-colors"
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="contact_message" class="block text-xs font-semibold text-slate-300 mb-1">Message <span class="text-emerald-400">*</span></label>
+                        <textarea 
+                            id="contact_message" 
+                            name="message" 
+                            rows="4" 
+                            required 
+                            placeholder="Tell us about your team size, workflow requirements, or question..."
+                            class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2.5 text-xs text-white placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-colors resize-none"
+                        >{{ old('message') }}</textarea>
+                        @error('message')
+                            <p class="text-[11px] text-rose-400 mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <button 
+                        type="submit" 
+                        class="w-full rounded-xl bg-emerald-600 hover:bg-emerald-500 py-3 text-xs font-bold text-white transition-all shadow-xl shadow-emerald-600/30 flex items-center justify-center gap-2"
+                    >
+                        <span>Send Message to help@taskverge.net</span>
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. FINAL CALL TO ACTION LAUNCHPAD -->
     <section class="px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
         <div class="rounded-3xl border border-emerald-500/30 bg-gradient-to-r from-emerald-950/60 via-slate-950 to-teal-950/40 p-10 sm:p-14 text-center space-y-6 shadow-2xl relative overflow-hidden">
             <div class="absolute -right-20 -top-20 w-60 h-60 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>

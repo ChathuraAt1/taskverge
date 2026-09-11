@@ -115,4 +115,11 @@ return [
         'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Default Contact Inquiry Recipient
+    |--------------------------------------------------------------------------
+    */
+    'contact_recipient' => env('MAIL_CONTACT_RECIPIENT', 'help@taskverge.net'),
+
 ];

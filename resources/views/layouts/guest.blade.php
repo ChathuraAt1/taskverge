@@ -36,6 +36,7 @@
                 <a href="{{ route('home') }}#benefits" class="hover:text-white transition-colors">Benefits</a>
                 <a href="{{ route('home') }}#why-different" class="hover:text-white transition-colors">Why TaskVerge</a>
                 <a href="{{ route('home') }}#pricing" class="hover:text-white transition-colors">Pricing</a>
+                <a href="{{ route('home') }}#contact" class="hover:text-white transition-colors">Contact</a>
             </nav>
 
             <div class="flex items-center gap-3">
@@ -92,6 +93,7 @@
                     <ul class="space-y-2 text-xs">
                         <li><a href="{{ route('home') }}#pricing" class="hover:text-white transition-colors">Simple Pricing Plans</a></li>
                         <li><a href="{{ route('checkout') }}" class="hover:text-white transition-colors">Subscribe & Upgrade</a></li>
+                        <li><a href="{{ route('home') }}#contact" class="hover:text-white transition-colors">Contact & Support</a></li>
                         <li><a href="{{ route('login') }}" class="hover:text-white transition-colors">1-Click Live Demo Personas</a></li>
                         <li><a href="{{ route('register') }}" class="hover:text-white transition-colors">Create Free Account</a></li>
                     </ul>

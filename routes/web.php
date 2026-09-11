@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Livewire\AdminPanel;
 use App\Livewire\Checkout;
@@ -17,8 +18,9 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-// Public Technical Product Landing Page
+// Public Technical Product Landing Page & Contact
 Route::view('/', 'landing')->name('home');
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 // Guest Authentication Routes
 Route::middleware('guest')->group(function () {
