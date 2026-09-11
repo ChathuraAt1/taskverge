@@ -17,16 +17,15 @@
 
             <!-- High-Impact Action CTAs (Directly Under Headline) -->
             <div class="flex flex-wrap items-center justify-center gap-3.5 pt-8">
+                <a href="{{ route('product') }}" class="inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-600 px-6 py-3.5 text-sm font-bold text-white shadow-xl shadow-emerald-600/30 hover:from-emerald-400 hover:to-teal-500 transition-all scale-100 hover:scale-[1.02]">
+                    <span>Explore TaskVerge Cortex™</span>
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                </a>
                 @auth
-                    <a href="{{ route('dashboard') }}" class="inline-flex items-center gap-2.5 rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-bold text-white shadow-xl shadow-emerald-600/30 hover:bg-emerald-500 transition-all scale-100 hover:scale-[1.02]">
-                        <span>Open Your Dashboard</span>
-                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                    <a href="{{ route('dashboard') }}" class="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/90 px-5 py-3.5 text-sm font-semibold text-slate-200 hover:bg-slate-800 hover:text-white transition-all">
+                        <span>Open Dashboard</span>
                     </a>
                 @else
-                    <a href="{{ route('register') }}" class="inline-flex items-center gap-2.5 rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-bold text-white shadow-xl shadow-emerald-600/30 hover:bg-emerald-500 transition-all scale-100 hover:scale-[1.02]">
-                        <span>Start Free 14-Day Trial</span>
-                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-                    </a>
                     <a href="{{ route('login') }}" class="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/90 px-5 py-3.5 text-sm font-semibold text-slate-200 hover:bg-slate-800 hover:text-white transition-all">
                         <span>Explore Live Personas</span>
                     </a>
