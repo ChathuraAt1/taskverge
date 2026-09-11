@@ -1420,7 +1420,7 @@
 
                                 if (response.ok && data.success) {
                                     this.sent = true;
-                                    this.successMessage = data.message || 'Thank you! Your message has been sent to our team at help@taskverge.net.';
+                                    this.successMessage = data.message || 'Thank you! Your message has been sent to our team at TaskVerge.';
                                     form.reset();
                                 } else if (response.status === 422 && data.errors) {
                                     this.fieldErrors = data.errors;
