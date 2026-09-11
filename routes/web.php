@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GoogleAuthController;
+use App\Livewire\Checkout;
+use App\Livewire\CheckoutSuccess;
 use App\Livewire\Dashboard;
 use App\Livewire\TasksIndex;
 use App\Livewire\WorkflowsIndex;
@@ -25,8 +28,16 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
 });
 
+// Google OAuth Routes
+Route::get('/auth/google', [GoogleAuthController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback'])->name('auth.google.callback');
+
 // Fast 1-Click Evaluation Login (supports quick persona switching in dev/testing)
 Route::post('/quick-login/{user}', [AuthController::class, 'quickLogin'])->name('quick-login');
+
+// Enterprise Checkout & Subscription Billing
+Route::get('/checkout', Checkout::class)->name('checkout');
+Route::get('/checkout/success/{order}', CheckoutSuccess::class)->name('checkout.success')->middleware('auth');
 
 // Authenticated Enterprise Application Routes
 Route::middleware('auth')->group(function () {

@@ -21,12 +21,17 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'google_id',
         'password',
         'role',
         'department',
         'title',
         'avatar_url',
         'is_active',
+        'subscription_plan',
+        'subscription_status',
+        'billing_interval',
+        'seats_count',
     ];
 
     /**
@@ -50,7 +55,16 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'is_active' => 'boolean',
+            'seats_count' => 'integer',
         ];
+    }
+
+    /**
+     * Orders and billing transactions.
+     */
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class)->latest();
     }
 
     /**
@@ -115,6 +129,18 @@ class User extends Authenticatable
     public function canManageWorkflows(): bool
     {
         return in_array($this->role, ['admin', 'manager'], true);
+    }
+
+    /**
+     * Human-friendly subscription plan name.
+     */
+    public function getPlanLabelAttribute(): string
+    {
+        return match ($this->subscription_plan) {
+            'intelligence' => 'Enterprise Intelligence (NVIDIA Engine)',
+            'sovereign' => 'Air-Gapped Sovereign',
+            default => 'Operations Core',
+        };
     }
 
     /**

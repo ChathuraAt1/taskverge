@@ -413,8 +413,8 @@
                     <li>&check; Real-time Bottleneck Alerts</li>
                     <li>&check; Standard Activity Audit Trails</li>
                 </ul>
-                <a href="{{ route('register') }}" class="block text-center rounded-lg bg-slate-800 hover:bg-slate-700 py-2.5 text-xs font-semibold text-white transition-colors">
-                    Get Started
+                <a href="{{ route('checkout', ['plan' => 'core']) }}" class="block text-center rounded-lg bg-slate-800 hover:bg-slate-700 py-2.5 text-xs font-semibold text-white transition-colors">
+                    Configure Operations Core
                 </a>
             </div>
 
@@ -436,8 +436,8 @@
                     <li>&check; Immutable SOC2 Audit Feeds</li>
                     <li>&check; Priority 24/7 Enterprise Support</li>
                 </ul>
-                <a href="{{ route('register') }}" class="block text-center rounded-lg bg-indigo-600 hover:bg-indigo-500 py-2.5 text-xs font-semibold text-white transition-colors shadow">
-                    Launch Enterprise Pilot
+                <a href="{{ route('checkout', ['plan' => 'intelligence']) }}" class="block text-center rounded-lg bg-indigo-600 hover:bg-indigo-500 py-2.5 text-xs font-semibold text-white transition-colors shadow">
+                    Launch Intelligence Subscription
                 </a>
             </div>
 

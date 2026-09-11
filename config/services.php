@@ -35,4 +35,15 @@ return [
         ],
     ],
 
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_URI', env('APP_URL').'/auth/google/callback'),
+    ],
+
+    'turnstile' => [
+        'key' => env('CLOUDFLARE_TURNSTILE_KEY', '1x00000000000000000000AA'),
+        'secret' => env('CLOUDFLARE_TURNSTILE_SECRET', '1x0000000000000000000000000000000AA'),
+    ],
+
 ];

@@ -60,6 +60,7 @@
 
     <main class="flex-1">
         @yield('content')
+        {{ $slot ?? '' }}
     </main>
 
     <!-- Enterprise Global Footer -->
