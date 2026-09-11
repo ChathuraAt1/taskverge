@@ -357,7 +357,7 @@
                         class="group relative rounded-3xl border border-slate-800 bg-slate-950/90 backdrop-blur-md p-6 sm:p-8 flex flex-col justify-between hover:border-emerald-500/50 transition-all duration-1000 ease-in-out shadow-xl overflow-hidden min-h-[290px]"
                     >
                         <div class="flex items-center justify-between mb-4">
-                            <div class="inline-flex items-center gap-2 rounded-xl bg-amber-500/10 border border-amber-500/20 px-3 py-1.5 text-xs font-semibold text-amber-300">
+                            <div class="inline-flex items-center gap-2 rounded-xl bg-teal-500/10 border border-teal-500/20 px-3 py-1.5 text-xs font-semibold text-teal-300">
                                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                                 <span>Blocker Prevention</span>
                             </div>
@@ -373,7 +373,7 @@
                         </div>
 
                         <div class="space-y-3 transition-opacity duration-500">
-                            <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-amber-300 transition-colors">
+                            <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-teal-300 transition-colors">
                                 Instant Roadblock Clearing
                             </h3>
                             <p class="text-sm text-slate-300 leading-relaxed">
@@ -526,7 +526,7 @@
                             </div>
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
                                 <div class="p-4 rounded-2xl border border-slate-800 bg-slate-900/70">
-                                    <div class="font-bold text-amber-400 text-sm">Proactive Warning</div>
+                                    <div class="font-bold text-teal-400 text-sm">Proactive Warning</div>
                                     <div class="text-xs text-slate-400 mt-1">Detects sluggish reviews before deadlines are in jeopardy.</div>
                                 </div>
                                 <div class="p-4 rounded-2xl border border-slate-800 bg-slate-900/70">
@@ -581,92 +581,142 @@
         </div>
     </section>
 
-    <!-- 4. HOW IT WORKS: Continuous Circuit Conduit (Timeline Node Flow, Not Square Boxes) -->
-    <section id="how-it-works" class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-            <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">Step-by-Step</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">How It Works: Autonomous Execution in 4 Steps</h2>
-            <p class="text-sm sm:text-base text-slate-400 mt-2">From raw request intake to automated delivery without manual bottlenecks.</p>
+    <!-- 4. HOW IT WORKS: Continuous Circuit Conduit (With Full-Section Atmospheric Background Stock Image & Ambient Glows) -->
+    <section id="how-it-works" class="relative px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden py-16 rounded-3xl">
+        <!-- Full-Section Atmospheric Background Stock Image & Radial Glows -->
+        <div class="absolute inset-0 -z-10 pointer-events-none overflow-hidden rounded-3xl">
+            <img 
+                src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=80" 
+                alt="Connected Circuit Workflow" 
+                class="w-full h-full object-cover opacity-30 filter saturate-150 contrast-125 brightness-110"
+                loading="lazy"
+            />
+            <!-- Smooth gradient vignettes blending into dark page body without artificial square grids -->
+            <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/40 to-slate-950/95"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-transparent to-slate-950/90"></div>
+
+            <!-- Ambient Emerald & Teal Radial Glow Orbs -->
+            <div class="absolute top-1/4 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-500/20 rounded-full blur-[130px]"></div>
+            <div class="absolute bottom-1/4 right-1/4 translate-y-1/2 w-[500px] h-[500px] bg-teal-500/20 rounded-full blur-[130px]"></div>
         </div>
 
-        <!-- Connected Node Flow Stream -->
-        <div class="relative">
-            <!-- Connecting glowing circuit line behind nodes on desktop -->
-            <div class="hidden lg:block absolute top-1/2 left-10 right-10 h-0.5 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 -translate-y-1/2 z-0 opacity-40"></div>
+        <div class="text-center max-w-3xl mx-auto mb-16 relative z-10">
+            <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">Step-by-Step</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">How It Works: In 4 Simple Steps</h2>
+            <p class="text-sm sm:text-base text-slate-400 mt-2">From initial task creation to completed deliverable without the usual bottlenecks.</p>
+        </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
-                <!-- Node 1 -->
-                <div class="rounded-2xl border border-slate-800 bg-slate-950 p-6 flex flex-col justify-between hover:border-emerald-500/50 transition-all shadow-xl group">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="h-10 w-10 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white font-extrabold text-sm flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
-                                01
-                            </span>
-                            <span class="text-[10px] font-mono uppercase tracking-wider text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded">Intake</span>
-                        </div>
-                        <h3 class="text-base font-bold text-white">Connect Workflows</h3>
-                        <p class="text-xs text-slate-400 leading-relaxed mt-2">
-                            Set up your stages in 2 minutes or use pre-configured pipelines for operations, software, and design workflows.
-                        </p>
+        <!-- Central Stage Flow -->
+        <div class="relative z-10">
+            <!-- Glowing desktop horizontal conduit line -->
+            <div class="hidden lg:block absolute top-[110px] left-10 right-10 h-1 bg-gradient-to-r from-emerald-500/40 via-teal-400 to-cyan-500/40 z-0 shadow-[0_0_16px_rgba(16,185,129,0.5)] opacity-80 rounded-full"></div>
+
+            <!-- 4 Step Cards (Fixed height h-[320px] with pre-allocated description space to prevent any height jumping) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+                <!-- Step 1 -->
+                <div class="group relative rounded-2xl border border-slate-700/60 bg-slate-900/80 hover:bg-slate-900/95 hover:border-emerald-400/80 backdrop-blur-xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 shadow-2xl h-[320px] overflow-hidden">
+                    <div class="flex items-center justify-between">
+                        <span class="h-12 w-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white font-extrabold text-base flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-transform duration-300">
+                            01
+                        </span>
+                        <span class="text-xs font-mono font-semibold text-emerald-400/90 group-hover:text-emerald-300 transition-colors">Phase 1</span>
                     </div>
-                    <div class="pt-4 mt-4 border-t border-slate-900 text-[11px] text-slate-500 font-mono">Zero-friction setup</div>
+
+                    <!-- Stable Text Block: Moves slightly upward on hover, description smoothly fades in into allocated space -->
+                    <div class="relative transition-transform duration-300 ease-out group-hover:-translate-y-2">
+                        <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-emerald-300 transition-colors duration-200">
+                            Connect Workflows
+                        </h3>
+                        <!-- Resting subtitle chip -->
+                        <div class="text-xs font-medium text-slate-400 mt-1 transition-opacity duration-200 group-hover:text-slate-300">
+                            2-min visual setup
+                        </div>
+                        <!-- Description with smooth opacity fade within allocated space (no height jumping) -->
+                        <div class="pt-3">
+                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out line-clamp-3">
+                                Set up your team projects in minutes using intuitive templates or custom multi-stage Kanban pipelines.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Node 2 -->
-                <div class="rounded-2xl border border-slate-800 bg-slate-950 p-6 flex flex-col justify-between hover:border-emerald-500/50 transition-all shadow-xl group">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="h-10 w-10 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white font-extrabold text-sm flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
-                                02
-                            </span>
-                            <span class="text-[10px] font-mono uppercase tracking-wider text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded">Triage</span>
-                        </div>
-                        <h3 class="text-base font-bold text-white">Autonomous Triage</h3>
-                        <p class="text-xs text-slate-400 leading-relaxed mt-2">
-                            The AI engine parses requirements, scores priority, and assigns the optimal owner based on team bandwidth.
-                        </p>
+                <!-- Step 2 -->
+                <div class="group relative rounded-2xl border border-slate-700/60 bg-slate-900/80 hover:bg-slate-900/95 hover:border-emerald-400/80 backdrop-blur-xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 shadow-2xl h-[320px] overflow-hidden">
+                    <div class="flex items-center justify-between">
+                        <span class="h-12 w-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white font-extrabold text-base flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-transform duration-300">
+                            02
+                        </span>
+                        <span class="text-xs font-mono font-semibold text-emerald-400/90 group-hover:text-emerald-300 transition-colors">Phase 2</span>
                     </div>
-                    <div class="pt-4 mt-4 border-t border-slate-900 text-[11px] text-slate-500 font-mono">Capacity-aware matching</div>
+
+                    <div class="relative transition-transform duration-300 ease-out group-hover:-translate-y-2">
+                        <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-emerald-300 transition-colors duration-200">
+                            Smart Assignment
+                        </h3>
+                        <div class="text-xs font-medium text-slate-400 mt-1 transition-opacity duration-200 group-hover:text-slate-300">
+                            Capacity balanced
+                        </div>
+                        <div class="pt-3">
+                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out line-clamp-3">
+                                Work is automatically paired with team availability so tasks start without delay and without overburdening members.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Node 3 -->
-                <div class="rounded-2xl border border-slate-800 bg-slate-950 p-6 flex flex-col justify-between hover:border-emerald-500/50 transition-all shadow-xl group">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="h-10 w-10 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white font-extrabold text-sm flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
-                                03
-                            </span>
-                            <span class="text-[10px] font-mono uppercase tracking-wider text-amber-400 bg-amber-950/60 px-2 py-0.5 rounded">Sentry</span>
-                        </div>
-                        <h3 class="text-base font-bold text-white">Continuous AI Radar</h3>
-                        <p class="text-xs text-slate-400 leading-relaxed mt-2">
-                            Monitors stage velocity around the clock, raising proactive warnings 48 hours before deadlines are compromised.
-                        </p>
+                <!-- Step 3 -->
+                <div class="group relative rounded-2xl border border-slate-700/60 bg-slate-900/80 hover:bg-slate-900/95 hover:border-emerald-400/80 backdrop-blur-xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 shadow-2xl h-[320px] overflow-hidden">
+                    <div class="flex items-center justify-between">
+                        <span class="h-12 w-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white font-extrabold text-base flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-transform duration-300">
+                            03
+                        </span>
+                        <span class="text-xs font-mono font-semibold text-emerald-400/90 group-hover:text-emerald-300 transition-colors">Phase 3</span>
                     </div>
-                    <div class="pt-4 mt-4 border-t border-slate-900 text-[11px] text-slate-500 font-mono">Predictive risk alerts</div>
+
+                    <div class="relative transition-transform duration-300 ease-out group-hover:-translate-y-2">
+                        <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-emerald-300 transition-colors duration-200">
+                            Stay Ahead of Delays
+                        </h3>
+                        <div class="text-xs font-medium text-slate-400 mt-1 transition-opacity duration-200 group-hover:text-slate-300">
+                            Proactive alerts
+                        </div>
+                        <div class="pt-3">
+                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out line-clamp-3">
+                                Get early warnings 48 hours in advance if approvals slow down before deadlines are in danger.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Node 4 -->
-                <div class="rounded-2xl border border-slate-800 bg-slate-950 p-6 flex flex-col justify-between hover:border-emerald-500/50 transition-all shadow-xl group">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="h-10 w-10 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white font-extrabold text-sm flex items-center justify-center shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
-                                04
-                            </span>
-                            <span class="text-[10px] font-mono uppercase tracking-wider text-teal-400 bg-teal-950/60 px-2 py-0.5 rounded">Delivery</span>
-                        </div>
-                        <h3 class="text-base font-bold text-white">Self-Heal & Complete</h3>
-                        <p class="text-xs text-slate-400 leading-relaxed mt-2">
-                            Blockers are resolved via alternate paths or 1-click unblock actions, keeping deliverables on target.
-                        </p>
+                <!-- Step 4 -->
+                <div class="group relative rounded-2xl border border-slate-700/60 bg-slate-900/80 hover:bg-slate-900/95 hover:border-teal-400/80 backdrop-blur-xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 shadow-2xl h-[320px] overflow-hidden">
+                    <div class="flex items-center justify-between">
+                        <span class="h-12 w-12 rounded-2xl bg-gradient-to-tr from-teal-600 to-cyan-600 text-white font-extrabold text-base flex items-center justify-center shadow-lg shadow-teal-500/30 group-hover:scale-110 transition-transform duration-300">
+                            04
+                        </span>
+                        <span class="text-xs font-mono font-semibold text-teal-400/90 group-hover:text-teal-300 transition-colors">Phase 4</span>
                     </div>
-                    <div class="pt-4 mt-4 border-t border-slate-900 text-[11px] text-slate-500 font-mono">Guaranteed completion</div>
+
+                    <div class="relative transition-transform duration-300 ease-out group-hover:-translate-y-2">
+                        <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-teal-300 transition-colors duration-200">
+                            Clear the Finish Line
+                        </h3>
+                        <div class="text-xs font-medium text-slate-400 mt-1 transition-opacity duration-200 group-hover:text-slate-300">
+                            1-click resolution
+                        </div>
+                        <div class="pt-3">
+                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out line-clamp-3">
+                                Resolve roadblocks with 1-click unblock actions and keep deliverables moving cleanly to completion.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 5. CREATIVE TESTIMONIALS: Executive Spotlight Stage -->
+    <!-- 5. CREATIVE TESTIMONIALS: Interactive Spotlight Stage with Multi-Story Sidebar & Tooltips -->
     <section id="testimonials" class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="text-center max-w-3xl mx-auto mb-16">
             <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">Customer Stories</span>
@@ -674,79 +724,191 @@
             <p class="text-sm sm:text-base text-slate-400 mt-2">See how leaders in operations, engineering, and studios eliminated project clutter.</p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-            <!-- Featured Grand Testimonial (7 columns) -->
-            <div class="lg:col-span-7 rounded-3xl border border-emerald-500/40 bg-gradient-to-br from-emerald-950/30 via-slate-950 to-slate-950 p-8 sm:p-10 flex flex-col justify-between shadow-2xl relative">
-                <div class="space-y-6">
-                    <div class="flex items-center justify-between">
-                        <!-- Rating Stars -->
-                        <div class="flex items-center gap-1 text-emerald-400">
-                            @for($i = 0; $i < 5; $i++)
-                                <svg class="h-5 w-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            @endfor
+        <!-- Interactive Testimonials Container with Alpine.js -->
+        <div 
+            x-data="{
+                activeId: 0,
+                testimonials: [
+                    {
+                        id: 0,
+                        name: 'Elena Rostova',
+                        role: 'Head of Operations',
+                        company: 'NexaGrowth',
+                        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80',
+                        initials: 'ER',
+                        rating: 5,
+                        badge: 'Saved 312 hrs / mo',
+                        quote: 'Before TaskVerge, we spent 4 hours every Monday in sync meetings just trying to figure out what was stuck. Now, our dashboard highlights blockers immediately, cutting meetings down to 30 minutes.'
+                    },
+                    {
+                        id: 1,
+                        name: 'Marcus Chen',
+                        role: 'VP of Engineering',
+                        company: 'CloudCore',
+                        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80',
+                        initials: 'MC',
+                        rating: 4.5,
+                        badge: '99.4% On-Time Delivery',
+                        quote: 'The automatic work balancing and clear blocker reasons are pure gold. Engineers don’t just mark things as stuck—the system shows exactly what is missing so it gets resolved in minutes.'
+                    },
+                    {
+                        id: 2,
+                        name: 'Sarah Jenkins',
+                        role: 'Managing Director',
+                        company: 'StudioCraft',
+                        avatar: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=160&q=80',
+                        initials: 'SJ',
+                        rating: 4.8,
+                        badge: '5-Min Team Onboarding',
+                        quote: 'We replaced an enterprise tool that required a two-week onboarding course. Our client coordinators and designers were actively using TaskVerge within 5 minutes of sending the invites.'
+                    },
+                    {
+                        id: 3,
+                        name: 'David Kim',
+                        role: 'Product Lead',
+                        company: 'Veloce Labs',
+                        avatar: null,
+                        initials: 'DK',
+                        rating: 4,
+                        badge: 'Zero Forgotten Tasks',
+                        quote: 'Having real-time project health without sending daily reminder messages has changed our work culture completely. The team is calmer, more focused, and consistently hits delivery dates.'
+                    },
+                    {
+                        id: 4,
+                        name: 'Liam O\'Connor',
+                        role: 'Engineering Lead',
+                        company: 'NorthStar',
+                        avatar: null,
+                        initials: 'LO',
+                        rating: 4.5,
+                        badge: '85% Faster Unblocking',
+                        quote: 'The 1-click unblock feature is so simple yet effective. Bottlenecks that used to linger for days get resolved before our lunch break.'
+                    }
+                ]
+            }"
+            class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch"
+        >
+            <!-- Featured Spotlight Card (7 columns) -->
+            <div class="lg:col-span-7 rounded-3xl border border-emerald-500/40 bg-gradient-to-br from-emerald-950/30 via-slate-950 to-slate-950 p-6 sm:p-8 flex flex-col justify-between shadow-2xl relative transition-all duration-500">
+                <div class="space-y-5">
+                    <div class="flex items-center justify-between flex-wrap gap-2">
+                        <!-- Dynamic Star Rating -->
+                        <div class="flex items-center gap-1">
+                            <template x-for="i in 5">
+                                <svg 
+                                    class="h-4.5 w-4.5 fill-current transition-colors"
+                                    :class="i <= Math.floor(testimonials[activeId].rating) ? 'text-emerald-400' : (i - 0.5 <= testimonials[activeId].rating ? 'text-teal-300' : 'text-slate-700')"
+                                    viewBox="0 0 20 20"
+                                >
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                </svg>
+                            </template>
+                            <span class="text-xs font-mono text-slate-400 ml-2" x-text="testimonials[activeId].rating + ' / 5.0'"></span>
                         </div>
-                        <span class="rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-3 py-1 text-xs font-bold font-mono">
-                            Saved 312 hrs / month
-                        </span>
+                        <span class="rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-3 py-1 text-xs font-bold font-mono" x-text="testimonials[activeId].badge"></span>
                     </div>
 
-                    <blockquote class="text-lg sm:text-xl text-slate-100 leading-relaxed font-semibold">
-                        "Before TaskVerge, we spent 4 hours every Monday in sync meetings just trying to figure out what was stuck. Now, our dashboard highlights blockers immediately, cutting meetings down to 30 minutes."
-                    </blockquote>
+                    <!-- Spotlight Big Quote -->
+                    <blockquote class="text-base sm:text-lg text-slate-100 leading-relaxed font-semibold transition-all duration-300" x-text="'&ldquo;' + testimonials[activeId].quote + '&rdquo;'"></blockquote>
                 </div>
 
-                <div class="flex items-center gap-4 pt-6 mt-6 border-t border-emerald-900/50">
-                    <img 
-                        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80" 
-                        alt="Elena Rostova" 
-                        class="h-12 w-12 rounded-full object-cover border-2 border-emerald-500 shadow-md"
-                        loading="lazy"
-                    />
-                    <div>
-                        <div class="text-sm font-bold text-white">Elena Rostova</div>
-                        <div class="text-xs text-emerald-400">Head of Operations, NexaGrowth</div>
+                <!-- Spotlight Author Strip -->
+                <div class="flex items-center justify-between pt-5 mt-5 border-t border-emerald-900/40">
+                    <div class="flex items-center gap-3.5">
+                        <!-- Photo or Initials Badge -->
+                        <template x-if="testimonials[activeId].avatar">
+                            <img 
+                                :src="testimonials[activeId].avatar" 
+                                :alt="testimonials[activeId].name" 
+                                class="h-11 w-11 rounded-full object-cover border-2 border-emerald-500 shadow-md"
+                            />
+                        </template>
+                        <template x-if="!testimonials[activeId].avatar">
+                            <div class="h-11 w-11 rounded-full bg-gradient-to-tr from-emerald-800 to-teal-600 border-2 border-emerald-400 flex items-center justify-center text-white font-bold text-xs shadow-md" x-text="testimonials[activeId].initials"></div>
+                        </template>
+                        <div>
+                            <div class="text-sm font-bold text-white" x-text="testimonials[activeId].name"></div>
+                            <div class="text-xs text-emerald-400" x-text="testimonials[activeId].role + ', ' + testimonials[activeId].company"></div>
+                        </div>
                     </div>
+                    <span class="text-[11px] text-slate-500 hidden sm:inline">Active Spotlight</span>
                 </div>
             </div>
 
-            <!-- Staggered Right Testimonials (5 columns) -->
-            <div class="lg:col-span-5 flex flex-col gap-6">
-                <!-- Testimonial 2 -->
-                <div class="rounded-2xl border border-slate-800 bg-slate-950 p-6 flex flex-col justify-between space-y-4 hover:border-slate-700 transition-all shadow-lg flex-1">
-                    <blockquote class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                        "The autonomous triage and mandatory blocker reason features are pure genius. Developers don't just mark things 'blocked'—the engine highlights what is needed and routes it."
-                    </blockquote>
-                    <div class="flex items-center gap-3 pt-3 border-t border-slate-900">
-                        <img 
-                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" 
-                            alt="Marcus Chen" 
-                            class="h-9 w-9 rounded-full object-cover border border-slate-700"
-                            loading="lazy"
-                        />
-                        <div>
-                            <div class="text-xs font-bold text-white">Marcus Chen</div>
-                            <div class="text-[11px] text-slate-400">VP of Engineering, CloudCore</div>
-                        </div>
+            <!-- Smaller Right Column: Quick Avatar Selector with Tooltips + 2 Small Preview Cards (5 columns) -->
+            <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                <!-- Top Header with Interactive Circle Switcher & Floating Tooltips -->
+                <div class="flex items-center justify-between pb-2 border-b border-slate-800/80">
+                    <div>
+                        <span class="text-xs font-semibold text-slate-300">Customer Stories</span>
+                        <p class="text-[10px] text-emerald-400 font-mono">Click circle to spotlight</p>
+                    </div>
+
+                    <!-- Small Circle Avatars with Floating Tooltips -->
+                    <div class="flex items-center gap-2">
+                        <template x-for="(item, idx) in testimonials" :key="item.id">
+                            <div class="relative group/circle">
+                                <button 
+                                    type="button"
+                                    @click="activeId = item.id" 
+                                    class="h-8 w-8 rounded-full overflow-hidden border-2 transition-all duration-200 flex items-center justify-center cursor-pointer"
+                                    :class="activeId === item.id 
+                                        ? 'border-emerald-400 ring-2 ring-emerald-500/40 scale-110 shadow-md shadow-emerald-500/30' 
+                                        : 'border-slate-700 opacity-60 hover:opacity-100 hover:scale-105 hover:border-slate-500'"
+                                    :aria-label="item.name"
+                                >
+                                    <template x-if="item.avatar">
+                                        <img :src="item.avatar" :alt="item.name" class="w-full h-full object-cover"/>
+                                    </template>
+                                    <template x-if="!item.avatar">
+                                        <span class="bg-gradient-to-tr from-emerald-800 to-teal-600 text-white w-full h-full flex items-center justify-center font-bold text-[10px]" x-text="item.initials"></span>
+                                    </template>
+                                </button>
+
+                                <!-- Floating Tooltip on Hover directly on circle -->
+                                <div class="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 opacity-0 group-hover/circle:opacity-100 transition-all duration-200 z-30 px-2.5 py-1 rounded-lg bg-slate-900 border border-emerald-500/40 text-[11px] font-semibold text-white whitespace-nowrap shadow-2xl">
+                                    <!-- <span x-text="item.name + ' • ' + item.company"></span> -->
+                                    <span x-text="item.name"></span>
+                                    <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-slate-900 border-r border-b border-emerald-500/40 rotate-45"></div>
+                                </div>
+                            </div>
+                        </template>
                     </div>
                 </div>
 
-                <!-- Testimonial 3 -->
-                <div class="rounded-2xl border border-slate-800 bg-slate-950 p-6 flex flex-col justify-between space-y-4 hover:border-slate-700 transition-all shadow-lg flex-1">
-                    <blockquote class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                        "We replaced an enterprise tool that required a two-week onboarding course. Our client coordinators and designers were using TaskVerge within 5 minutes of sending the invites."
-                    </blockquote>
-                    <div class="flex items-center gap-3 pt-3 border-t border-slate-900">
-                        <img 
-                            src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=120&q=80" 
-                            alt="Sarah Jenkins" 
-                            class="h-9 w-9 rounded-full object-cover border border-slate-700"
-                            loading="lazy"
-                        />
-                        <div>
-                            <div class="text-xs font-bold text-white">Sarah Jenkins</div>
-                            <div class="text-[11px] text-slate-400">Managing Director, StudioCraft</div>
+                <!-- 2 Small Preview Cards (Next up in queue) -->
+                <div class="grid grid-cols-1 gap-3">
+                    <template x-for="item in testimonials.filter(t => t.id !== activeId).slice(0, 2)" :key="item.id">
+                        <div 
+                            @click="activeId = item.id"
+                            class="group relative rounded-2xl border border-slate-800/80 bg-slate-950/70 hover:border-emerald-500/60 hover:bg-slate-900/60 p-4 cursor-pointer transition-all duration-300 shadow-md hover:-translate-y-0.5"
+                        >
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center gap-2.5">
+                                    <template x-if="item.avatar">
+                                        <img :src="item.avatar" :alt="item.name" class="h-8 w-8 rounded-full object-cover border border-slate-700"/>
+                                    </template>
+                                    <template x-if="!item.avatar">
+                                        <div class="h-8 w-8 rounded-full bg-gradient-to-tr from-emerald-800 to-teal-600 border border-emerald-400/50 flex items-center justify-center text-white font-bold text-[10px]" x-text="item.initials"></div>
+                                    </template>
+                                    <div>
+                                        <div class="text-xs font-bold text-white group-hover:text-emerald-300 transition-colors" x-text="item.name"></div>
+                                        <div class="text-[10px] text-slate-400" x-text="item.role + ', ' + item.company"></div>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full" x-text="item.badge"></span>
+                            </div>
+
+                            <p class="text-xs text-slate-300 line-clamp-2 leading-relaxed italic" x-text="'&ldquo;' + item.quote + '&rdquo;'"></p>
+
+                            <div class="mt-2.5 pt-2 border-t border-slate-800/60 flex items-center justify-between text-[10px] text-slate-400">
+                                <span class="text-emerald-400/90 font-mono" x-text="'★ ' + item.rating + ' rating'"></span>
+                                <span class="group-hover:text-emerald-400 transition-colors flex items-center gap-1 font-semibold">
+                                    Click to Spotlight &rarr;
+                                </span>
+                            </div>
                         </div>
-                    </div>
+                    </template>
                 </div>
             </div>
         </div>
@@ -773,7 +935,7 @@
 
                 <!-- Benefit 2 -->
                 <div class="space-y-4 md:px-6 pt-6 md:pt-0">
-                    <div class="text-4xl sm:text-5xl font-extrabold text-amber-400">Zero</div>
+                    <div class="text-4xl sm:text-5xl font-extrabold text-cyan-400">Zero</div>
                     <h3 class="text-lg font-bold text-white">Forgotten Blockers</h3>
                     <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
                         Stuck tasks no longer hide in email threads or chat messages. They stand out on the dashboard until resolved.
@@ -796,64 +958,149 @@
     <section id="why-different" class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="text-center max-w-3xl mx-auto mb-16">
             <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">The Difference</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Why TaskVerge Over Traditional Project Tools?</h2>
-            <p class="text-sm sm:text-base text-slate-400 mt-2">See how TaskVerge compares to bloated legacy software and disorganized spreadsheets.</p>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Why TaskVerge Over Traditional Tools?</h2>
+            <p class="text-sm sm:text-base text-slate-400 mt-2">See how TaskVerge eliminates administrative fatigue compared to fragmented spreadsheets and bloated legacy software.</p>
         </div>
 
+        <!-- Capability Comparison Matrix -->
         <div class="rounded-3xl border border-slate-800 bg-slate-950 overflow-hidden shadow-2xl">
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-xs sm:text-sm">
                     <thead class="bg-slate-900/90 text-slate-300 uppercase text-[11px] font-bold border-b border-slate-800">
                         <tr>
-                            <th class="px-6 py-4">Capability</th>
-                            <th class="px-6 py-4 text-slate-400">Spreadsheets & Email</th>
-                            <th class="px-6 py-4 text-slate-400">Traditional Bloated Tools</th>
-                            <th class="px-6 py-4 text-emerald-400 bg-emerald-950/30 font-extrabold">TaskVerge</th>
+                            <th class="px-6 py-4">Capability / Dimension</th>
+                            <th class="px-6 py-4 text-slate-400">Spreadsheets & Slack</th>
+                            <th class="px-6 py-4 text-slate-400">Bloated Legacy Tools</th>
+                            <th class="px-6 py-4 text-emerald-400 bg-emerald-950/30 font-extrabold">TaskVerge Platform</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-800/80 text-slate-300">
                         <tr>
-                            <td class="px-6 py-4 font-semibold text-white">Setup Time</td>
-                            <td class="px-6 py-4 text-slate-400">Manual templates, breaks easily</td>
-                            <td class="px-6 py-4 text-slate-400">Days or weeks of configuration</td>
-                            <td class="px-6 py-4 text-emerald-400 font-bold bg-emerald-950/15">Under 2 minutes</td>
+                            <td class="px-6 py-4 font-semibold text-white">Setup Time & Onboarding</td>
+                            <td class="px-6 py-4 text-slate-400">Manual templates, breaks with edits</td>
+                            <td class="px-6 py-4 text-slate-400">2–4 weeks onboarding & certification</td>
+                            <td class="px-6 py-4 text-emerald-400 font-bold bg-emerald-950/15">&lt; 2 minutes (Zero-friction)</td>
                         </tr>
                         <tr>
-                            <td class="px-6 py-4 font-semibold text-white">Blocker Detection</td>
-                            <td class="px-6 py-4 text-slate-400">Hidden in email replies</td>
-                            <td class="px-6 py-4 text-slate-400">Buried in deep ticket tabs</td>
-                            <td class="px-6 py-4 text-emerald-400 font-bold bg-emerald-950/15">Autonomous Attention Radar</td>
+                            <td class="px-6 py-4 font-semibold text-white">Blocker & Bottleneck Detection</td>
+                            <td class="px-6 py-4 text-slate-400">Hidden in email/DM threads</td>
+                            <td class="px-6 py-4 text-slate-400">Buried in ticket sub-tabs</td>
+                            <td class="px-6 py-4 text-emerald-400 font-bold bg-emerald-950/15">Autonomous Attention Radar (Pre-breach)</td>
                         </tr>
                         <tr>
-                            <td class="px-6 py-4 font-semibold text-white">View Flexibility</td>
-                            <td class="px-6 py-4 text-slate-400">Rows and columns only</td>
-                            <td class="px-6 py-4 text-slate-400">Complex, cluttered screens</td>
-                            <td class="px-6 py-4 text-emerald-400 font-bold bg-emerald-950/15">Instant 1-Click Kanban or Table</td>
+                            <td class="px-6 py-4 font-semibold text-white">Dual-View Flexibility</td>
+                            <td class="px-6 py-4 text-slate-400">Static rows and cells only</td>
+                            <td class="px-6 py-4 text-slate-400">Cluttered screen switches</td>
+                            <td class="px-6 py-4 text-emerald-400 font-bold bg-emerald-950/15">Instant 1-Click Kanban &amp; Table Sync</td>
                         </tr>
                         <tr>
-                            <td class="px-6 py-4 font-semibold text-white">Learning Curve</td>
-                            <td class="px-6 py-4 text-slate-400">Familiar but chaotic</td>
-                            <td class="px-6 py-4 text-slate-400">Steep (requires training)</td>
-                            <td class="px-6 py-4 text-emerald-400 font-bold bg-emerald-950/15">Zero training needed</td>
+                            <td class="px-6 py-4 font-semibold text-white">Task Intake & Auto-Triage</td>
+                            <td class="px-6 py-4 text-slate-400">Manual copy-paste entry</td>
+                            <td class="px-6 py-4 text-slate-400">Complex rules engines to write &amp; debug</td>
+                            <td class="px-6 py-4 text-emerald-400 font-bold bg-emerald-950/15">Autonomous Intake &amp; Capacity Match</td>
                         </tr>
                         <tr>
-                            <td class="px-6 py-4 font-semibold text-white">Task History</td>
-                            <td class="px-6 py-4 text-slate-400">None (overwritten rows)</td>
-                            <td class="px-6 py-4 text-slate-400">Scattered across comment chains</td>
-                            <td class="px-6 py-4 text-emerald-400 font-bold bg-emerald-950/15">Automatic chronological audit trail</td>
+                            <td class="px-6 py-4 font-semibold text-white">1-Click Bottleneck Resolution</td>
+                            <td class="px-6 py-4 text-slate-400">Manual follow-up meetings</td>
+                            <td class="px-6 py-4 text-slate-400">Multi-step ticket status override</td>
+                            <td class="px-6 py-4 text-emerald-400 font-bold bg-emerald-950/15">1-Click Quick Unblock Action</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 font-semibold text-white">Audit Trail & Compliance</td>
+                            <td class="px-6 py-4 text-slate-400">None (overwritten cells)</td>
+                            <td class="px-6 py-4 text-slate-400">Fragmented comment chains</td>
+                            <td class="px-6 py-4 text-emerald-400 font-bold bg-emerald-950/15">Automatic Chronological Activity Log</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 font-semibold text-white">User Administration &amp; Roles</td>
+                            <td class="px-6 py-4 text-slate-400">Link sharing without permission tiers</td>
+                            <td class="px-6 py-4 text-slate-400">Over-engineered IAM &amp; user groups</td>
+                            <td class="px-6 py-4 text-emerald-400 font-bold bg-emerald-950/15">Streamlined Role Gating &amp; Instant Toggles</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 font-semibold text-white">Pricing Transparency</td>
+                            <td class="px-6 py-4 text-slate-400">Hidden costs in wasted team hours</td>
+                            <td class="px-6 py-4 text-slate-400">Mandatory annual enterprise minimums</td>
+                            <td class="px-6 py-4 text-emerald-400 font-bold bg-emerald-950/15">Honest flat seat tiers with Annual Savings</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+
+        <!-- Extra Feature Grid Highlights -->
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="rounded-2xl border border-slate-800/80 bg-slate-950/70 p-6 space-y-3">
+                <div class="h-10 w-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                </div>
+                <h3 class="text-sm font-bold text-white">Autonomous Stage Transitions</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Pipelines advance cards automatically as requirements and reviews are marked satisfied.</p>
+            </div>
+
+            <div class="rounded-2xl border border-slate-800/80 bg-slate-950/70 p-6 space-y-3">
+                <div class="h-10 w-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                </div>
+                <h3 class="text-sm font-bold text-white">Workload Balance Guard</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Monitors individual velocity to prevent burn-out by re-distributing incoming queue surges.</p>
+            </div>
+
+            <div class="rounded-2xl border border-slate-800/80 bg-slate-950/70 p-6 space-y-3">
+                <div class="h-10 w-10 rounded-xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h3 class="text-sm font-bold text-white">Proactive SLA Radar</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Alerts stakeholders 48 hours before any deadline is in jeopardy, avoiding emergency fixes.</p>
+            </div>
+
+            <div class="rounded-2xl border border-slate-800/80 bg-slate-950/70 p-6 space-y-3">
+                <div class="h-10 w-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                    </svg>
+                </div>
+                <h3 class="text-sm font-bold text-white">Enterprise Security &amp; Audit</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">Strict role-based boundaries, Turnstile bot shields, and full chronological task histories.</p>
+            </div>
+        </div>
     </section>
 
     <!-- 8. SIMPLE, HONEST PRICING -->
-    <section id="pricing" class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="text-center max-w-3xl mx-auto mb-16">
+    <section id="pricing" class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto" x-data="{ billingInterval: 'annual' }">
+        <div class="text-center max-w-3xl mx-auto mb-10">
             <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">Pricing Plans</span>
             <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Simple Plans for Teams of Every Size</h2>
-            <p class="text-sm sm:text-base text-slate-400 mt-2">Choose the plan that fits your current needs. Upgrade or cancel anytime.</p>
+            <p class="text-sm sm:text-base text-slate-400 mt-2">Choose the plan that fits your current operational needs. Upgrade, downgrade, or cancel anytime.</p>
+
+            <!-- Monthly / Annual Billing Toggle with Savings Badge -->
+            <div class="mt-8 inline-flex items-center gap-3 p-1.5 rounded-2xl bg-slate-900 border border-slate-800 shadow-inner">
+                <button 
+                    type="button" 
+                    @click="billingInterval = 'monthly'"
+                    class="px-5 py-2 rounded-xl text-xs font-bold transition-all duration-200"
+                    :class="billingInterval === 'monthly' ? 'bg-emerald-600 text-white shadow-md shadow-emerald-950/50' : 'text-slate-400 hover:text-slate-200'"
+                >
+                    Monthly Billing
+                </button>
+                <button 
+                    type="button" 
+                    @click="billingInterval = 'annual'"
+                    class="px-5 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center gap-2"
+                    :class="billingInterval === 'annual' ? 'bg-emerald-600 text-white shadow-md shadow-emerald-950/50' : 'text-slate-400 hover:text-slate-200'"
+                >
+                    <span>Annual Billing</span>
+                    <span class="rounded-full bg-emerald-400/20 text-emerald-300 border border-emerald-400/30 text-[10px] px-2 py-0.5 font-extrabold uppercase tracking-wide">
+                        Save 20%
+                    </span>
+                </button>
+            </div>
         </div>
 
         <!-- Elevated Pricing Horizon (Middle card rises with emerald halo) -->
@@ -864,17 +1111,20 @@
                     <div>
                         <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Free Starter</span>
                         <h3 class="text-2xl font-bold text-white mt-1">Free Trial</h3>
-                        <p class="text-xs text-slate-400 mt-2">Explore TaskVerge with your immediate team.</p>
+                        <p class="text-xs text-slate-400 mt-2">Explore TaskVerge with your immediate team at zero risk.</p>
                     </div>
                     <div class="text-4xl font-extrabold text-white">$0 <span class="text-xs text-slate-400 font-normal">/ 14 days</span></div>
+                    <p class="text-[11px] text-emerald-400/80 font-mono">No credit card required to start</p>
                     <ul class="text-xs sm:text-sm text-slate-300 space-y-2.5 pt-4 border-t border-slate-800">
                         <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Up to 3 active workflows</li>
-                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Visual Kanban & Table views</li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Up to 3 team member accounts</li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Instant Kanban &amp; Table views</li>
                         <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Autonomous triage basics</li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Standard community support</li>
                     </ul>
                 </div>
-                <a href="{{ route('register') }}" class="block text-center rounded-xl bg-slate-800 hover:bg-slate-700 py-3 text-xs font-semibold text-white transition-colors">
-                    Start Free Trial
+                <a href="{{ route('register') }}" class="block text-center rounded-xl bg-slate-800 hover:bg-slate-700 py-3.5 text-xs font-semibold text-white transition-colors">
+                    Start 14-Day Free Trial
                 </a>
             </div>
 
@@ -887,18 +1137,38 @@
                     <div>
                         <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Growing Teams</span>
                         <h3 class="text-2xl font-bold text-white mt-1">Operations Core</h3>
-                        <p class="text-xs text-slate-400 mt-2">Complete workflow control for fast-moving business teams.</p>
+                        <p class="text-xs text-slate-400 mt-2">Complete workflow orchestration for fast-moving business units.</p>
                     </div>
-                    <div class="text-4xl font-extrabold text-white">$49 <span class="text-xs text-slate-400 font-normal">/ user / mo</span></div>
+
+                    <!-- Dynamic Price calculation based on interval -->
+                    <div>
+                        <div class="flex items-baseline gap-1.5">
+                            <span class="text-4xl font-extrabold text-white" x-text="billingInterval === 'annual' ? '$39' : '$49'">$39</span>
+                            <span class="text-xs text-slate-400 font-normal">/ seat / month</span>
+                        </div>
+                        <div class="text-[11px] text-emerald-400 mt-1 font-mono" x-show="billingInterval === 'annual'">
+                            Billed annually ($468/yr per seat) • Save $120/yr
+                        </div>
+                        <div class="text-[11px] text-slate-500 mt-1 font-mono" x-show="billingInterval === 'monthly'">
+                            Billed month-to-month, pause or cancel anytime
+                        </div>
+                    </div>
+
                     <ul class="text-xs sm:text-sm text-slate-200 space-y-2.5 pt-4 border-t border-emerald-900/60">
-                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> <strong>Unlimited</strong> workflows & tasks</li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> <strong>Unlimited</strong> workflows &amp; tasks</li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Up to 25 team members</li>
                         <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Real-time Intelligence Dashboard</li>
-                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Predictive Bottleneck Radar</li>
-                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Full chronological activity logs</li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Predictive Bottleneck Radar (48h advance warning)</li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> 1-Click Bottleneck Resolution</li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Full chronological activity audit logs</li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Expedited support SLA (under 4 hours)</li>
                     </ul>
                 </div>
-                <a href="{{ route('checkout', ['plan' => 'core']) }}" class="block text-center rounded-xl bg-emerald-600 hover:bg-emerald-500 py-3.5 text-xs font-bold text-white transition-all shadow-xl shadow-emerald-600/30">
-                    Choose Operations Core
+                <a 
+                    :href="'{{ route('checkout') }}?plan=core&interval=' + billingInterval" 
+                    class="block text-center rounded-xl bg-emerald-600 hover:bg-emerald-500 py-3.5 text-xs font-bold text-white transition-all shadow-xl shadow-emerald-600/30"
+                >
+                    <span x-text="billingInterval === 'annual' ? 'Choose Operations Core (Annual Save 20%)' : 'Choose Operations Core (Monthly)'">Choose Operations Core</span>
                 </a>
             </div>
 
@@ -906,20 +1176,39 @@
             <div class="rounded-2xl border border-slate-800 bg-slate-950 p-8 flex flex-col justify-between space-y-6">
                 <div class="space-y-4">
                     <div>
-                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Large Organizations</span>
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Scale &amp; Multi-Team</span>
                         <h3 class="text-2xl font-bold text-white mt-1">Enterprise Plan</h3>
-                        <p class="text-xs text-slate-400 mt-2">For multi-department operations and custom setups.</p>
+                        <p class="text-xs text-slate-400 mt-2">For cross-functional organizations requiring tailored governance.</p>
                     </div>
-                    <div class="text-4xl font-extrabold text-white">$119 <span class="text-xs text-slate-400 font-normal">/ user / mo</span></div>
+
+                    <!-- Dynamic Price calculation based on interval -->
+                    <div>
+                        <div class="flex items-baseline gap-1.5">
+                            <span class="text-4xl font-extrabold text-white" x-text="billingInterval === 'annual' ? '$95' : '$119'">$95</span>
+                            <span class="text-xs text-slate-400 font-normal">/ seat / month</span>
+                        </div>
+                        <div class="text-[11px] text-emerald-400 mt-1 font-mono" x-show="billingInterval === 'annual'">
+                            Billed annually ($1,140/yr per seat) • Save $288/yr
+                        </div>
+                        <div class="text-[11px] text-slate-500 mt-1 font-mono" x-show="billingInterval === 'monthly'">
+                            Billed month-to-month, pause or cancel anytime
+                        </div>
+                    </div>
+
                     <ul class="text-xs sm:text-sm text-slate-300 space-y-2.5 pt-4 border-t border-slate-800">
                         <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> All Operations Core features</li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> <strong>Unlimited</strong> team members &amp; departments</li>
                         <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Self-healing pipeline orchestration</li>
-                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Dedicated onboarding specialist</li>
-                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Priority 24/7 support</li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Advanced Admin Panel with custom roles</li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Dedicated onboarding architect</li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> 99.9% uptime SLA &amp; 24/7 priority support</li>
                     </ul>
                 </div>
-                <a href="{{ route('checkout', ['plan' => 'intelligence']) }}" class="block text-center rounded-xl bg-slate-800 hover:bg-slate-700 py-3 text-xs font-semibold text-white transition-colors">
-                    Choose Enterprise
+                <a 
+                    :href="'{{ route('checkout') }}?plan=intelligence&interval=' + billingInterval" 
+                    class="block text-center rounded-xl bg-slate-800 hover:bg-slate-700 py-3.5 text-xs font-semibold text-white transition-colors"
+                >
+                    <span x-text="billingInterval === 'annual' ? 'Choose Enterprise (Annual Save 20%)' : 'Choose Enterprise (Monthly)'">Choose Enterprise</span>
                 </a>
             </div>
         </div>

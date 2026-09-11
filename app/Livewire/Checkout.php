@@ -48,6 +48,11 @@ class Checkout extends Component
             $this->plan = $requestedPlan;
         }
 
+        $requestedInterval = request()->query('interval');
+        if (in_array($requestedInterval, ['monthly', 'annual', 'yearly'], true)) {
+            $this->billingInterval = $requestedInterval === 'yearly' ? 'annual' : $requestedInterval;
+        }
+
         if (Auth::check()) {
             $this->cardholderName = Auth::user()->name;
             $this->companyName = Auth::user()->department ?? 'Enterprise Organization';

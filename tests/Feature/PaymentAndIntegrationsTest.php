@@ -47,6 +47,20 @@ class PaymentAndIntegrationsTest extends TestCase
         $response->assertSee('CLOUDFLARE');
     }
 
+    public function test_checkout_page_respects_interval_parameter_from_landing_pricing(): void
+    {
+        // Monthly checkout link
+        $monthlyResponse = $this->get('/checkout?plan=core&interval=monthly');
+        $monthlyResponse->assertStatus(200);
+        $monthlyResponse->assertSee('$49');
+
+        // Annual checkout link
+        $annualResponse = $this->get('/checkout?plan=core&interval=annual');
+        $annualResponse->assertStatus(200);
+        $annualResponse->assertSee('$39');
+        $annualResponse->assertSee('Save 20%');
+    }
+
     public function test_checkout_successfully_processes_corporate_card_4242(): void
     {
         $user = User::factory()->create([
