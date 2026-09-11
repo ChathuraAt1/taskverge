@@ -4,58 +4,22 @@ namespace App\Livewire;
 
 use App\Models\Task;
 use App\Models\TaskActivity;
-use App\Models\Workflow;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Layout('layouts.app')]
-#[Title('Operational Intelligence Dashboard')]
+#[Title('Dashboard')]
 class Dashboard extends Component
 {
-    public string $selectedDepartment = 'all';
-
     public ?int $selectedTaskId = null;
-
     public ?Task $selectedTask = null;
-
     public bool $showTaskModal = false;
-
-    // Quick unblock / edit fields
-    public string $unblockNote = '';
+    public string $taskFilter = 'active';
 
     /**
-     * Triage: Quick unblock a task directly from the dashboard.
-     */
-    public function unblockTask(int $taskId): void
-    {
-        $task = Task::findOrFail($taskId);
-        $oldStatus = $task->status;
-
-        // Move to first active stage if exists or keep stage
-        $activeStage = $task->workflow->stages()
-            ->where('is_blocked_stage', false)
-            ->where('is_terminal_success', false)
-            ->first();
-
-        $task->update([
-            'status' => 'active',
-            'stage_id' => $activeStage ? $activeStage->id : $task->stage_id,
-            'blocked_reason' => null,
-        ]);
-
-        $task->recordActivity(
-            'unblocked',
-            'Task unblocked by '.Auth::user()->name.' via Dashboard Triage',
-            ['previous_status' => $oldStatus]
-        );
-
-        session()->flash('status', "Task {$task->task_number} has been unblocked and resumed.");
-    }
-
-    /**
-     * Triage: Quick mark task completed from dashboard.
+     * Quick mark task as completed.
      */
     public function completeTask(int $taskId): void
     {
@@ -70,11 +34,39 @@ class Dashboard extends Component
 
         $task->recordActivity(
             'status_changed',
-            'Task marked completed via Dashboard Quick Actions',
+            'Marked completed from Dashboard',
             ['status' => 'completed']
         );
 
-        session()->flash('status', "Task {$task->task_number} marked completed.");
+        session()->flash('status', "'{$task->title}' marked as completed.");
+    }
+
+    /**
+     * Quick unblock a task.
+     */
+    public function unblockTask(int $taskId): void
+    {
+        $task = Task::findOrFail($taskId);
+        $oldStatus = $task->status;
+
+        $activeStage = $task->workflow->stages()
+            ->where('is_blocked_stage', false)
+            ->where('is_terminal_success', false)
+            ->first();
+
+        $task->update([
+            'status' => 'active',
+            'stage_id' => $activeStage ? $activeStage->id : $task->stage_id,
+            'blocked_reason' => null,
+        ]);
+
+        $task->recordActivity(
+            'unblocked',
+            'Unblocked from Dashboard by ' . Auth::user()->name,
+            ['previous_status' => $oldStatus]
+        );
+
+        session()->flash('status', "'{$task->title}' has been unblocked.");
     }
 
     /**
@@ -96,73 +88,62 @@ class Dashboard extends Component
 
     public function render()
     {
-        $workflowQuery = Workflow::query()->with(['stages', 'tasks']);
-        $taskQuery = Task::query()->with(['workflow', 'stage', 'assignee']);
+        $user = Auth::user();
 
-        if ($this->selectedDepartment !== 'all') {
-            $workflowQuery->where('department', $this->selectedDepartment);
-            $taskQuery->whereHas('workflow', function ($q) {
-                $q->where('department', $this->selectedDepartment);
-            });
-        }
-
-        $workflows = $workflowQuery->get();
-
-        // Metrics calculations
-        $totalTasks = (clone $taskQuery)->count();
-        $activeTasks = (clone $taskQuery)->where('status', 'active')->count();
-        $completedTasks = (clone $taskQuery)->where('status', 'completed')->count();
-        $blockedTasks = (clone $taskQuery)->where('status', 'blocked')->count();
-        $overdueTasks = (clone $taskQuery)->overdue()->count();
-
-        $completionRate = $totalTasks > 0 ? (int) round(($completedTasks / $totalTasks) * 100) : 0;
-
-        // Priority breakdown
-        $criticalTasks = (clone $taskQuery)->where('priority', 'critical')->where('status', '!=', 'completed')->count();
-        $highTasks = (clone $taskQuery)->where('priority', 'high')->where('status', '!=', 'completed')->count();
-        $mediumTasks = (clone $taskQuery)->where('priority', 'medium')->where('status', '!=', 'completed')->count();
-        $lowTasks = (clone $taskQuery)->where('priority', 'low')->where('status', '!=', 'completed')->count();
-
-        // Urgent triage queue: Overdue or Blocked tasks requiring attention
-        $urgentAttentionTasks = (clone $taskQuery)
+        // My task counts
+        $myActiveTasks = Task::where('assigned_to', $user->id)->where('status', 'active')->count();
+        $myNeedsAttention = Task::where('assigned_to', $user->id)
             ->where(function ($q) {
                 $q->where('status', 'blocked')
-                    ->orWhere(function ($sq) {
-                        $sq->where('status', '!=', 'completed')
-                            ->whereNotNull('deadline')
-                            ->where('deadline', '<', now());
-                    });
-            })
-            ->orderByRaw("CASE WHEN status = 'blocked' THEN 1 ELSE 2 END")
+                  ->orWhere(function ($sq) {
+                      $sq->where('status', '!=', 'completed')
+                         ->whereNotNull('deadline')
+                         ->where('deadline', '<', now());
+                  });
+            })->count();
+        $myCompletedThisWeek = Task::where('assigned_to', $user->id)
+            ->where('status', 'completed')
+            ->where('updated_at', '>=', now()->startOfWeek())
+            ->count();
+
+        // My tasks list
+        $tasksQuery = Task::with(['workflow', 'stage'])
+            ->where('assigned_to', $user->id);
+
+        if ($this->taskFilter === 'active') {
+            $tasksQuery->where('status', 'active');
+        } elseif ($this->taskFilter === 'blocked') {
+            $tasksQuery->where('status', 'blocked');
+        } elseif ($this->taskFilter === 'completed') {
+            $tasksQuery->where('status', 'completed');
+        } elseif ($this->taskFilter === 'overdue') {
+            $tasksQuery->where('status', '!=', 'completed')
+                ->whereNotNull('deadline')
+                ->where('deadline', '<', now());
+        }
+        // 'all' shows everything
+
+        $myTasks = $tasksQuery
             ->orderByRaw("CASE priority WHEN 'critical' THEN 1 WHEN 'high' THEN 2 WHEN 'medium' THEN 3 ELSE 4 END")
-            ->take(6)
+            ->orderBy('deadline', 'asc')
             ->get();
 
-        // Recent audit trail activities
-        $recentActivities = TaskActivity::query()
-            ->with(['task.workflow', 'user'])
+        // Recent activity on my tasks
+        $recentActivity = TaskActivity::with(['task', 'user'])
+            ->whereHas('task', function ($q) use ($user) {
+                $q->where('assigned_to', $user->id)
+                  ->orWhere('created_by', $user->id);
+            })
             ->latest('created_at')
-            ->take(8)
+            ->take(5)
             ->get();
-
-        // Available departments
-        $departments = Workflow::distinct()->pluck('department')->filter()->values();
 
         return view('livewire.dashboard', [
-            'workflows' => $workflows,
-            'totalTasks' => $totalTasks,
-            'activeTasks' => $activeTasks,
-            'completedTasks' => $completedTasks,
-            'blockedTasks' => $blockedTasks,
-            'overdueTasks' => $overdueTasks,
-            'completionRate' => $completionRate,
-            'criticalTasks' => $criticalTasks,
-            'highTasks' => $highTasks,
-            'mediumTasks' => $mediumTasks,
-            'lowTasks' => $lowTasks,
-            'urgentAttentionTasks' => $urgentAttentionTasks,
-            'recentActivities' => $recentActivities,
-            'departments' => $departments,
+            'myActiveTasks' => $myActiveTasks,
+            'myNeedsAttention' => $myNeedsAttention,
+            'myCompletedThisWeek' => $myCompletedThisWeek,
+            'myTasks' => $myTasks,
+            'recentActivity' => $recentActivity,
         ]);
     }
 }

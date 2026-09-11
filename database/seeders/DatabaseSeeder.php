@@ -15,61 +15,88 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Create or sync Super Admin from environment
+        if (env('SUPER_ADMIN_EMAIL')) {
+            \App\Models\User::updateOrCreate(
+                ['email' => env('SUPER_ADMIN_EMAIL')],
+                [
+                    'name' => env('SUPER_ADMIN_NAME', 'Super Admin'),
+                    'password' => Hash::make(env('SUPER_ADMIN_PASSWORD', 'password')),
+                    'role' => 'super_admin',
+                    'department' => 'Platform Administration',
+                    'title' => 'Platform Super Administrator',
+                    'is_active' => true,
+                    'subscription_plan' => 'intelligence',
+                    'subscription_status' => 'active',
+                ]
+            );
+        }
+
         // 1. Seed Enterprise Users
-        $admin = User::create([
-            'name' => 'Alexander Hayes',
-            'email' => 'admin@taskverge.com',
-            'password' => Hash::make('password'),
-            'role' => 'admin',
-            'department' => 'Enterprise Operations',
-            'title' => 'Chief Operations Architect',
-            'avatar_url' => 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
-            'is_active' => true,
-        ]);
+        $admin = User::firstOrCreate(
+            ['email' => 'admin@taskverge.com'],
+            [
+                'name' => 'Alexander Hayes',
+                'password' => Hash::make('password'),
+                'role' => 'admin',
+                'department' => 'Enterprise Operations',
+                'title' => 'Chief Operations Architect',
+                'avatar_url' => 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+                'is_active' => true,
+            ]
+        );
 
-        $manager = User::create([
-            'name' => 'Dr. Elena Rostova',
-            'email' => 'manager@taskverge.com',
-            'password' => Hash::make('password'),
-            'role' => 'manager',
-            'department' => 'Global Logistics & Supply Chain',
-            'title' => 'Director of Workflow Automation',
-            'avatar_url' => 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80',
-            'is_active' => true,
-        ]);
+        $manager = User::firstOrCreate(
+            ['email' => 'manager@taskverge.com'],
+            [
+                'name' => 'Dr. Elena Rostova',
+                'password' => Hash::make('password'),
+                'role' => 'manager',
+                'department' => 'Global Logistics & Supply Chain',
+                'title' => 'Director of Workflow Automation',
+                'avatar_url' => 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80',
+                'is_active' => true,
+            ]
+        );
 
-        $operator1 = User::create([
-            'name' => 'Marcus Vance',
-            'email' => 'operator@taskverge.com',
-            'password' => Hash::make('password'),
-            'role' => 'operator',
-            'department' => 'Regulatory Compliance',
-            'title' => 'Lead Systems Operator',
-            'avatar_url' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
-            'is_active' => true,
-        ]);
+        $operator1 = User::firstOrCreate(
+            ['email' => 'operator@taskverge.com'],
+            [
+                'name' => 'Marcus Vance',
+                'password' => Hash::make('password'),
+                'role' => 'operator',
+                'department' => 'Regulatory Compliance',
+                'title' => 'Lead Systems Operator',
+                'avatar_url' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
+                'is_active' => true,
+            ]
+        );
 
-        $manager2 = User::create([
-            'name' => 'Sarah Chen',
-            'email' => 'sarah.chen@taskverge.com',
-            'password' => Hash::make('password'),
-            'role' => 'manager',
-            'department' => 'Cloud Infrastructure',
-            'title' => 'VP of Cloud Engineering',
-            'avatar_url' => 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80',
-            'is_active' => true,
-        ]);
+        $manager2 = User::firstOrCreate(
+            ['email' => 'sarah.chen@taskverge.com'],
+            [
+                'name' => 'Sarah Chen',
+                'password' => Hash::make('password'),
+                'role' => 'manager',
+                'department' => 'Cloud Infrastructure',
+                'title' => 'VP of Cloud Engineering',
+                'avatar_url' => 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80',
+                'is_active' => true,
+            ]
+        );
 
-        $operator2 = User::create([
-            'name' => 'Devon Reed',
-            'email' => 'devon.reed@taskverge.com',
-            'password' => Hash::make('password'),
-            'role' => 'operator',
-            'department' => 'Cloud Infrastructure',
-            'title' => 'Site Reliability Engineer',
-            'avatar_url' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
-            'is_active' => true,
-        ]);
+        $operator2 = User::firstOrCreate(
+            ['email' => 'devon.reed@taskverge.com'],
+            [
+                'name' => 'Devon Reed',
+                'password' => Hash::make('password'),
+                'role' => 'operator',
+                'department' => 'Cloud Infrastructure',
+                'title' => 'Site Reliability Engineer',
+                'avatar_url' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
+                'is_active' => true,
+            ]
+        );
 
         // 2. Seed Workflow 1: Cloud Infrastructure Migration
         $wf1 = Workflow::create([

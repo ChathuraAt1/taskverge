@@ -1,411 +1,328 @@
-<div class="space-y-6">
-    <!-- Top Operations Filter Bar -->
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-5">
+<div class="space-y-8 pb-10">
+    @if (session('status'))
+        <div class="rounded-md bg-emerald-50 p-4 border border-emerald-200 dark:bg-emerald-900/30 dark:border-emerald-800">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <p class="text-sm font-medium text-emerald-800 dark:text-emerald-300">{{ session('status') }}</p>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    <!-- Welcome Header -->
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
         <div>
-            <div class="flex items-center gap-2">
-                <h2 class="text-xl font-bold tracking-tight text-white">Enterprise Workflow Intelligence</h2>
-                <span class="inline-flex items-center rounded-full bg-indigo-500/10 px-2.5 py-0.5 text-xs font-semibold text-indigo-400 border border-indigo-500/20">
-                    Live Telemetry
-                </span>
-            </div>
-            <p class="text-xs text-slate-400 mt-0.5">Real-time status tracking, bottleneck detection, and workflow velocity monitoring</p>
-        </div>
-
-        <div class="flex items-center gap-2">
-            <span class="text-xs text-slate-400 font-medium">Department:</span>
-            <select wire:model.live="selectedDepartment"
-                    class="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-slate-200 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
-                <option value="all">All Enterprise Departments</option>
-                @foreach($departments as $dept)
-                    <option value="{{ $dept }}">{{ $dept }}</option>
-                @endforeach
-            </select>
+            @php
+                $hour = now()->hour;
+                if ($hour < 12) {
+                    $greeting = 'Good morning';
+                } elseif ($hour < 17) {
+                    $greeting = 'Good afternoon';
+                } else {
+                    $greeting = 'Good evening';
+                }
+            @endphp
+            <h1 class="text-3xl font-bold text-slate-900 dark:text-white">{{ $greeting }}, {{ Auth::user()->name }}</h1>
+            <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">{{ now()->format('l, F j, Y') }}</p>
         </div>
     </div>
 
-    <!-- Executive KPI Metric Cards -->
-    <div class="grid grid-cols-2 lg:grid-cols-6 gap-3 sm:gap-4">
-        <!-- Total Tasks -->
-        <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4 shadow-sm backdrop-blur-sm">
-            <div class="flex items-center justify-between">
-                <span class="text-xs font-medium text-slate-400">Total Workflows</span>
-                <div class="p-1.5 rounded-md bg-slate-800 text-slate-300">
-                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+    <!-- Three Stat Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- My Active Tasks -->
+        <div class="bg-white dark:bg-slate-900/80 rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+            <div class="flex items-center">
+                <div class="p-3 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-sm font-medium text-slate-500 dark:text-slate-400">My Active Tasks</h3>
+                    <p class="text-3xl font-bold text-slate-900 dark:text-white">{{ $myActiveTasks }}</p>
                 </div>
             </div>
-            <div class="mt-2 text-2xl font-bold text-white">{{ $totalTasks }}</div>
-            <div class="text-[11px] text-slate-400 mt-1">across {{ $workflows->count() }} active pipelines</div>
         </div>
 
-        <!-- Active Tasks -->
-        <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4 shadow-sm backdrop-blur-sm">
-            <div class="flex items-center justify-between">
-                <span class="text-xs font-medium text-slate-400">Active Tasks</span>
-                <div class="p-1.5 rounded-md bg-blue-500/10 text-blue-400">
-                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        <!-- Needs Attention -->
+        <div class="bg-white dark:bg-slate-900/80 rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+            <div class="flex items-center">
+                <div class="p-3 rounded-lg {{ $myNeedsAttention > 0 ? 'bg-rose-50 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400' : 'bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400' }}">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                </div>
+                <div class="ml-4">
+                    <h3 class="text-sm font-medium text-slate-500 dark:text-slate-400">Needs Attention</h3>
+                    <p class="text-3xl font-bold text-slate-900 dark:text-white">{{ $myNeedsAttention }}</p>
                 </div>
             </div>
-            <div class="mt-2 text-2xl font-bold text-blue-400">{{ $activeTasks }}</div>
-            <div class="text-[11px] text-slate-400 mt-1">in flight & processing</div>
         </div>
 
-        <!-- Blocked Tasks (Crucial bottleneck indicator) -->
-        <div class="rounded-xl border border-rose-500/30 bg-rose-950/20 p-4 shadow-sm">
-            <div class="flex items-center justify-between">
-                <span class="text-xs font-semibold text-rose-400">Blocked Work</span>
-                <div class="p-1.5 rounded-md bg-rose-500/20 text-rose-300">
-                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        <!-- Completed This Week -->
+        <div class="bg-white dark:bg-slate-900/80 rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+            <div class="flex items-center">
+                <div class="p-3 rounded-lg bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                 </div>
-            </div>
-            <div class="mt-2 text-2xl font-bold text-rose-300">{{ $blockedTasks }}</div>
-            <div class="text-[11px] text-rose-400/80 mt-1 font-medium">Requires triage action</div>
-        </div>
-
-        <!-- Overdue Tasks -->
-        <div class="rounded-xl border border-amber-500/30 bg-amber-950/20 p-4 shadow-sm">
-            <div class="flex items-center justify-between">
-                <span class="text-xs font-semibold text-amber-400">Overdue Tasks</span>
-                <div class="p-1.5 rounded-md bg-amber-500/20 text-amber-300">
-                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <div class="ml-4">
+                    <h3 class="text-sm font-medium text-slate-500 dark:text-slate-400">Completed This Week</h3>
+                    <p class="text-3xl font-bold text-slate-900 dark:text-white">{{ $myCompletedThisWeek }}</p>
                 </div>
-            </div>
-            <div class="mt-2 text-2xl font-bold text-amber-300">{{ $overdueTasks }}</div>
-            <div class="text-[11px] text-amber-400/80 mt-1 font-medium">Passed SLA / target date</div>
-        </div>
-
-        <!-- Completed Tasks -->
-        <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4 shadow-sm backdrop-blur-sm">
-            <div class="flex items-center justify-between">
-                <span class="text-xs font-medium text-slate-400">Completed</span>
-                <div class="p-1.5 rounded-md bg-emerald-500/10 text-emerald-400">
-                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                </div>
-            </div>
-            <div class="mt-2 text-2xl font-bold text-emerald-400">{{ $completedTasks }}</div>
-            <div class="text-[11px] text-slate-400 mt-1">verified & finalized</div>
-        </div>
-
-        <!-- Success Velocity % -->
-        <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4 shadow-sm backdrop-blur-sm">
-            <div class="flex items-center justify-between">
-                <span class="text-xs font-medium text-slate-400">Overall Progress</span>
-                <div class="p-1.5 rounded-md bg-indigo-500/10 text-indigo-400">
-                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                </div>
-            </div>
-            <div class="mt-2 text-2xl font-bold text-indigo-300">{{ $completionRate }}%</div>
-            <div class="w-full bg-slate-800 h-1.5 rounded-full mt-2 overflow-hidden">
-                <div class="bg-indigo-500 h-full rounded-full" style="width: {{ $completionRate }}%"></div>
             </div>
         </div>
     </div>
 
-    <!-- Urgent Attention Queue & Bottleneck Triage -->
-    <div class="rounded-xl border border-slate-800 bg-slate-950/80 p-5 shadow-sm">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
-            <div class="flex items-center gap-2">
-                <span class="flex h-2.5 w-2.5 rounded-full bg-rose-500 animate-pulse"></span>
-                <h3 class="text-sm font-bold text-white uppercase tracking-wider">Urgent Attention Queue (Bottlenecks & Overdue)</h3>
+    <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+        <!-- Main Content: My Tasks -->
+        <div class="xl:col-span-2 space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <h2 class="text-xl font-bold text-slate-900 dark:text-white">My Tasks</h2>
+                <div class="flex flex-wrap gap-2">
+                    @foreach(['all' => 'All', 'active' => 'Active', 'blocked' => 'Blocked', 'overdue' => 'Overdue', 'completed' => 'Completed'] as $value => $label)
+                        <button wire:click="$set('taskFilter', '{{ $value }}')" 
+                                class="px-3 py-1.5 text-sm font-medium rounded-md transition-colors {{ $taskFilter === $value ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300' : 'text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800/50' }}">
+                            {{ $label }}
+                        </button>
+                    @endforeach
+                </div>
             </div>
-            <span class="text-xs text-slate-400">Items flagged for operational supervisor review</span>
-        </div>
 
-        @if($urgentAttentionTasks->isEmpty())
-            <div class="rounded-lg border border-slate-800/80 bg-slate-900/40 p-8 text-center">
-                <svg class="mx-auto h-8 w-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <p class="text-sm font-medium text-slate-200 mt-2">Zero Operational Bottlenecks</p>
-                <p class="text-xs text-slate-400 mt-1">All tasks within this scope are proceeding within nominal delivery timelines.</p>
-            </div>
-        @else
-            <div class="divide-y divide-slate-800/80">
-                @foreach($urgentAttentionTasks as $task)
-                    <div class="py-3.5 flex flex-col md:flex-row md:items-center justify-between gap-3 group hover:bg-slate-900/40 px-2 rounded-lg transition-colors">
-                        <div class="flex items-start gap-3">
-                            <div class="mt-0.5">
-                                @if($task->isBlocked())
-                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-rose-500/20 text-rose-300 border border-rose-500/30">
-                                        Blocked
-                                    </span>
-                                @else
-                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                                        Overdue
-                                    </span>
-                                @endif
-                            </div>
-
-                            <div>
-                                <div class="flex items-center gap-2">
-                                    <span class="text-xs font-mono text-slate-400 font-semibold">{{ $task->task_number }}</span>
-                                    <button wire:click="inspectTask({{ $task->id }})" class="text-sm font-semibold text-slate-100 hover:text-indigo-400 transition-colors text-left">
-                                        {{ $task->title }}
-                                    </button>
+            <div class="space-y-4">
+                @forelse($myTasks as $task)
+                    <div class="bg-white dark:bg-slate-900/80 rounded-xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm transition-all hover:shadow-md">
+                        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                            <div class="flex-1 space-y-2">
+                                <div class="flex items-center gap-3">
+                                    <h3 class="text-lg font-semibold text-slate-900 dark:text-white">
+                                        <button wire:click="inspectTask({{ $task->id }})" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-left">{{ $task->title }}</button>
+                                    </h3>
+                                    @if($task->priority === 'critical')
+                                        <span class="inline-flex items-center rounded-full bg-rose-50 px-2 py-1 text-xs font-medium text-rose-700 ring-1 ring-inset ring-rose-600/20 dark:bg-rose-900/30 dark:text-rose-400 dark:ring-rose-900/50">Critical</span>
+                                    @elseif($task->priority === 'high')
+                                        <span class="inline-flex items-center rounded-full bg-amber-50 px-2 py-1 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20 dark:bg-amber-900/30 dark:text-amber-400 dark:ring-amber-900/50">High</span>
+                                    @elseif($task->priority === 'medium')
+                                        <span class="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 dark:bg-blue-900/30 dark:text-blue-400 dark:ring-blue-900/50">Medium</span>
+                                    @else
+                                        <span class="inline-flex items-center rounded-full bg-slate-50 px-2 py-1 text-xs font-medium text-slate-600 ring-1 ring-inset ring-slate-500/10 dark:bg-slate-800/50 dark:text-slate-400 dark:ring-slate-700">Low</span>
+                                    @endif
                                 </div>
-                                <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1 text-xs text-slate-400">
-                                    <span>Pipeline: <strong class="text-slate-300">{{ $task->workflow->title }}</strong></span>
-                                    <span>Stage: <strong class="text-slate-300">{{ $task->stage->name }}</strong></span>
-                                    @if($task->deadline)
-                                        <span class="{{ $task->isOverdue() ? 'text-amber-400 font-medium' : 'text-slate-400' }}">
-                                            Target: {{ $task->deadline->format('M d, Y') }} ({{ $task->deadline->diffForHumans() }})
+                                <div class="text-sm text-slate-500 dark:text-slate-400 flex flex-wrap items-center gap-x-4 gap-y-1">
+                                    <span class="flex items-center gap-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                                        {{ $task->workflow->name }}
+                                    </span>
+                                    @if($task->status !== 'completed' && $task->deadline)
+                                        <span class="flex items-center gap-1 {{ $task->deadline->isPast() ? 'text-rose-600 dark:text-rose-400 font-medium' : '' }}">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                            {{ $task->deadline->isPast() ? 'Overdue by ' . $task->deadline->diffForHumans(['parts' => 1, 'syntax' => \Carbon\CarbonInterface::DIFF_ABSOLUTE]) : 'Due ' . $task->deadline->diffForHumans() }}
+                                        </span>
+                                    @endif
+                                    @if($task->status === 'active')
+                                        <span class="inline-flex items-center text-indigo-600 dark:text-indigo-400">
+                                            <span class="w-2 h-2 rounded-full bg-indigo-500 mr-1.5 animate-pulse"></span> Active
+                                        </span>
+                                    @elseif($task->status === 'blocked')
+                                        <span class="inline-flex items-center text-amber-600 dark:text-amber-400">
+                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                                            Blocked
+                                        </span>
+                                    @elseif($task->status === 'completed')
+                                        <span class="inline-flex items-center text-emerald-600 dark:text-emerald-400">
+                                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                            Completed
                                         </span>
                                     @endif
                                 </div>
-                                @if($task->isBlocked() && $task->blocked_reason)
-                                    <p class="mt-1.5 text-xs text-rose-300/90 bg-rose-950/30 border border-rose-900/40 rounded px-2.5 py-1">
-                                        <strong class="font-semibold">Block Reason:</strong> {{ $task->blocked_reason }}
-                                    </p>
-                                @endif
                             </div>
-                        </div>
-
-                        <!-- 1-Click Triage Actions -->
-                        <div class="flex items-center gap-2 self-end md:self-center">
-                            @if($task->isBlocked())
-                                <button wire:click="unblockTask({{ $task->id }})"
-                                        class="inline-flex items-center gap-1 rounded-md bg-emerald-600/20 hover:bg-emerald-600 text-emerald-300 hover:text-white px-2.5 py-1 text-xs font-medium border border-emerald-500/30 transition-colors">
-                                    <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                    Unblock
+                            <div class="flex items-center gap-2">
+                                @if($task->status === 'active')
+                                    <button wire:click="completeTask({{ $task->id }})" class="px-3 py-1.5 text-sm font-medium text-emerald-700 bg-emerald-100 hover:bg-emerald-200 dark:text-emerald-300 dark:bg-emerald-900/50 dark:hover:bg-emerald-900 border border-emerald-200 dark:border-emerald-800 rounded-md transition-colors">
+                                        Complete
+                                    </button>
+                                @endif
+                                @if($task->status === 'blocked')
+                                    <button wire:click="unblockTask({{ $task->id }})" class="px-3 py-1.5 text-sm font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200 dark:text-indigo-300 dark:bg-indigo-900/50 dark:hover:bg-indigo-900 border border-indigo-200 dark:border-indigo-800 rounded-md transition-colors">
+                                        Unblock
+                                    </button>
+                                @endif
+                                <button wire:click="inspectTask({{ $task->id }})" class="px-3 py-1.5 text-sm font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 dark:text-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 rounded-md transition-colors">
+                                    View
                                 </button>
-                            @endif
-
-                            <button wire:click="completeTask({{ $task->id }})"
-                                    class="inline-flex items-center gap-1 rounded-md bg-slate-800 hover:bg-indigo-600 text-slate-300 hover:text-white px-2.5 py-1 text-xs font-medium border border-slate-700 transition-colors">
-                                Complete
-                            </button>
-
-                            <button wire:click="inspectTask({{ $task->id }})"
-                                    class="rounded-md bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1 text-xs font-medium border border-slate-700 transition-colors">
-                                Details & Logs
-                            </button>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        @endif
-    </div>
-
-    <!-- Two Columns: Workflows Progress Matrix & Real-Time Activity Feed -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- Workflow Progress Matrix (2 Columns) -->
-        <div class="lg:col-span-2 space-y-4">
-            <div class="flex items-center justify-between">
-                <h3 class="text-sm font-bold text-white uppercase tracking-wider">Workflow Intelligence Status Matrix</h3>
-                <a href="{{ route('workflows.index') }}" class="text-xs text-indigo-400 hover:text-indigo-300 font-medium">
-                    View All Pipelines &rarr;
-                </a>
-            </div>
-
-            <div class="space-y-3">
-                @foreach($workflows as $wf)
-                    <div class="rounded-xl border border-slate-800 bg-slate-950/70 p-4 hover:border-slate-700 transition-all">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                            <div>
-                                <div class="flex items-center gap-2">
-                                    <span class="h-2.5 w-2.5 rounded-full bg-{{ $wf->color }}-500"></span>
-                                    <a href="{{ route('workflows.show', $wf) }}" class="text-sm font-bold text-white hover:text-indigo-400 transition-colors">
-                                        {{ $wf->title }}
-                                    </a>
-                                </div>
-                                <p class="text-xs text-slate-400 mt-1 line-clamp-1">{{ $wf->description }}</p>
-                            </div>
-
-                            <div class="flex items-center gap-3">
-                                <span class="text-xs font-mono font-semibold text-slate-200">
-                                    {{ $wf->progress_percentage }}%
-                                </span>
-                                <a href="{{ route('workflows.show', $wf) }}"
-                                   class="rounded-lg bg-slate-900 border border-slate-700 px-2.5 py-1 text-xs font-medium text-slate-200 hover:bg-indigo-600 hover:text-white transition-colors">
-                                    Open Workspace
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Progress Bar -->
-                        <div class="w-full bg-slate-800 h-2 rounded-full mt-3 overflow-hidden">
-                            <div class="bg-gradient-to-r from-indigo-500 to-emerald-400 h-full rounded-full" style="width: {{ $wf->progress_percentage }}%"></div>
-                        </div>
-
-                        <!-- Quick Stages Footprint -->
-                        <div class="mt-3 flex flex-wrap items-center gap-2 pt-2 border-t border-slate-900 text-xs">
-                            <span class="text-[11px] text-slate-500">Stages:</span>
-                            @foreach($wf->stages as $stg)
-                                <span class="rounded bg-slate-900 px-2 py-0.5 text-[11px] text-slate-300 border border-slate-800">
-                                    {{ $stg->name }} ({{ $stg->tasks->count() }})
-                                </span>
-                            @endforeach
-                            <div class="ml-auto flex items-center gap-2 text-[11px] text-slate-400">
-                                @if($wf->blocked_tasks_count > 0)
-                                    <span class="text-rose-400 font-semibold">{{ $wf->blocked_tasks_count }} blocked</span>
-                                @endif
-                                @if($wf->overdue_tasks_count > 0)
-                                    <span class="text-amber-400 font-semibold">{{ $wf->overdue_tasks_count }} overdue</span>
-                                @endif
                             </div>
                         </div>
                     </div>
-                @endforeach
-            </div>
-
-            <!-- Priority Distribution Overview -->
-            <div class="rounded-xl border border-slate-800 bg-slate-950/60 p-4">
-                <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Enterprise Priority Distribution</h4>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    <div class="rounded-lg bg-rose-950/20 border border-rose-500/20 p-2.5 text-center">
-                        <span class="text-[11px] font-bold uppercase text-rose-400">Critical</span>
-                        <p class="text-xl font-bold text-rose-300 mt-0.5">{{ $criticalTasks }}</p>
+                @empty
+                    <div class="bg-white dark:bg-slate-900/80 rounded-xl border border-slate-200 dark:border-slate-800 p-10 text-center shadow-sm">
+                        <div class="mx-auto w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center mb-4">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h3 class="text-lg font-medium text-slate-900 dark:text-white">You're all caught up! 🎉</h3>
+                        <p class="mt-2 text-slate-500 dark:text-slate-400">You don't have any tasks matching this filter.</p>
+                        @if($taskFilter !== 'all')
+                            <button wire:click="$set('taskFilter', 'all')" class="mt-4 text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300 font-medium">View all tasks</button>
+                        @endif
                     </div>
-                    <div class="rounded-lg bg-amber-950/20 border border-amber-500/20 p-2.5 text-center">
-                        <span class="text-[11px] font-bold uppercase text-amber-400">High</span>
-                        <p class="text-xl font-bold text-amber-300 mt-0.5">{{ $highTasks }}</p>
-                    </div>
-                    <div class="rounded-lg bg-blue-950/20 border border-blue-500/20 p-2.5 text-center">
-                        <span class="text-[11px] font-bold uppercase text-blue-400">Medium</span>
-                        <p class="text-xl font-bold text-blue-300 mt-0.5">{{ $mediumTasks }}</p>
-                    </div>
-                    <div class="rounded-lg bg-slate-900 border border-slate-800 p-2.5 text-center">
-                        <span class="text-[11px] font-bold uppercase text-slate-400">Low</span>
-                        <p class="text-xl font-bold text-slate-300 mt-0.5">{{ $lowTasks }}</p>
-                    </div>
-                </div>
+                @endforelse
             </div>
         </div>
 
-        <!-- Real-Time Audit Activity Feed (1 Column) -->
-        <div class="space-y-4">
-            <div class="flex items-center justify-between">
-                <h3 class="text-sm font-bold text-white uppercase tracking-wider">Immutable Audit Trail</h3>
-                <span class="text-[10px] rounded bg-slate-800 px-2 py-0.5 text-slate-400 font-mono">SOC2 Compliant</span>
-            </div>
-
-            <div class="rounded-xl border border-slate-800 bg-slate-950/70 p-4 divide-y divide-slate-800/80">
-                @foreach($recentActivities as $act)
-                    <div class="py-2.5 first:pt-0 last:pb-0">
-                        <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1">
-                            <span class="font-medium text-slate-300">{{ $act->user ? $act->user->name : 'System' }}</span>
-                            <span class="font-mono text-slate-500">{{ $act->created_at->diffForHumans() }}</span>
-                        </div>
-                        <p class="text-xs text-slate-200">
-                            {{ $act->description }}
-                        </p>
-                        <div class="mt-1 flex items-center gap-2">
-                            <span class="text-[10px] font-mono text-indigo-400 bg-indigo-950/50 border border-indigo-900/40 rounded px-1.5 py-0.2">
-                                {{ $act->task->task_number }}
-                            </span>
-                            <span class="text-[11px] text-slate-400 truncate">
-                                {{ $act->task->workflow->title }}
-                            </span>
-                        </div>
+        <!-- Sidebar: Recent Activity -->
+        <div class="space-y-6">
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white">Recent Activity</h2>
+            
+            <div class="bg-white dark:bg-slate-900/80 rounded-xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm">
+                @if($recentActivity->count() > 0)
+                    <div class="flow-root">
+                        <ul role="list" class="-mb-8">
+                            @foreach($recentActivity as $index => $activity)
+                                <li>
+                                    <div class="relative pb-8">
+                                        @if(!$loop->last)
+                                            <span class="absolute left-4 top-4 -ml-px h-full w-0.5 bg-slate-200 dark:bg-slate-800" aria-hidden="true"></span>
+                                        @endif
+                                        <div class="relative flex space-x-3">
+                                            <div>
+                                                <span class="h-8 w-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center ring-8 ring-white dark:ring-slate-900/80">
+                                                    @if(in_array($activity->activity_type, ['created', 'status_changed', 'unblocked']))
+                                                        <svg class="h-4 w-4 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                                    @else
+                                                        <svg class="h-4 w-4 text-slate-500 dark:text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                                                    @endif
+                                                </span>
+                                            </div>
+                                            <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
+                                                <div>
+                                                    <p class="text-sm text-slate-900 dark:text-white">{{ $activity->description }} <span class="text-slate-500 dark:text-slate-400">on <a href="#" wire:click.prevent="inspectTask({{ $activity->task->id }})" class="font-medium text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400">{{ str($activity->task->title)->limit(20) }}</a></span></p>
+                                                    <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">by {{ $activity->user->name ?? 'System' }} &bull; {{ $activity->created_at->diffForHumans() }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
-                @endforeach
-            </div>
-
-            <!-- Technology Callout Card -->
-            <div class="rounded-xl border border-indigo-500/20 bg-gradient-to-br from-indigo-950/40 to-slate-950 p-4">
-                <div class="flex items-center gap-2 mb-2">
-                    <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-white">NVIDIA Workflow Engine</h4>
-                </div>
-                <p class="text-xs text-slate-400 leading-relaxed">
-                    Connected to Triton Inference Server & Nemotron reasoning endpoints for automated bottleneck detection, task dependency resolution, and SLA forecasting.
-                </p>
-                <div class="mt-3 pt-3 border-t border-indigo-900/40 flex items-center justify-between text-[11px] text-indigo-300">
-                    <span>Inference latency: <strong>4.2ms</strong></span>
-                    <span>State: <strong>Synchronized</strong></span>
-                </div>
+                @else
+                    <p class="text-sm text-slate-500 dark:text-slate-400 text-center py-4">No recent activity</p>
+                @endif
             </div>
         </div>
     </div>
 
     <!-- Task Detail Modal -->
-    @if($showTaskModal && $selectedTask)
-        <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm"
-             wire:keydown.escape="closeTaskModal">
-            <div class="w-full max-w-2xl rounded-xl border border-slate-800 bg-slate-900 p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
-                <div class="flex items-start justify-between border-b border-slate-800 pb-3">
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span class="font-mono text-xs font-bold text-indigo-400 bg-indigo-950/60 border border-indigo-800/60 rounded px-2 py-0.5">
-                                {{ $selectedTask->task_number }}
-                            </span>
-                            <span class="text-xs uppercase font-semibold px-2 py-0.5 rounded
-                                {{ $selectedTask->priority === 'critical' ? 'bg-rose-500/20 text-rose-300' : ($selectedTask->priority === 'high' ? 'bg-amber-500/20 text-amber-300' : 'bg-blue-500/20 text-blue-300') }}">
-                                {{ $selectedTask->priority }}
-                            </span>
-                            <span class="text-xs uppercase font-semibold px-2 py-0.5 rounded
-                                {{ $selectedTask->status === 'blocked' ? 'bg-rose-500/20 text-rose-300' : ($selectedTask->status === 'completed' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-blue-500/20 text-blue-300') }}">
-                                {{ $selectedTask->status }}
-                            </span>
-                        </div>
-                        <h3 class="text-base font-bold text-white mt-1">{{ $selectedTask->title }}</h3>
-                        <p class="text-xs text-slate-400">Pipeline: {{ $selectedTask->workflow->title }} &bull; Stage: {{ $selectedTask->stage->name }}</p>
-                    </div>
-                    <button wire:click="closeTaskModal" class="text-slate-400 hover:text-white">&times;</button>
-                </div>
+    <div x-data="{ show: @entangle('showTaskModal') }"
+         x-show="show"
+         style="display: none;"
+         class="relative z-50"
+         aria-labelledby="modal-title"
+         role="dialog"
+         aria-modal="true">
+        
+        <div x-show="show"
+             x-transition:enter="ease-out duration-300"
+             x-transition:enter-start="opacity-0"
+             x-transition:enter-end="opacity-100"
+             x-transition:leave="ease-in duration-200"
+             x-transition:leave-start="opacity-100"
+             x-transition:leave-end="opacity-0"
+             class="fixed inset-0 bg-slate-950/75 transition-opacity backdrop-blur-sm"></div>
 
-                <!-- Description -->
-                <div>
-                    <h4 class="text-xs font-semibold text-slate-300 uppercase tracking-wider">Description</h4>
-                    <p class="text-xs text-slate-300 mt-1 leading-relaxed bg-slate-950/60 border border-slate-800 rounded-lg p-3">
-                        {{ $selectedTask->description ?? 'No detailed description specified.' }}
-                    </p>
-                </div>
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <div x-show="show"
+                     x-transition:enter="ease-out duration-300"
+                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                     x-transition:leave="ease-in duration-200"
+                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                     @click.away="$wire.closeTaskModal()"
+                     class="relative transform overflow-hidden rounded-xl bg-white dark:bg-slate-900 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl border border-slate-200 dark:border-slate-800">
+                    
+                    @if($selectedTask)
+                        <div class="bg-white dark:bg-slate-900 px-4 pb-4 pt-5 sm:p-6 sm:pb-4 border-b border-slate-200 dark:border-slate-800">
+                            <div class="sm:flex sm:items-start">
+                                <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
+                                    <div class="flex justify-between items-start mb-4">
+                                        <h3 class="text-xl font-semibold leading-6 text-slate-900 dark:text-white" id="modal-title">
+                                            {{ $selectedTask->title }}
+                                        </h3>
+                                        <button wire:click="closeTaskModal" class="text-slate-400 hover:text-slate-500 dark:hover:text-slate-300 transition-colors">
+                                            <span class="sr-only">Close</span>
+                                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="mt-2 space-y-4">
+                                        <p class="text-sm text-slate-600 dark:text-slate-300 whitespace-pre-wrap">{{ $selectedTask->description ?: 'No description provided.' }}</p>
+                                        
+                                        <div class="grid grid-cols-2 gap-4 text-sm mt-6">
+                                            <div>
+                                                <span class="block text-slate-500 dark:text-slate-400 mb-1">Status</span>
+                                                <span class="font-medium text-slate-900 dark:text-white capitalize">{{ $selectedTask->status }}</span>
+                                            </div>
+                                            <div>
+                                                <span class="block text-slate-500 dark:text-slate-400 mb-1">Priority</span>
+                                                <span class="font-medium text-slate-900 dark:text-white capitalize">{{ $selectedTask->priority }}</span>
+                                            </div>
+                                            <div>
+                                                <span class="block text-slate-500 dark:text-slate-400 mb-1">Workflow</span>
+                                                <span class="font-medium text-slate-900 dark:text-white">{{ $selectedTask->workflow->name }}</span>
+                                            </div>
+                                            <div>
+                                                <span class="block text-slate-500 dark:text-slate-400 mb-1">Stage</span>
+                                                <span class="font-medium text-slate-900 dark:text-white">{{ $selectedTask->stage->name ?? 'N/A' }}</span>
+                                            </div>
+                                            <div>
+                                                <span class="block text-slate-500 dark:text-slate-400 mb-1">Assignee</span>
+                                                <span class="font-medium text-slate-900 dark:text-white">{{ $selectedTask->assignee->name ?? 'Unassigned' }}</span>
+                                            </div>
+                                            <div>
+                                                <span class="block text-slate-500 dark:text-slate-400 mb-1">Creator</span>
+                                                <span class="font-medium text-slate-900 dark:text-white">{{ $selectedTask->creator->name ?? 'System' }}</span>
+                                            </div>
+                                            <div>
+                                                <span class="block text-slate-500 dark:text-slate-400 mb-1">Deadline</span>
+                                                <span class="font-medium text-slate-900 dark:text-white">
+                                                    {{ $selectedTask->deadline ? $selectedTask->deadline->format('M j, Y g:i A') : 'None' }}
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <span class="block text-slate-500 dark:text-slate-400 mb-1">Est. Hours</span>
+                                                <span class="font-medium text-slate-900 dark:text-white">{{ $selectedTask->estimated_hours ?? 'N/A' }}</span>
+                                            </div>
+                                        </div>
 
-                <!-- Block reason if present -->
-                @if($selectedTask->isBlocked())
-                    <div class="rounded-lg bg-rose-950/30 border border-rose-500/30 p-3">
-                        <span class="text-xs font-semibold text-rose-400 uppercase tracking-wider">Current Block Reason</span>
-                        <p class="text-xs text-rose-300 mt-1">{{ $selectedTask->blocked_reason }}</p>
-                    </div>
-                @endif
-
-                <!-- Metadata Grid -->
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-950/40 p-3 rounded-lg border border-slate-800 text-xs">
-                    <div>
-                        <span class="text-slate-400 block text-[10px] uppercase">Assignee</span>
-                        <span class="font-medium text-slate-200">{{ $selectedTask->assignee ? $selectedTask->assignee->name : 'Unassigned' }}</span>
-                    </div>
-                    <div>
-                        <span class="text-slate-400 block text-[10px] uppercase">Deadline</span>
-                        <span class="font-medium {{ $selectedTask->isOverdue() ? 'text-amber-400' : 'text-slate-200' }}">
-                            {{ $selectedTask->deadline ? $selectedTask->deadline->format('M d, Y') : 'None' }}
-                        </span>
-                    </div>
-                    <div>
-                        <span class="text-slate-400 block text-[10px] uppercase">Est. Hours</span>
-                        <span class="font-medium text-slate-200">{{ $selectedTask->estimated_hours ?? '-' }} hrs</span>
-                    </div>
-                    <div>
-                        <span class="text-slate-400 block text-[10px] uppercase">Actual Hours</span>
-                        <span class="font-medium text-slate-200">{{ $selectedTask->actual_hours }} hrs</span>
-                    </div>
-                </div>
-
-                <!-- Audit Log History -->
-                <div>
-                    <h4 class="text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Audit History</h4>
-                    <div class="max-h-40 overflow-y-auto space-y-2 rounded-lg border border-slate-800 bg-slate-950/60 p-3 divide-y divide-slate-800/60">
-                        @foreach($selectedTask->activities as $activity)
-                            <div class="pt-1.5 first:pt-0 text-xs">
-                                <div class="flex items-center justify-between text-slate-400">
-                                    <span class="font-medium text-slate-300">{{ $activity->user ? $activity->user->name : 'System' }}</span>
-                                    <span class="text-[10px] font-mono">{{ $activity->created_at->format('M d, H:i') }}</span>
+                                        @if($selectedTask->activities->count() > 0)
+                                            <div class="mt-8">
+                                                <h4 class="text-sm font-medium text-slate-900 dark:text-white mb-4">Task History</h4>
+                                                <div class="space-y-4 max-h-60 overflow-y-auto pr-2">
+                                                    @foreach($selectedTask->activities as $activity)
+                                                        <div class="text-sm">
+                                                            <p class="text-slate-700 dark:text-slate-300">{{ $activity->description }}</p>
+                                                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                                                                {{ $activity->user->name ?? 'System' }} &bull; {{ $activity->created_at->format('M j, Y g:i A') }}
+                                                            </p>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
-                                <p class="text-slate-300 mt-0.5">{{ $activity->description }}</p>
                             </div>
-                        @endforeach
-                    </div>
-                </div>
-
-                <div class="flex justify-end gap-2 pt-2 border-t border-slate-800">
-                    <a href="{{ route('workflows.show', $selectedTask->workflow) }}"
-                       class="rounded-lg bg-indigo-600 px-4 py-2 text-xs font-semibold text-white hover:bg-indigo-500 transition-colors">
-                        Go to Workflow Board
-                    </a>
-                    <button wire:click="closeTaskModal"
-                            class="rounded-lg bg-slate-800 px-4 py-2 text-xs font-semibold text-slate-300 hover:bg-slate-700 transition-colors">
-                        Close
-                    </button>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-900/50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                            <button wire:click="closeTaskModal" type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white dark:bg-slate-800 px-3 py-2 text-sm font-semibold text-slate-900 dark:text-white shadow-sm ring-1 ring-inset ring-slate-300 dark:ring-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 sm:mt-0 sm:w-auto transition-colors">
+                                Close
+                            </button>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
-    @endif
+    </div>
 </div>

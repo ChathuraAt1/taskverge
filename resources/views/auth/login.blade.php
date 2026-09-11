@@ -34,6 +34,7 @@
         </div>
 
         <!-- 1-Click Instant Evaluation Personas -->
+        @if($isLocal)
         <div class="rounded-xl border border-indigo-500/30 bg-indigo-950/20 p-4">
             <div class="flex items-center justify-between mb-3">
                 <span class="text-xs font-semibold uppercase tracking-wider text-indigo-400">1-Click Evaluation Personas</span>
@@ -60,6 +61,7 @@
                 @endforeach
             </div>
         </div>
+        @endif
 
         <!-- Standard Login Form -->
         <div class="rounded-xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl backdrop-blur-sm space-y-4">
@@ -92,7 +94,9 @@
                                class="h-4 w-4 rounded border-slate-700 bg-slate-950 text-indigo-600 focus:ring-indigo-500">
                         <label for="remember" class="ml-2 block text-xs text-slate-400">Remember credentials</label>
                     </div>
+                    @if($isLocal)
                     <span class="text-xs text-slate-400">Default: <code class="text-indigo-400 font-mono">password</code></span>
+                    @endif
                 </div>
 
                 <!-- Cloudflare Turnstile Verification Spin -->

@@ -100,6 +100,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Check if user is a super administrator.
+     */
+    public function isSuperAdmin(): bool
+    {
+        return $this->role === 'super_admin';
+    }
+
+    /**
      * Check if user is an administrator.
      */
     public function isAdmin(): bool
@@ -124,11 +132,19 @@ class User extends Authenticatable
     }
 
     /**
+     * Check if user is a member.
+     */
+    public function isMember(): bool
+    {
+        return $this->role === 'member';
+    }
+
+    /**
      * Check if user has management permissions (admin or manager).
      */
     public function canManageWorkflows(): bool
     {
-        return in_array($this->role, ['admin', 'manager'], true);
+        return in_array($this->role, ['super_admin', 'admin', 'manager'], true);
     }
 
     /**
@@ -139,6 +155,7 @@ class User extends Authenticatable
         return match ($this->subscription_plan) {
             'intelligence' => 'Enterprise Intelligence (NVIDIA Engine)',
             'sovereign' => 'Air-Gapped Sovereign',
+            'free' => 'Free Trial',
             default => 'Operations Core',
         };
     }

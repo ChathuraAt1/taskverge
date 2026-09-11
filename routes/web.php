@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Livewire\AdminPanel;
 use App\Livewire\Checkout;
 use App\Livewire\CheckoutSuccess;
 use App\Livewire\Dashboard;
@@ -48,5 +49,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/workflows', WorkflowsIndex::class)->name('workflows.index');
         Route::get('/workflows/{workflow:slug}', WorkflowWorkspace::class)->name('workflows.show');
         Route::get('/tasks', TasksIndex::class)->name('tasks.index');
+        Route::get('/admin', AdminPanel::class)->name('admin.panel');
     });
 });

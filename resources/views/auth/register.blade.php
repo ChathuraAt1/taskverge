@@ -9,8 +9,8 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.765z" />
                 </svg>
             </div>
-            <h2 class="mt-4 text-2xl font-bold tracking-tight text-white">Create Enterprise Account</h2>
-            <p class="mt-1 text-sm text-slate-400">Join the TaskVerge Workflow Intelligence network</p>
+            <h2 class="mt-4 text-2xl font-bold tracking-tight text-white">Create Your Account</h2>
+            <p class="mt-1 text-sm text-slate-400">Start managing your workflows smarter</p>
         </div>
 
         <!-- Google OAuth Authentication Button -->
@@ -52,32 +52,9 @@
                 </div>
 
                 <div>
-                    <label for="email" class="block text-xs font-medium text-slate-300">Corporate Email</label>
+                    <label for="email" class="block text-xs font-medium text-slate-300">Email Address</label>
                     <input id="email" name="email" type="email" required value="{{ old('email') }}" placeholder="jordan@company.com"
                            class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
-                </div>
-
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label for="department" class="block text-xs font-medium text-slate-300">Department</label>
-                        <select id="department" name="department" required
-                                class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
-                            <option value="Enterprise Operations">Operations</option>
-                            <option value="Global Logistics & Supply Chain">Logistics</option>
-                            <option value="Regulatory Compliance">Compliance</option>
-                            <option value="Cloud Infrastructure">Engineering</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label for="role" class="block text-xs font-medium text-slate-300">Target Role</label>
-                        <select id="role" name="role" required
-                                class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
-                            <option value="operator">Operator</option>
-                            <option value="manager">Operations Manager</option>
-                            <option value="admin">Workflow Admin</option>
-                        </select>
-                    </div>
                 </div>
 
                 <div>

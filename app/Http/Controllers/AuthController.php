@@ -21,13 +21,15 @@ class AuthController extends Controller
             return redirect()->route('dashboard');
         }
 
-        $demoUsers = User::query()->whereIn('email', [
+        $isLocal = app()->environment('local', 'testing');
+
+        $demoUsers = $isLocal ? User::query()->whereIn('email', [
             'admin@taskverge.com',
             'manager@taskverge.com',
             'operator@taskverge.com',
-        ])->get();
+        ])->get() : collect();
 
-        return view('auth.login', compact('demoUsers'));
+        return view('auth.login', compact('demoUsers', 'isLocal'));
     }
 
     /**
@@ -58,6 +60,8 @@ class AuthController extends Controller
      */
     public function quickLogin(Request $request, User $user): RedirectResponse
     {
+        abort_unless(app()->environment('local', 'testing'), 404);
+
         Auth::login($user);
         $request->session()->regenerate();
 
@@ -84,16 +88,15 @@ class AuthController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'department' => ['required', 'string', 'max:255'],
-            'role' => ['required', 'in:admin,manager,operator'],
             'password' => ['required', 'confirmed', Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'department' => $validated['department'],
-            'role' => $validated['role'],
+            'role' => 'member',
+            'subscription_plan' => 'free',
+            'subscription_status' => 'trialing',
             'password' => Hash::make($validated['password']),
             'is_active' => true,
         ]);

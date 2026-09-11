@@ -104,14 +104,16 @@ class WorkflowIntelligenceTest extends TestCase
 
     public function test_dashboard_renders_with_accurate_telemetry_metrics(): void
     {
+        Task::query()->update(['assigned_to' => $this->admin->id]);
+
         Livewire::actingAs($this->admin)
             ->test(Dashboard::class)
-            ->assertViewHas('totalTasks', 3)
-            ->assertViewHas('activeTasks', 1)
-            ->assertViewHas('completedTasks', 1)
-            ->assertViewHas('blockedTasks', 1)
-            ->assertViewHas('overdueTasks', 1)
-            ->assertSee('Logistics Automation')
+            ->assertViewHas('myActiveTasks', 1)
+            ->assertViewHas('myNeedsAttention', 2)
+            ->assertViewHas('myCompletedThisWeek', 1)
+            ->assertSee('My Tasks')
+            ->assertSee('Overdue Customs Clearing')
+            ->set('taskFilter', 'blocked')
             ->assertSee('Blocked Port Inspection');
     }
 

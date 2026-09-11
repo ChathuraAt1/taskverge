@@ -10,16 +10,18 @@ class AuthenticationTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_landing_page_renders_successfully_with_nvidia_tech_showcase(): void
+    public function test_landing_page_renders_successfully_with_commercial_content(): void
     {
         $response = $this->get('/');
 
         $response->assertStatus(200);
         $response->assertSee('TaskVerge');
-        $response->assertSee('NVIDIA NeMo');
-        $response->assertSee('NVIDIA Nemotron');
-        $response->assertSee('NVIDIA NIM');
-        $response->assertSee('NVIDIA Triton');
+        $response->assertSee('About Us');
+        $response->assertSee('What It Does');
+        $response->assertSee('How It Works');
+        $response->assertSee('Customer Stories');
+        $response->assertSee('Key Benefits');
+        $response->assertSee('Pricing Plans');
     }
 
     public function test_login_screen_can_be_rendered(): void
@@ -75,13 +77,11 @@ class AuthenticationTest extends TestCase
         $response->assertRedirect(route('dashboard'));
     }
 
-    public function test_user_can_register_new_enterprise_account(): void
+    public function test_user_can_register_new_account(): void
     {
         $response = $this->post('/register', [
             'name' => 'Jordan Miller',
             'email' => 'jordan@taskverge.com',
-            'department' => 'Enterprise Operations',
-            'role' => 'manager',
             'password' => 'password123',
             'password_confirmation' => 'password123',
         ]);
@@ -89,10 +89,28 @@ class AuthenticationTest extends TestCase
         $this->assertAuthenticated();
         $this->assertDatabaseHas('users', [
             'email' => 'jordan@taskverge.com',
-            'department' => 'Enterprise Operations',
-            'role' => 'manager',
+            'role' => 'member',
+            'subscription_plan' => 'free',
+            'subscription_status' => 'trialing',
         ]);
         $response->assertRedirect(route('dashboard'));
+    }
+
+    public function test_demo_personas_hidden_and_quick_login_forbidden_in_production(): void
+    {
+        $admin = User::factory()->create([
+            'email' => 'admin@taskverge.com',
+            'role' => 'admin',
+        ]);
+
+        $this->app['env'] = 'production';
+
+        $loginResponse = $this->get('/login');
+        $loginResponse->assertStatus(200);
+        $loginResponse->assertDontSee('1-Click Evaluation Personas');
+
+        $quickLoginResponse = $this->withoutMiddleware()->post(route('quick-login', $admin));
+        $quickLoginResponse->assertStatus(404);
     }
 
     public function test_user_can_log_out(): void
