@@ -136,29 +136,37 @@
                 <!-- Editorial Narrative Column -->
                 <div class="lg:col-span-7 space-y-6">
                     <div class="space-y-2">
-                        <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">About Us & Our Mission</span>
+                        <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">About Us</span>
                         <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-                            We believe task management should work for you, not the other way around.
+                            Work management built to eliminate manual babysitting.
                         </h2>
                     </div>
 
-                    <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
-                        Traditional project boards have devolved into static digital graveyards. They demand tedious manual status inquiries, daily spreadsheet reconciliation, and constant supervisor babysitting just to answer basic questions.
+                    <p class="text-base sm:text-lg text-slate-300 leading-relaxed">
+                        Traditional boards are static graveyards requiring endless status checks. <strong>TaskVerge</strong> operates silently alongside your team—balancing capacity, predicting deadlines 48 hours early, and auto-resolving blockers so work never stalls.
                     </p>
 
-                    <p class="text-sm sm:text-base text-slate-400 leading-relaxed">
-                        We engineered <strong>TaskVerge</strong> as an autonomous workflow intelligence layer. It operates silently beside your team—continuously observing workload distributions, identifying stalled dependencies before they manifest as missed deadlines, and autonomously triaging deliverables to clear roadblocks.
-                    </p>
+                    <!-- Punchy Key Pillars -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                        <div class="flex items-center gap-2.5 rounded-xl border border-slate-800/80 bg-slate-950/60 p-3 text-xs text-slate-300">
+                            <span class="h-2 w-2 rounded-full bg-emerald-400 shrink-0"></span>
+                            <span><strong>Zero Status Chasing:</strong> Live bandwidth matching.</span>
+                        </div>
+                        <div class="flex items-center gap-2.5 rounded-xl border border-slate-800/80 bg-slate-950/60 p-3 text-xs text-slate-300">
+                            <span class="h-2 w-2 rounded-full bg-teal-400 shrink-0"></span>
+                            <span><strong>Predictive Sentry:</strong> Early warning before delays.</span>
+                        </div>
+                    </div>
 
                     <!-- Contrast Strip: The Old Way vs The TaskVerge Way -->
-                    <div class="pt-4 border-t border-slate-800 space-y-3">
-                        <div class="flex items-start gap-3 text-xs">
+                    <div class="pt-3 border-t border-slate-800 space-y-2.5">
+                        <div class="flex items-center gap-3 text-xs">
                             <span class="rounded bg-rose-500/10 text-rose-400 border border-rose-500/20 px-2 py-0.5 font-bold uppercase shrink-0">The Old Way</span>
-                            <span class="text-slate-400">Hours lost each week to "What's the status?" syncs, forgotten tickets, and spreadsheet chaos.</span>
+                            <span class="text-slate-400">Hours lost to "what's the status?" syncs and forgotten tickets.</span>
                         </div>
-                        <div class="flex items-start gap-3 text-xs">
+                        <div class="flex items-center gap-3 text-xs">
                             <span class="rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 font-bold uppercase shrink-0">The TaskVerge Way</span>
-                            <span class="text-slate-200 font-medium">Continuous autonomous triaging, real-time SLA radar, and instant 1-click unblock actions.</span>
+                            <span class="text-slate-200 font-medium">Autonomous triaging, real-time risk radar, and 1-click unblocking.</span>
                         </div>
                     </div>
                 </div>
@@ -166,119 +174,410 @@
         </div>
     </section>
 
-    <!-- 3. WHAT IT DOES: Asymmetric Bento Architecture (Grand Master Console + Staggered Deep-Dives) -->
-    <section id="what-it-does" class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div class="text-center max-w-3xl mx-auto mb-16">
+    <!-- 3. WHAT IT DOES: Fluid Morphing Layout with Full-Section Moving Gradient & Fixed Expand Modal Overlay -->
+    <section id="what-it-does" class="relative px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-12">
             <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">What It Does</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Autonomous Capabilities That Drive Velocity</h2>
-            <p class="text-sm sm:text-base text-slate-400 mt-2">Replace manual micromanagement with an intelligent workflow fabric that keeps work flowing 24/7.</p>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Everything You Need to Keep Work Moving</h2>
+            <p class="text-sm sm:text-base text-slate-400 mt-2">Simple, intuitive workflow tools that eliminate status chasing and keep everyone aligned.</p>
         </div>
 
-        <!-- Asymmetric Bento Showcase (Not 4 identical square boxes!) -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-            <!-- Master Console 1: Autonomous Triage (Wide, 7 columns) -->
-            <div class="lg:col-span-7 rounded-3xl border border-slate-800 bg-slate-950 p-7 sm:p-8 flex flex-col justify-between hover:border-emerald-500/40 transition-all shadow-xl">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="rounded-lg bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-1 text-xs font-bold text-emerald-300 uppercase tracking-wide">
-                            Core Engine
-                        </span>
-                        <span class="text-xs font-mono text-slate-400">99.4% Routing Precision</span>
+        <!-- Interactive Morphing Component with Alpine.js -->
+        <div 
+            x-data="{
+                state: 0,
+                expandedIndex: null,
+                isPaused: false,
+                progress: 0,
+                direction: 1,
+                intervalMs: 5000,
+                stepMs: 50,
+                init() {
+                    setInterval(() => {
+                        if (!this.isPaused && this.expandedIndex === null) {
+                            this.progress += (this.stepMs / this.intervalMs) * 100;
+                            if (this.progress >= 100) {
+                                this.progress = 0;
+                                this.state = (this.state + 1) % 3;
+                                this.direction = this.direction === 1 ? -1 : 1;
+                            }
+                        }
+                    }, this.stepMs);
+                },
+                pause() {
+                    this.isPaused = true;
+                },
+                resume() {
+                    this.isPaused = false;
+                },
+                toggleExpand(idx) {
+                    this.expandedIndex = idx;
+                }
+            }"
+            @mouseenter="pause()"
+            @mouseleave="resume()"
+            class="relative rounded-3xl sm:rounded-[2.5rem] border border-emerald-500/20 bg-slate-950/90 p-4 sm:p-6 lg:p-8 shadow-2xl overflow-hidden"
+        >
+            <!-- Visible Full-Height Background Filling Animation Div with Proper Padding -->
+            <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl sm:rounded-[2.5rem]">
+                <!-- Rich Gradient Base Layer -->
+                <div 
+                    class="absolute inset-0 bg-gradient-to-r from-emerald-950/50 via-teal-900/40 to-cyan-950/50 transition-transform"
+                    :style="{
+                        transform: direction === 1 
+                            ? 'translateX(' + (-40 + (progress * 0.4)) + '%)' 
+                            : 'translateX(' + (0 - (progress * 0.4)) + '%)',
+                        transition: isPaused ? 'none' : 'transform 60ms linear'
+                    }"
+                ></div>
+
+                <!-- Prominent Moving Glowing Wave (Sweeps Left to Right and Right to Left) -->
+                <div 
+                    class="absolute -top-1/4 -bottom-1/4 w-[45%] bg-gradient-to-r from-transparent via-emerald-400/25 via-teal-300/30 to-transparent blur-3xl transition-all"
+                    :style="{
+                        left: direction === 1 
+                            ? (progress * 1.1 - 25) + '%' 
+                            : ((100 - progress) * 1.1 - 25) + '%',
+                        transition: isPaused ? 'none' : 'left 60ms linear'
+                    }"
+                ></div>
+
+                <!-- Glowing Ambient Accent Strip -->
+                <div 
+                    class="absolute top-0 bottom-0 w-1.5 bg-gradient-to-b from-emerald-400 via-teal-300 to-transparent blur-sm opacity-60 transition-all"
+                    :style="{
+                        left: direction === 1 
+                            ? (progress * 1.05 - 5) + '%' 
+                            : ((100 - progress) * 1.05 - 5) + '%',
+                        transition: isPaused ? 'none' : 'left 60ms linear'
+                    }"
+                ></div>
+
+                <!-- Subtle Dot Texture Overlay -->
+                <div class="absolute inset-0 bg-[radial-gradient(#10b981_1.5px,transparent_1.5px)] [background-size:24px_24px] opacity-20"></div>
+
+                <!-- Glowing Inner Edge Highlight -->
+                <div class="absolute inset-0 rounded-3xl sm:rounded-[2.5rem] border border-emerald-500/20 pointer-events-none"></div>
+            </div>
+
+            <!-- Fluid Morphing Grid Layout: Row 1 & Row 2 (Positioned on top of animated background with proper padding) -->
+            <div class="space-y-6 relative z-10">
+                <!-- ROW 1: Smart Work Balancing + Stock Image Showcase -->
+                <div class="flex flex-col md:flex-row gap-6 items-stretch w-full">
+                    
+                    <!-- Block 0: Smart Work Distribution -->
+                    <div 
+                        :class="state === 0 ? 'w-full md:w-[60%]' : (state === 1 ? 'w-full md:w-[42%]' : 'w-full md:w-[66%]')"
+                        class="group relative rounded-3xl border border-slate-800 bg-slate-950/90 backdrop-blur-md p-6 sm:p-8 flex flex-col justify-between hover:border-emerald-500/50 transition-all duration-1000 ease-in-out shadow-xl overflow-hidden min-h-[300px]"
+                    >
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="inline-flex items-center gap-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 text-xs font-semibold text-emerald-300">
+                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                                <span>Work Distribution</span>
+                            </div>
+                            <!-- Hover-Appearing Expand Button -->
+                            <button 
+                                @click.stop="toggleExpand(0)"
+                                class="opacity-0 group-hover:opacity-100 transition-all duration-300 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-700 bg-slate-900/90 text-xs font-medium text-slate-300 hover:text-white hover:border-emerald-500/50 hover:bg-emerald-950/50 shadow-lg backdrop-blur-sm"
+                            >
+                                <span>Expand View</span>
+                                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="space-y-3 transition-opacity duration-500">
+                            <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-emerald-300 transition-colors">
+                                Smart Work Balancing
+                            </h3>
+                            <p class="text-sm text-slate-300 leading-relaxed">
+                                Assigns tasks automatically based on who has the time and skills. Work gets started faster, handoffs happen naturally, and no team member is overloaded.
+                            </p>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-slate-800/80 flex flex-wrap items-center gap-2 text-xs">
+                            <span class="rounded-lg bg-slate-900/90 border border-slate-800 px-3 py-1.5 text-slate-300">
+                                Launch Campaign &rarr; <strong class="text-emerald-400">Auto-Assigned to Design</strong>
+                            </span>
+                            <span class="rounded-lg bg-slate-900/90 border border-slate-800 px-3 py-1.5 text-slate-300">
+                                Client Review &rarr; <strong class="text-teal-400">Auto-Assigned to Accounts</strong>
+                            </span>
+                        </div>
                     </div>
-                    <h3 class="text-2xl font-bold text-white">Autonomous Task Routing & Capacity Matching</h3>
-                    <p class="text-sm text-slate-300 leading-relaxed mt-2.5">
-                        New tasks are automatically evaluated against real-time engineer capacity, department skill matrices, and deadline criticality. The engine routes work directly to the right specialist stage without managerial handoffs.
-                    </p>
+
+                    <!-- Block 1: Stock Image Showcase (Visual Collaboration Area) -->
+                    <div 
+                        :class="state === 0 ? 'w-full md:w-[40%]' : (state === 1 ? 'w-full md:w-[58%]' : 'w-full md:w-[34%]')"
+                        class="group relative rounded-3xl border border-slate-800 bg-slate-950 overflow-hidden flex flex-col justify-between hover:border-emerald-500/50 transition-all duration-1000 ease-in-out shadow-xl min-h-[300px]"
+                    >
+                        <img 
+                            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" 
+                            alt="Creative team collaborating happily around workspace" 
+                            class="absolute inset-0 w-full h-full object-cover object-center filter brightness-75 group-hover:scale-105 group-hover:brightness-90 transition-all duration-1000"
+                            loading="lazy"
+                        />
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-slate-950/20"></div>
+                        <div class="absolute inset-0 bg-emerald-950/20 mix-blend-multiply pointer-events-none"></div>
+
+                        <div class="relative z-10 p-6 flex items-center justify-between">
+                            <span class="inline-flex items-center gap-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-slate-700 px-3 py-1 text-xs font-semibold text-emerald-300">
+                                <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                Team Hub
+                            </span>
+                            <button 
+                                @click.stop="toggleExpand(1)"
+                                class="opacity-0 group-hover:opacity-100 transition-all duration-300 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-700 bg-slate-950/90 text-xs font-medium text-slate-300 hover:text-white hover:border-emerald-500/50 shadow-md backdrop-blur-sm"
+                            >
+                                <span>Expand View</span>
+                                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="relative z-10 p-6 mt-auto">
+                            <h4 class="text-lg sm:text-xl font-bold text-white drop-shadow-md">
+                                Built for Teams That Deliver
+                            </h4>
+                            <p class="text-xs sm:text-sm text-slate-200 mt-1 drop-shadow-md">
+                                Keep everyone connected in one clean place without endless meetings.
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
 
-                <!-- Interactive Mini Mockup -->
-                <div class="mt-6 rounded-2xl border border-slate-800 bg-slate-900/80 p-4 space-y-2">
-                    <div class="flex items-center justify-between text-xs text-slate-400 border-b border-slate-800 pb-2">
-                        <span class="font-mono text-emerald-400">Incoming: Triton Kernel Benchmark</span>
-                        <span class="text-[11px] text-emerald-300 bg-emerald-950/60 px-2 py-0.5 rounded">Auto-Triaged to DevOps</span>
+                <!-- ROW 2: Roadblock Clearing + Team Visibility -->
+                <div class="flex flex-col md:flex-row gap-6 items-stretch w-full">
+                    
+                    <!-- Block 2: Roadblock Clearing -->
+                    <div 
+                        :class="state === 0 ? 'w-full md:w-[38%]' : (state === 1 ? 'w-full md:w-[62%]' : 'w-full md:w-[50%]')"
+                        class="group relative rounded-3xl border border-slate-800 bg-slate-950/90 backdrop-blur-md p-6 sm:p-8 flex flex-col justify-between hover:border-emerald-500/50 transition-all duration-1000 ease-in-out shadow-xl overflow-hidden min-h-[290px]"
+                    >
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="inline-flex items-center gap-2 rounded-xl bg-amber-500/10 border border-amber-500/20 px-3 py-1.5 text-xs font-semibold text-amber-300">
+                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                <span>Blocker Prevention</span>
+                            </div>
+                            <button 
+                                @click.stop="toggleExpand(2)"
+                                class="opacity-0 group-hover:opacity-100 transition-all duration-300 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-700 bg-slate-900/90 text-xs font-medium text-slate-300 hover:text-white hover:border-emerald-500/50 hover:bg-emerald-950/50 shadow-md backdrop-blur-sm"
+                            >
+                                <span>Expand View</span>
+                                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="space-y-3 transition-opacity duration-500">
+                            <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-amber-300 transition-colors">
+                                Instant Roadblock Clearing
+                            </h3>
+                            <p class="text-sm text-slate-300 leading-relaxed">
+                                When work gets delayed waiting on approvals or feedback, TaskVerge spots the holdup immediately and gives you 1-click ways to unblock it.
+                            </p>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                            <span class="text-slate-400">Waiting for approval?</span>
+                            <span class="inline-flex items-center gap-1 font-semibold text-emerald-400">
+                                &check; 1-Click Unblock Ready
+                            </span>
+                        </div>
                     </div>
-                    <div class="grid grid-cols-3 gap-2 text-[11px] text-slate-300 pt-1">
-                        <div class="bg-slate-950/60 p-2 rounded border border-slate-800/80">Priority: <strong class="text-rose-400">Critical</strong></div>
-                        <div class="bg-slate-950/60 p-2 rounded border border-slate-800/80">Owner: <strong class="text-slate-200">Sarah Jenkins</strong></div>
-                        <div class="bg-slate-950/60 p-2 rounded border border-slate-800/80">Est: <strong class="text-slate-200">16 hrs</strong></div>
+
+                    <!-- Block 3: Progress Transparency -->
+                    <div 
+                        :class="state === 0 ? 'w-full md:w-[62%]' : (state === 1 ? 'w-full md:w-[38%]' : 'w-full md:w-[50%]')"
+                        class="group relative rounded-3xl border border-slate-800 bg-slate-950/90 backdrop-blur-md p-6 sm:p-8 flex flex-col justify-between hover:border-emerald-500/50 transition-all duration-1000 ease-in-out shadow-xl overflow-hidden min-h-[290px]"
+                    >
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="inline-flex items-center gap-2 rounded-xl bg-teal-500/10 border border-teal-500/20 px-3 py-1.5 text-xs font-semibold text-teal-300">
+                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <span>Live Visibility</span>
+                            </div>
+                            <button 
+                                @click.stop="toggleExpand(3)"
+                                class="opacity-0 group-hover:opacity-100 transition-all duration-300 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-700 bg-slate-900/90 text-xs font-medium text-slate-300 hover:text-white hover:border-emerald-500/50 hover:bg-emerald-950/50 shadow-md backdrop-blur-sm"
+                            >
+                                <span>Expand View</span>
+                                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div class="space-y-3 transition-opacity duration-500">
+                            <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-teal-300 transition-colors">
+                                Effortless Team Visibility
+                            </h3>
+                            <p class="text-sm text-slate-300 leading-relaxed">
+                                See how every project is progressing in real time. Know what’s finished, what’s active, and what needs attention without sending a single status email.
+                            </p>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                            <span class="text-slate-400">Status meetings eliminated</span>
+                            <a href="{{ route('register') }}" class="font-semibold text-emerald-400 hover:text-emerald-300 transition-colors">
+                                Explore Workflows &rarr;
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Fixed Position Modal Overlay for Expanded View (Overlays screen without breaking grid layout) -->
+            <div 
+                x-show="expandedIndex !== null" 
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                @keydown.escape.window="expandedIndex = null"
+                class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 bg-slate-950/80 backdrop-blur-xl"
+                style="display: none;"
+            >
+                <div 
+                    @click.outside="expandedIndex = null"
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-95 translate-y-4"
+                    x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+                    x-transition:leave="transition ease-in duration-200"
+                    x-transition:leave-start="opacity-100 scale-100 translate-y-0"
+                    x-transition:leave-end="opacity-0 scale-95 translate-y-4"
+                    class="relative w-full max-w-3xl max-h-[85vh] overflow-y-auto rounded-3xl border border-emerald-500/30 bg-slate-950 p-6 sm:p-10 shadow-2xl shadow-emerald-950/60"
+                >
+                    <!-- Modal Header: Top Status + Close Button -->
+                    <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-800">
+                        <span class="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 text-xs font-semibold text-emerald-300">
+                            <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            Expanded Focus View
+                        </span>
+                        <button 
+                            @click="expandedIndex = null"
+                            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border border-slate-700 bg-slate-900 text-xs font-semibold text-slate-300 hover:text-white hover:border-emerald-500/50 hover:bg-emerald-950/40 transition-all shadow-md"
+                        >
+                            <span>Close</span>
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Modal Content 0: Smart Work Distribution -->
+                    <template x-if="expandedIndex === 0">
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Smart Work Balancing & Distribution</h3>
+                                <p class="text-sm sm:text-base text-slate-300 mt-2 leading-relaxed">
+                                    Traditional teams waste hours debating who should take on new tasks, leading to uneven workloads and missed deadlines. TaskVerge routes every deliverable to the right person instantly based on real-time availability and individual strengths.
+                                </p>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                                <div class="p-4 rounded-2xl border border-slate-800 bg-slate-900/70">
+                                    <div class="font-bold text-emerald-400 text-sm">Skill-to-Task Match</div>
+                                    <div class="text-xs text-slate-400 mt-1">Direct assignment to team members with the right domain expertise.</div>
+                                </div>
+                                <div class="p-4 rounded-2xl border border-slate-800 bg-slate-900/70">
+                                    <div class="font-bold text-teal-400 text-sm">Burnout Prevention</div>
+                                    <div class="text-xs text-slate-400 mt-1">Balances work so no individual is overloaded while others have capacity.</div>
+                                </div>
+                                <div class="p-4 rounded-2xl border border-slate-800 bg-slate-900/70">
+                                    <div class="font-bold text-cyan-400 text-sm">Zero Delay Handoffs</div>
+                                    <div class="text-xs text-slate-400 mt-1">Completing a step automatically notifies and dispatches the next person.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+
+                    <!-- Modal Content 1: Visual Collaboration Workspace Image -->
+                    <template x-if="expandedIndex === 1">
+                        <div class="space-y-6">
+                            <div class="relative rounded-2xl overflow-hidden aspect-video border border-slate-800 shadow-xl">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" 
+                                    alt="Creative team collaborating happily around workspace" 
+                                    class="w-full h-full object-cover"
+                                />
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white">Connected Team Workspace</h3>
+                                <p class="text-sm text-slate-300 mt-2 leading-relaxed">
+                                    A single shared home where designers, engineers, and project leads collaborate with total clarity. No disconnected chat channels or scattered spreadsheets—just continuous, frictionless progress.
+                                </p>
+                            </div>
+                        </div>
+                    </template>
+
+                    <!-- Modal Content 2: Roadblock Prevention -->
+                    <template x-if="expandedIndex === 2">
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Instant Roadblock Clearing</h3>
+                                <p class="text-sm sm:text-base text-slate-300 mt-2 leading-relaxed">
+                                    Projects rarely fail from lack of effort—they fail from tasks sitting in queue waiting for feedback or sign-offs. TaskVerge proactively spots delays and empowers managers and contributors to resolve them with 1 click.
+                                </p>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                                <div class="p-4 rounded-2xl border border-slate-800 bg-slate-900/70">
+                                    <div class="font-bold text-amber-400 text-sm">Proactive Warning</div>
+                                    <div class="text-xs text-slate-400 mt-1">Detects sluggish reviews before deadlines are in jeopardy.</div>
+                                </div>
+                                <div class="p-4 rounded-2xl border border-slate-800 bg-slate-900/70">
+                                    <div class="font-bold text-emerald-400 text-sm">1-Click Unblock</div>
+                                    <div class="text-xs text-slate-400 mt-1">Instantly reassign stalled tasks or prompt alternate reviewers.</div>
+                                </div>
+                                <div class="p-4 rounded-2xl border border-slate-800 bg-slate-900/70">
+                                    <div class="font-bold text-teal-400 text-sm">Action History</div>
+                                    <div class="text-xs text-slate-400 mt-1">Logs why blockers occurred to prevent similar delays in future sprints.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+
+                    <!-- Modal Content 3: Progress Transparency -->
+                    <template x-if="expandedIndex === 3">
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Effortless Team Transparency</h3>
+                                <p class="text-sm sm:text-base text-slate-300 mt-2 leading-relaxed">
+                                    Give leaders and stakeholders total confidence without dragging creators into daily status calls. Every milestone, deliverable, and handover is visible in real-time.
+                                </p>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                                <div class="p-4 rounded-2xl border border-slate-800 bg-slate-900/70">
+                                    <div class="font-bold text-teal-400 text-sm">Live Project Health</div>
+                                    <div class="text-xs text-slate-400 mt-1">Know what is active, blocked, and done in one glance.</div>
+                                </div>
+                                <div class="p-4 rounded-2xl border border-slate-800 bg-slate-900/70">
+                                    <div class="font-bold text-emerald-400 text-sm">No Standup Fatigue</div>
+                                    <div class="text-xs text-slate-400 mt-1">Save hours every week by replacing status meetings with live insight.</div>
+                                </div>
+                                <div class="p-4 rounded-2xl border border-slate-800 bg-slate-900/70">
+                                    <div class="font-bold text-cyan-400 text-sm">Shared Truth</div>
+                                    <div class="text-xs text-slate-400 mt-1">One clear source of truth for both leadership and execution squads.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+
+                    <div class="mt-8 pt-6 border-t border-slate-800 flex justify-end">
+                        <button 
+                            @click="expandedIndex = null"
+                            class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition-colors shadow-lg shadow-emerald-600/30"
+                        >
+                            Done Reading
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Master Console 2: Predictive Bottleneck Radar (5 columns with visual radar) -->
-            <div class="lg:col-span-5 rounded-3xl border border-slate-800 bg-gradient-to-b from-amber-950/20 via-slate-950 to-slate-950 p-7 sm:p-8 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="rounded-lg bg-amber-500/10 border border-amber-500/30 px-2.5 py-1 text-xs font-bold text-amber-300 uppercase tracking-wide">
-                            Early Warning Radar
-                        </span>
-                        <span class="text-xs font-mono text-amber-400">48h Advance Sentry</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-white">Predictive Bottleneck Radar</h3>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mt-2">
-                        Monitors cycle times and cross-department dependencies. If a review stage slows down, TaskVerge flags the delay risk before deadlines are compromised.
-                    </p>
-                </div>
-
-                <!-- Sonar Radar SVG Visualization -->
-                <div class="mt-6 rounded-2xl border border-amber-500/20 bg-slate-900/60 p-4 text-center relative overflow-hidden">
-                    <div class="relative w-28 h-28 mx-auto flex items-center justify-center">
-                        <div class="absolute inset-0 rounded-full border border-amber-500/20"></div>
-                        <div class="absolute inset-3 rounded-full border border-amber-500/30"></div>
-                        <div class="absolute inset-7 rounded-full border border-amber-500/40"></div>
-                        <div class="h-2 w-2 rounded-full bg-amber-400 shadow-md shadow-amber-400/50 animate-ping"></div>
-                    </div>
-                    <div class="text-[11px] text-amber-300 font-semibold mt-2">1 Impending Blocker Detected &bull; Stage: QA Review</div>
-                </div>
-            </div>
-
-            <!-- Master Console 3: Self-Healing Pipeline Engine (5 columns) -->
-            <div class="lg:col-span-5 rounded-3xl border border-slate-800 bg-gradient-to-b from-teal-950/20 via-slate-950 to-slate-950 p-7 sm:p-8 flex flex-col justify-between hover:border-teal-500/40 transition-all shadow-xl">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="rounded-lg bg-teal-500/10 border border-teal-500/30 px-2.5 py-1 text-xs font-bold text-teal-300 uppercase tracking-wide">
-                            Self-Healing Engine
-                        </span>
-                        <span class="text-xs font-mono text-teal-400">Auto-Escalation</span>
-                    </div>
-                    <h3 class="text-xl font-bold text-white">Self-Healing Pipeline Stages</h3>
-                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mt-2">
-                        When a task is halted, TaskVerge isolates the dependency, routes alternate review paths, and arms managers with immediate 1-click unblock actions.
-                    </p>
-                </div>
-
-                <div class="mt-6 rounded-2xl border border-teal-500/20 bg-slate-900/60 p-3.5 space-y-2 text-xs">
-                    <div class="flex items-center justify-between text-teal-300">
-                        <span>Blocker Reason Mandated</span>
-                        <span class="text-emerald-400">&check; Logged</span>
-                    </div>
-                    <div class="flex items-center justify-between text-teal-300">
-                        <span>Alternative Reviewer Triggered</span>
-                        <span class="text-emerald-400">&check; Dispatched</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Master Console 4: Zero-Effort Executive Debriefs (Wide, 7 columns) -->
-            <div class="lg:col-span-7 rounded-3xl border border-slate-800 bg-slate-950 p-7 sm:p-8 flex flex-col justify-between hover:border-emerald-500/40 transition-all shadow-xl">
-                <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="rounded-lg bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-1 text-xs font-bold text-emerald-300 uppercase tracking-wide">
-                            Audit & Reporting
-                        </span>
-                        <span class="text-xs font-mono text-slate-400">Zero Standup Fatigue</span>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white">Automated Audit & Executive Debriefs</h3>
-                    <p class="text-sm text-slate-300 leading-relaxed mt-2.5">
-                        Every stage change, blocker notation, and handover is compiled into an immutable chronological audit trail. Stakeholders get instant visibility without interrupting creators with manual status requests.
-                    </p>
-                </div>
-
-                <div class="mt-6 rounded-2xl border border-slate-800 bg-slate-900/80 p-4 flex items-center justify-between text-xs">
-                    <span class="text-slate-300">Complete historical logging on all pipelines</span>
-                    <a href="{{ route('register') }}" class="text-emerald-400 hover:text-emerald-300 font-semibold transition-colors">See Live Workspace &rarr;</a>
-                </div>
-            </div>
         </div>
     </section>
 
