@@ -46,7 +46,9 @@ jobs:
             **/.github*/**
             **/node_modules/**
             **/vendor/**
-            **/storage/**
+            storage/app/**
+            storage/logs/**
+            public/storage/**
             **/.env*
             **/tests/**
             **/.phpunit.cache/**

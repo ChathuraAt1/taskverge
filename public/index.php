@@ -13,8 +13,21 @@ if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php'))
 // Register the Composer autoloader...
 require __DIR__.'/../vendor/autoload.php';
 
+// Ensure essential storage framework cache directories exist...
+foreach ([
+    __DIR__.'/../storage/framework/views',
+    __DIR__.'/../storage/framework/cache/data',
+    __DIR__.'/../storage/framework/sessions',
+    __DIR__.'/../storage/logs',
+] as $storageDir) {
+    if (!is_dir($storageDir)) {
+        @mkdir($storageDir, 0775, true);
+    }
+}
+
 // Bootstrap Laravel and handle the request...
 /** @var Application $app */
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
 $app->handleRequest(Request::capture());
+
