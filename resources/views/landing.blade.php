@@ -8,176 +8,99 @@
         <div class="absolute -top-24 left-1/4 -translate-x-1/2 w-[650px] h-[450px] bg-emerald-500/15 rounded-full blur-[150px] pointer-events-none"></div>
         <div class="absolute top-1/3 right-10 w-[550px] h-[400px] bg-teal-500/15 rounded-full blur-[140px] pointer-events-none"></div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center relative z-10 my-auto">
-            <!-- Left: Hero Headline & Narrative -->
-            <div class="lg:col-span-7 space-y-7 text-left">
-                <!-- Innovative Neural Telemetry Beacon Pill (Not Generic) -->
-                <div class="inline-flex items-center gap-3 rounded-full border border-emerald-500/30 bg-gradient-to-r from-emerald-950/80 via-slate-900/90 to-teal-950/80 px-4 py-2 backdrop-blur-xl shadow-lg shadow-emerald-500/10 group hover:border-emerald-400/60 transition-all">
+        <div class="relative z-10 max-w-5xl mx-auto text-center my-auto pt-4 sm:pt-8 w-full">
+            <!-- Centered Main Headline -->
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.12] max-w-4xl mx-auto">
+                Workflows that triage, assign, and <br class="hidden sm:inline">
+                <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">unblock themselves.</span>
+            </h1>
+
+            <!-- High-Impact Action CTAs (Directly Under Headline) -->
+            <div class="flex flex-wrap items-center justify-center gap-3.5 pt-8">
+                @auth
+                    <a href="{{ route('dashboard') }}" class="inline-flex items-center gap-2.5 rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-bold text-white shadow-xl shadow-emerald-600/30 hover:bg-emerald-500 transition-all scale-100 hover:scale-[1.02]">
+                        <span>Open Your Dashboard</span>
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                    </a>
+                @else
+                    <a href="{{ route('register') }}" class="inline-flex items-center gap-2.5 rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-bold text-white shadow-xl shadow-emerald-600/30 hover:bg-emerald-500 transition-all scale-100 hover:scale-[1.02]">
+                        <span>Start Free 14-Day Trial</span>
+                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                    </a>
+                    <a href="{{ route('login') }}" class="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/90 px-5 py-3.5 text-sm font-semibold text-slate-200 hover:bg-slate-800 hover:text-white transition-all">
+                        <span>Explore Live Personas</span>
+                    </a>
+                @endauth
+                <a href="#what-it-does" class="inline-flex items-center gap-1.5 rounded-xl border border-slate-800/80 bg-slate-950/60 px-4 py-3.5 text-sm font-semibold text-slate-400 hover:text-white hover:border-slate-700 transition-all">
+                    <span>Capabilities &darr;</span>
+                </a>
+            </div>
+
+            <!-- Animated Small Metrics Pills -->
+            <div class="flex flex-wrap items-center justify-center gap-3 pt-7 pb-2">
+                <div class="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-slate-900/90 px-3.5 py-1.5 backdrop-blur-md shadow-md shadow-emerald-950/40 transition-all hover:scale-105 hover:border-emerald-400/60">
                     <span class="relative flex h-2 w-2">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
-                    <!-- Equalizer frequency bars -->
-                    <div class="flex items-center gap-1 h-3">
-                        <span class="w-0.5 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
-                        <span class="w-0.5 h-3 bg-emerald-300 rounded-full animate-pulse" style="animation-delay: 120ms"></span>
-                        <span class="w-0.5 h-1.5 bg-teal-400 rounded-full animate-pulse" style="animation-delay: 240ms"></span>
-                        <span class="w-0.5 h-3 bg-emerald-400 rounded-full animate-pulse" style="animation-delay: 360ms"></span>
-                    </div>
-                    <span class="text-[11px] font-bold tracking-wider uppercase text-emerald-300">Neural Engine Online</span>
-                    <span class="text-slate-600 font-mono text-xs">•</span>
-                    <span class="text-[11px] font-medium text-slate-300">4,892 Workflows Self-Healed Today</span>
-                    <svg class="h-3 w-3 text-emerald-400 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                    <span class="text-xs font-bold text-emerald-400">-84%</span>
+                    <span class="text-xs text-slate-300">Status Meeting Drag</span>
                 </div>
-
-                <!-- Main Headline -->
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
-                    Workflows that triage, assign, and <br>
-                    <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">unblock themselves.</span>
-                </h1>
-
-                <!-- Clear Value Proposition -->
-                <p class="text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed">
-                    Stop running endless status meetings and chasing stalled tickets. <strong>TaskVerge</strong> analyzes team workloads in real-time, predicts deadline risks 48 hours early, and automatically unblocks dependencies so your people stay in flow.
-                </p>
-
-                <!-- High-Impact Action CTAs -->
-                <div class="flex flex-wrap items-center gap-3.5 pt-2">
-                    @auth
-                        <a href="{{ route('dashboard') }}" class="inline-flex items-center gap-2.5 rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-bold text-white shadow-xl shadow-emerald-600/30 hover:bg-emerald-500 transition-all scale-100 hover:scale-[1.02]">
-                            <span>Open Your Dashboard</span>
-                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-                        </a>
-                    @else
-                        <a href="{{ route('register') }}" class="inline-flex items-center gap-2.5 rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-bold text-white shadow-xl shadow-emerald-600/30 hover:bg-emerald-500 transition-all scale-100 hover:scale-[1.02]">
-                            <span>Start Free 14-Day Trial</span>
-                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-                        </a>
-                        <a href="{{ route('login') }}" class="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/90 px-5 py-3.5 text-sm font-semibold text-slate-200 hover:bg-slate-800 hover:text-white transition-all">
-                            <span>Explore Live Personas</span>
-                        </a>
-                    @endauth
-                    <a href="#what-it-does" class="inline-flex items-center gap-1.5 rounded-xl border border-slate-800/80 bg-slate-950/60 px-4 py-3.5 text-sm font-semibold text-slate-400 hover:text-white hover:border-slate-700 transition-all">
-                        <span>Capabilities &darr;</span>
-                    </a>
+                <div class="inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-slate-900/90 px-3.5 py-1.5 backdrop-blur-md shadow-md shadow-teal-950/40 transition-all hover:scale-105 hover:border-teal-400/60">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" style="animation-delay: 350ms"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-teal-400"></span>
+                    </span>
+                    <span class="text-xs font-bold text-teal-300">99.4%</span>
+                    <span class="text-xs text-slate-300">Autonomous Triage</span>
                 </div>
-
-                <!-- Quantifiable Hero Proof Metrics Strip -->
-                <div class="pt-4 grid grid-cols-3 gap-6 border-t border-slate-800/80 max-w-lg">
-                    <div>
-                        <div class="text-2xl font-extrabold text-emerald-400">-84%</div>
-                        <div class="text-xs text-slate-400 mt-0.5">Status Meeting Drag</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-extrabold text-teal-400">99.4%</div>
-                        <div class="text-xs text-slate-400 mt-0.5">Autonomous Triage Accuracy</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-extrabold text-cyan-400">&lt; 2 min</div>
-                        <div class="text-xs text-slate-400 mt-0.5">Instant Team Setup</div>
-                    </div>
+                <div class="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-slate-900/90 px-3.5 py-1.5 backdrop-blur-md shadow-md shadow-cyan-950/40 transition-all hover:scale-105 hover:border-cyan-400/60">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" style="animation-delay: 700ms"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
+                    </span>
+                    <span class="text-xs font-bold text-cyan-300">&lt; 2 min</span>
+                    <span class="text-xs text-slate-300">Instant Setup</span>
+                </div>
+                <div class="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-slate-900/80 px-3.5 py-1.5 backdrop-blur-md transition-all hover:scale-105">
+                    <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span class="text-xs font-medium text-emerald-300">Zero-Touch Resolution</span>
                 </div>
             </div>
 
-            <!-- Right: The Autonomous Orchestration Console (Layered Futuristic Flow UI) -->
-            <div class="lg:col-span-5 relative">
-                <div class="relative mx-auto max-w-md lg:max-w-none">
-                    <!-- Outer Decorative Glow -->
-                    <div class="absolute -inset-1.5 bg-gradient-to-tr from-emerald-500/25 via-teal-500/20 to-cyan-500/20 rounded-3xl blur-2xl opacity-80"></div>
-
-                    <!-- Main Autonomous Console Container -->
-                    <div class="relative rounded-3xl border border-slate-800 bg-slate-950/95 p-5 backdrop-blur-2xl shadow-2xl space-y-4">
-                        <!-- Top HUD Bar -->
-                        <div class="flex items-center justify-between pb-3 border-b border-slate-800">
-                            <div class="flex items-center gap-2">
-                                <span class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
-                                <span class="text-xs font-bold text-white uppercase tracking-wider">Autonomous Execution Hub</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950/80 border border-emerald-500/30 px-2 py-0.5 rounded-md">
-                                    Latency: 4ms
-                                </span>
-                            </div>
+            <!-- Bottom Image Area with Fixed State for Scrolling (Stock Image) -->
+            <div class="relative mx-auto mt-8 sm:mt-10 max-w-5xl w-full rounded-2xl sm:rounded-3xl border border-emerald-500/25 bg-slate-950/80 p-2 sm:p-3 shadow-2xl shadow-emerald-950/50 backdrop-blur-xl">
+                <!-- Browser-like Top Chrome Bar -->
+                <div class="flex items-center justify-between px-3 py-2 border-b border-slate-800/80 bg-slate-900/90 rounded-t-xl mb-2 text-xs">
+                    <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-1.5">
+                            <span class="h-2.5 w-2.5 rounded-full bg-rose-500/80"></span>
+                            <span class="h-2.5 w-2.5 rounded-full bg-amber-500/80"></span>
+                            <span class="h-2.5 w-2.5 rounded-full bg-emerald-500/80"></span>
                         </div>
+                        <span class="ml-2 font-mono text-[11px] text-slate-400">TaskVerge Platform &bull; Autonomous Workspace</span>
+                    </div>
+                    <div class="hidden sm:flex items-center gap-2 text-[11px] text-slate-400 font-mono">
+                        <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span>Live Telemetry Active</span>
+                    </div>
+                </div>
 
-                        <!-- Simulated Flow Stream: Stage 1 Auto-Triaged -->
-                        <div class="rounded-xl border border-emerald-500/30 bg-slate-900/90 p-4 transition-all hover:border-emerald-500/60 shadow-sm relative overflow-hidden group">
-                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-emerald-500"></div>
-                            <div class="flex items-start justify-between gap-3 pl-1">
-                                <div>
-                                    <div class="flex items-center gap-2">
-                                        <span class="inline-flex items-center gap-1 rounded-md bg-emerald-500/20 px-2 py-0.5 text-[10px] font-bold text-emerald-300 uppercase tracking-wide border border-emerald-500/30">
-                                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
-                                            Auto-Triaged
-                                        </span>
-                                        <span class="text-[10px] font-mono text-slate-400">TSK-2041</span>
-                                    </div>
-                                    <h4 class="text-sm font-semibold text-white mt-1.5 group-hover:text-emerald-300 transition-colors">
-                                        Distributed Rate Limiter Upgrade
-                                    </h4>
-                                    <p class="text-[11px] text-slate-400 mt-0.5">
-                                        Assigned to Devon Reed • Capacity matched at 78% sprint velocity.
-                                    </p>
-                                </div>
-                                <span class="text-[10px] text-emerald-400/80 font-mono whitespace-nowrap">99.4% Match</span>
-                            </div>
+                <!-- Viewport Area with Fixed Scrolling State -->
+                <div class="relative h-48 sm:h-64 md:h-72 w-full rounded-xl overflow-hidden border border-slate-800/70 bg-slate-900 bg-center bg-cover bg-no-repeat sm:bg-fixed"
+                     style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2000&q=80');">
+                    <!-- Subtle Dark Gradient Overlays for contrast and blend -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
+                    <div class="absolute inset-0 bg-emerald-950/15 mix-blend-multiply pointer-events-none"></div>
+
+                    <!-- Bottom floating status overlay inside viewport -->
+                    <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs text-white">
+                        <div class="flex items-center gap-2 bg-slate-950/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-800/80">
+                            <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+                            <span class="font-medium text-slate-200">Neural Flow Engine v2.4</span>
                         </div>
-
-                        <!-- Simulated Flow Stream: Stage 2 Bottleneck Predicted -->
-                        <div class="rounded-xl border border-amber-500/40 bg-slate-900/90 p-4 transition-all hover:border-amber-500/60 shadow-sm relative overflow-hidden group">
-                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-amber-500"></div>
-                            <div class="flex items-start justify-between gap-3 pl-1">
-                                <div>
-                                    <div class="flex items-center gap-2">
-                                        <span class="inline-flex items-center gap-1 rounded-md bg-amber-500/20 px-2 py-0.5 text-[10px] font-bold text-amber-300 uppercase tracking-wide border border-amber-500/30">
-                                            <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-                                            Bottleneck Predicted
-                                        </span>
-                                        <span class="text-[10px] font-mono text-slate-400">TSK-1890</span>
-                                    </div>
-                                    <h4 class="text-sm font-semibold text-white mt-1.5 group-hover:text-amber-300 transition-colors">
-                                        Third-Party Security Audit Sign-off
-                                    </h4>
-                                    <p class="text-[11px] text-slate-400 mt-0.5">
-                                        SLA delay risk +4h predicted • Auto-suggested secondary reviewer.
-                                    </p>
-                                </div>
-                                <span class="text-[10px] text-amber-400/90 font-mono whitespace-nowrap">SLA Risk</span>
-                            </div>
-                        </div>
-
-                        <!-- Simulated Flow Stream: Stage 3 Self-Healed -->
-                        <div class="rounded-xl border border-teal-500/30 bg-slate-900/90 p-4 transition-all hover:border-teal-500/60 shadow-sm relative overflow-hidden group">
-                            <div class="absolute left-0 top-0 bottom-0 w-1 bg-teal-500"></div>
-                            <div class="flex items-start justify-between gap-3 pl-1">
-                                <div>
-                                    <div class="flex items-center gap-2">
-                                        <span class="inline-flex items-center gap-1 rounded-md bg-teal-500/20 px-2 py-0.5 text-[10px] font-bold text-teal-300 uppercase tracking-wide border border-teal-500/30">
-                                            <span class="h-1.5 w-1.5 rounded-full bg-teal-400"></span>
-                                            Self-Healed
-                                        </span>
-                                        <span class="text-[10px] font-mono text-slate-400">TSK-1744</span>
-                                    </div>
-                                    <h4 class="text-sm font-semibold text-white mt-1.5 group-hover:text-teal-300 transition-colors">
-                                        Cloud Cluster Failover Re-route
-                                    </h4>
-                                    <p class="text-[11px] text-slate-400 mt-0.5">
-                                        Unblocked upstream pipeline • Auto-transitioned to QA review.
-                                    </p>
-                                </div>
-                                <span class="text-[10px] text-teal-400 font-mono whitespace-nowrap">&check; Auto-Resolved</span>
-                            </div>
-                        </div>
-
-                        <!-- Bottom Console Live Telemetry Footer -->
-                        <div class="pt-2 flex items-center justify-between text-[11px] text-slate-400">
-                            <span class="flex items-center gap-1.5">
-                                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
-                                Zero human intervention needed
-                            </span>
-                            <a href="#how-it-works" class="text-emerald-400 hover:text-emerald-300 font-semibold transition-colors">
-                                Explore Pipeline &rarr;
-                            </a>
+                        <div class="hidden sm:flex items-center gap-2 bg-slate-950/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-800/80 text-emerald-300 font-mono text-[11px]">
+                            <span>All 12 Squads Synchronized</span>
                         </div>
                     </div>
                 </div>
