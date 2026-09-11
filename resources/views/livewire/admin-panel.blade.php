@@ -35,10 +35,10 @@
                     <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
                 </svg>
             </div>
-            <input type="text" wire:model.live="search" class="block w-full rounded-lg border-0 bg-slate-900 py-2 pl-10 pr-3 text-sm text-white ring-1 ring-inset ring-slate-800 focus:ring-2 focus:ring-inset focus:ring-indigo-500 placeholder:text-slate-500" placeholder="Search users...">
+            <input type="text" wire:model.live="search" class="block w-full rounded-lg border-0 bg-slate-900 py-2 pl-10 pr-3 text-sm text-white ring-1 ring-inset ring-slate-800 focus:ring-2 focus:ring-inset focus:ring-emerald-500 placeholder:text-slate-500" placeholder="Search users...">
         </div>
         
-        <select wire:model.live="roleFilter" class="block w-full sm:w-48 rounded-lg border-0 bg-slate-900 py-2 pl-3 pr-10 text-sm text-white ring-1 ring-inset ring-slate-800 focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+        <select wire:model.live="roleFilter" class="block w-full sm:w-48 rounded-lg border-0 bg-slate-900 py-2 pl-3 pr-10 text-sm text-white ring-1 ring-inset ring-slate-800 focus:ring-2 focus:ring-inset focus:ring-emerald-500">
             <option value="all">All Roles</option>
             <option value="admin">Admin</option>
             <option value="manager">Manager</option>
@@ -75,7 +75,7 @@
                             <td class="px-6 py-4">
                                 <span class="inline-flex items-center rounded px-2 py-1 text-xs font-medium ring-1 ring-inset
                                     @if($user->role === 'admin') bg-purple-500/10 text-purple-400 ring-purple-500/20
-                                    @elseif($user->role === 'manager') bg-indigo-500/10 text-indigo-400 ring-indigo-500/20
+                                    @elseif($user->role === 'manager') bg-teal-500/10 text-teal-400 ring-teal-500/20
                                     @elseif($user->role === 'operator') bg-emerald-500/10 text-emerald-400 ring-emerald-500/20
                                     @else bg-slate-500/10 text-slate-400 ring-slate-500/20
                                     @endif
@@ -87,12 +87,12 @@
                                 <span class="text-xs text-slate-300">{{ $user->subscription_plan ? ucfirst($user->subscription_plan) : 'N/A' }}</span>
                             </td>
                             <td class="px-6 py-4">
-                                <button wire:click="toggleActive({{ $user->id }})" class="relative inline-flex h-5 w-9 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-slate-900 {{ $user->is_active ? 'bg-indigo-600' : 'bg-slate-700' }}" role="switch" aria-checked="{{ $user->is_active ? 'true' : 'false' }}">
+                                <button wire:click="toggleActive({{ $user->id }})" class="relative inline-flex h-5 w-9 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-slate-900 {{ $user->is_active ? 'bg-emerald-600' : 'bg-slate-700' }}" role="switch" aria-checked="{{ $user->is_active ? 'true' : 'false' }}">
                                     <span aria-hidden="true" class="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out {{ $user->is_active ? 'translate-x-4' : 'translate-x-0' }}"></span>
                                 </button>
                             </td>
                             <td class="px-6 py-4 text-right">
-                                <button wire:click="editUser({{ $user->id }})" class="text-indigo-400 hover:text-indigo-300 font-medium text-sm transition-colors">
+                                <button wire:click="editUser({{ $user->id }})" class="text-emerald-400 hover:text-emerald-300 font-medium text-sm transition-colors">
                                     Edit
                                 </button>
                             </td>
@@ -129,7 +129,7 @@
                                 <div class="mt-4 space-y-4">
                                     <div>
                                         <label for="role" class="block text-sm font-medium leading-6 text-slate-300">Role</label>
-                                        <select wire:model="editRole" id="role" class="mt-1 block w-full rounded-md border-0 bg-slate-950 py-2 pl-3 pr-10 text-white ring-1 ring-inset ring-slate-800 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                        <select wire:model="editRole" id="role" class="mt-1 block w-full rounded-md border-0 bg-slate-950 py-2 pl-3 pr-10 text-white ring-1 ring-inset ring-slate-800 focus:ring-2 focus:ring-inset focus:ring-emerald-500 sm:text-sm sm:leading-6">
                                             <option value="member">Member</option>
                                             <option value="operator">Operator</option>
                                             <option value="manager">Manager</option>
@@ -137,7 +137,7 @@
                                         </select>
                                     </div>
                                     <div class="flex items-center">
-                                        <button type="button" wire:click="$toggle('editActive')" class="relative inline-flex h-5 w-9 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:ring-offset-slate-900 {{ $editActive ? 'bg-indigo-600' : 'bg-slate-700' }}" role="switch" aria-checked="{{ $editActive ? 'true' : 'false' }}">
+                                        <button type="button" wire:click="$toggle('editActive')" class="relative inline-flex h-5 w-9 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-slate-900 {{ $editActive ? 'bg-emerald-600' : 'bg-slate-700' }}" role="switch" aria-checked="{{ $editActive ? 'true' : 'false' }}">
                                             <span aria-hidden="true" class="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out {{ $editActive ? 'translate-x-4' : 'translate-x-0' }}"></span>
                                         </button>
                                         <span class="ml-3 text-sm text-slate-300" id="active-status">Active Account</span>
@@ -147,7 +147,7 @@
                         </div>
                     </div>
                     <div class="bg-slate-800/50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                        <button type="button" wire:click="saveUser" class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 sm:ml-3 sm:w-auto transition-colors">Save Changes</button>
+                        <button type="button" wire:click="saveUser" class="inline-flex w-full justify-center rounded-md bg-emerald-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 sm:ml-3 sm:w-auto transition-colors">Save Changes</button>
                         <button type="button" wire:click="closeModal" class="mt-3 inline-flex w-full justify-center rounded-md bg-slate-800 px-3 py-2 text-sm font-semibold text-slate-300 shadow-sm ring-1 ring-inset ring-slate-700 hover:bg-slate-700 sm:mt-0 sm:w-auto transition-colors">Cancel</button>
                     </div>
                 </div>

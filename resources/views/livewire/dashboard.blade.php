@@ -37,7 +37,7 @@
         <!-- My Active Tasks -->
         <div class="bg-white dark:bg-slate-900/80 rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
             <div class="flex items-center">
-                <div class="p-3 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400">
+                <div class="p-3 rounded-lg bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
                 </div>
                 <div class="ml-4">
@@ -63,7 +63,7 @@
         <!-- Completed This Week -->
         <div class="bg-white dark:bg-slate-900/80 rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
             <div class="flex items-center">
-                <div class="p-3 rounded-lg bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400">
+                <div class="p-3 rounded-lg bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                 </div>
                 <div class="ml-4">
@@ -82,7 +82,7 @@
                 <div class="flex flex-wrap gap-2">
                     @foreach(['all' => 'All', 'active' => 'Active', 'blocked' => 'Blocked', 'overdue' => 'Overdue', 'completed' => 'Completed'] as $value => $label)
                         <button wire:click="$set('taskFilter', '{{ $value }}')" 
-                                class="px-3 py-1.5 text-sm font-medium rounded-md transition-colors {{ $taskFilter === $value ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300' : 'text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800/50' }}">
+                                class="px-3 py-1.5 text-sm font-medium rounded-md transition-colors {{ $taskFilter === $value ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300' : 'text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800/50' }}">
                             {{ $label }}
                         </button>
                     @endforeach
@@ -91,12 +91,12 @@
 
             <div class="space-y-4">
                 @forelse($myTasks as $task)
-                    <div class="bg-white dark:bg-slate-900/80 rounded-xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm transition-all hover:shadow-md">
+                    <div class="bg-white dark:bg-slate-900/80 rounded-xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm transition-all hover:shadow-md hover:border-slate-700">
                         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                             <div class="flex-1 space-y-2">
                                 <div class="flex items-center gap-3">
                                     <h3 class="text-lg font-semibold text-slate-900 dark:text-white">
-                                        <button wire:click="inspectTask({{ $task->id }})" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-left">{{ $task->title }}</button>
+                                        <button wire:click="inspectTask({{ $task->id }})" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors text-left">{{ $task->title }}</button>
                                     </h3>
                                     @if($task->priority === 'critical')
                                         <span class="inline-flex items-center rounded-full bg-rose-50 px-2 py-1 text-xs font-medium text-rose-700 ring-1 ring-inset ring-rose-600/20 dark:bg-rose-900/30 dark:text-rose-400 dark:ring-rose-900/50">Critical</span>
@@ -106,6 +106,21 @@
                                         <span class="inline-flex items-center rounded-full bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 dark:bg-blue-900/30 dark:text-blue-400 dark:ring-blue-900/50">Medium</span>
                                     @else
                                         <span class="inline-flex items-center rounded-full bg-slate-50 px-2 py-1 text-xs font-medium text-slate-600 ring-1 ring-inset ring-slate-500/10 dark:bg-slate-800/50 dark:text-slate-400 dark:ring-slate-700">Low</span>
+                                    @endif
+
+                                    <!-- AI Status Badge -->
+                                    @if($task->status === 'blocked')
+                                        <span class="inline-flex items-center gap-1 rounded-md bg-amber-500/10 px-2 py-0.5 text-[10px] font-bold text-amber-300 border border-amber-500/20">
+                                            Bottleneck Detected
+                                        </span>
+                                    @elseif($task->status === 'completed')
+                                        <span class="inline-flex items-center gap-1 rounded-md bg-teal-500/10 px-2 py-0.5 text-[10px] font-bold text-teal-300 border border-teal-500/20">
+                                            Self-Healed
+                                        </span>
+                                    @else
+                                        <span class="inline-flex items-center gap-1 rounded-md bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-300 border border-emerald-500/20">
+                                            Auto-Triaged
+                                        </span>
                                     @endif
                                 </div>
                                 <div class="text-sm text-slate-500 dark:text-slate-400 flex flex-wrap items-center gap-x-4 gap-y-1">
@@ -120,8 +135,8 @@
                                         </span>
                                     @endif
                                     @if($task->status === 'active')
-                                        <span class="inline-flex items-center text-indigo-600 dark:text-indigo-400">
-                                            <span class="w-2 h-2 rounded-full bg-indigo-500 mr-1.5 animate-pulse"></span> Active
+                                        <span class="inline-flex items-center text-emerald-600 dark:text-emerald-400">
+                                            <span class="w-2 h-2 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span> Active
                                         </span>
                                     @elseif($task->status === 'blocked')
                                         <span class="inline-flex items-center text-amber-600 dark:text-amber-400">
@@ -129,7 +144,7 @@
                                             Blocked
                                         </span>
                                     @elseif($task->status === 'completed')
-                                        <span class="inline-flex items-center text-emerald-600 dark:text-emerald-400">
+                                        <span class="inline-flex items-center text-teal-600 dark:text-teal-400">
                                             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                                             Completed
                                         </span>
@@ -143,7 +158,7 @@
                                     </button>
                                 @endif
                                 @if($task->status === 'blocked')
-                                    <button wire:click="unblockTask({{ $task->id }})" class="px-3 py-1.5 text-sm font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200 dark:text-indigo-300 dark:bg-indigo-900/50 dark:hover:bg-indigo-900 border border-indigo-200 dark:border-indigo-800 rounded-md transition-colors">
+                                    <button wire:click="unblockTask({{ $task->id }})" class="px-3 py-1.5 text-sm font-medium text-teal-700 bg-teal-100 hover:bg-teal-200 dark:text-teal-300 dark:bg-teal-900/50 dark:hover:bg-teal-900 border border-teal-200 dark:border-teal-800 rounded-md transition-colors">
                                         Unblock
                                     </button>
                                 @endif
@@ -151,7 +166,6 @@
                                     View
                                 </button>
                             </div>
-                        </div>
                     </div>
                 @empty
                     <div class="bg-white dark:bg-slate-900/80 rounded-xl border border-slate-200 dark:border-slate-800 p-10 text-center shadow-sm">
@@ -161,7 +175,7 @@
                         <h3 class="text-lg font-medium text-slate-900 dark:text-white">You're all caught up! 🎉</h3>
                         <p class="mt-2 text-slate-500 dark:text-slate-400">You don't have any tasks matching this filter.</p>
                         @if($taskFilter !== 'all')
-                            <button wire:click="$set('taskFilter', 'all')" class="mt-4 text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300 font-medium">View all tasks</button>
+                            <button wire:click="$set('taskFilter', 'all')" class="mt-4 text-emerald-600 hover:text-emerald-500 dark:text-emerald-400 dark:hover:text-emerald-300 font-medium">View all tasks</button>
                         @endif
                     </div>
                 @endforelse
@@ -194,7 +208,7 @@
                                             </div>
                                             <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
                                                 <div>
-                                                    <p class="text-sm text-slate-900 dark:text-white">{{ $activity->description }} <span class="text-slate-500 dark:text-slate-400">on <a href="#" wire:click.prevent="inspectTask({{ $activity->task->id }})" class="font-medium text-slate-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400">{{ str($activity->task->title)->limit(20) }}</a></span></p>
+                                                    <p class="text-sm text-slate-900 dark:text-white">{{ $activity->description }} <span class="text-slate-500 dark:text-slate-400">on <a href="#" wire:click.prevent="inspectTask({{ $activity->task->id }})" class="font-medium text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-emerald-400">{{ str($activity->task->title)->limit(20) }}</a></span></p>
                                                     <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">by {{ $activity->user->name ?? 'System' }} &bull; {{ $activity->created_at->diffForHumans() }}</p>
                                                 </div>
                                             </div>

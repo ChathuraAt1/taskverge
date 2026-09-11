@@ -17,17 +17,17 @@
         <!-- Invoice Header -->
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-5">
             <div class="flex items-center gap-2.5">
-                <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white font-bold text-xs">
+                <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-600 text-white font-bold text-xs shadow-md shadow-emerald-600/30">
                     TV
                 </div>
                 <div>
-                    <span class="text-base font-bold text-white tracking-tight">Task<span class="text-indigo-400">Verge</span> Technologies Inc.</span>
-                    <p class="text-[10px] text-slate-400">Enterprise Workflow Intelligence System</p>
+                    <span class="text-base font-bold text-white tracking-tight">Task<span class="text-emerald-400">Verge</span> Technologies Inc.</span>
+                    <p class="text-[10px] text-slate-400">Autonomous Workflow Intelligence System</p>
                 </div>
             </div>
 
             <div class="text-left sm:text-right">
-                <span class="text-xs uppercase font-mono font-bold text-indigo-400">{{ $order->invoice_number }}</span>
+                <span class="text-xs uppercase font-mono font-bold text-emerald-400">{{ $order->invoice_number }}</span>
                 <p class="text-[11px] text-slate-400 mt-0.5">{{ $order->created_at->format('F d, Y &bull; H:i:s T') }}</p>
             </div>
         </div>
@@ -96,7 +96,7 @@
             </div>
             <div class="flex justify-between pt-2 border-t border-slate-800 text-sm font-bold text-white">
                 <span>Total Paid:</span>
-                <span class="font-mono text-indigo-400">${{ number_format($order->total, 2) }} USD</span>
+                <span class="font-mono text-emerald-400">${{ number_format($order->total, 2) }} USD</span>
             </div>
         </div>
 
@@ -109,8 +109,8 @@
             </button>
 
             <a href="{{ route('dashboard') }}"
-               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-5 py-2 text-xs font-semibold text-white hover:bg-indigo-500 shadow-md transition-colors">
-                <span>Launch Operational Workspace</span>
+               class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-600 px-5 py-2 text-xs font-semibold text-white hover:bg-emerald-500 shadow-md shadow-emerald-600/20 transition-colors">
+                <span>Launch Autonomous Workspace</span>
                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
             </a>
         </div>

@@ -20,12 +20,12 @@
                 <!-- View Mode Switcher -->
                 <div class="flex items-center rounded-lg border border-slate-800 bg-slate-900 p-0.5 text-xs">
                     <button wire:click="setViewMode('kanban')"
-                            class="flex items-center gap-1.5 rounded-md px-3 py-1.5 transition-colors {{ $viewMode === 'kanban' ? 'bg-indigo-600 text-white font-semibold shadow' : 'text-slate-400 hover:text-white' }}">
+                            class="flex items-center gap-1.5 rounded-md px-3 py-1.5 transition-colors {{ $viewMode === 'kanban' ? 'bg-emerald-600 text-white font-semibold shadow' : 'text-slate-400 hover:text-white' }}">
                         <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/></svg>
                         Kanban Board
                     </button>
                     <button wire:click="setViewMode('list')"
-                            class="flex items-center gap-1.5 rounded-md px-3 py-1.5 transition-colors {{ $viewMode === 'list' ? 'bg-indigo-600 text-white font-semibold shadow' : 'text-slate-400 hover:text-white' }}">
+                            class="flex items-center gap-1.5 rounded-md px-3 py-1.5 transition-colors {{ $viewMode === 'list' ? 'bg-emerald-600 text-white font-semibold shadow' : 'text-slate-400 hover:text-white' }}">
                         <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>
                         List View
                     </button>
@@ -33,7 +33,7 @@
 
                 <!-- Create Task Button -->
                 <button wire:click="openCreateTaskModal"
-                        class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-3.5 py-2 text-xs font-semibold text-white shadow hover:bg-indigo-500 transition-colors">
+                        class="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-3.5 py-2 text-xs font-semibold text-white shadow hover:bg-emerald-500 transition-colors">
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
                     Add Task
                 </button>
@@ -56,7 +56,7 @@
             <div class="flex items-center gap-2.5 w-full sm:w-64">
                 <span class="text-[11px] text-slate-400">Velocity:</span>
                 <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                    <div class="bg-gradient-to-r from-indigo-500 to-emerald-400 h-full rounded-full" style="width: {{ $workflow->progress_percentage }}%"></div>
+                    <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full rounded-full" style="width: {{ $workflow->progress_percentage }}%"></div>
                 </div>
                 <span class="font-mono font-semibold text-slate-200">{{ $workflow->progress_percentage }}%</span>
             </div>
@@ -67,13 +67,13 @@
     <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 bg-slate-950/60 p-3 rounded-xl border border-slate-800">
         <div class="relative flex-1">
             <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search tasks by #ID, title, description..."
-                   class="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 pl-9 text-xs text-slate-100 placeholder-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                   class="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 pl-9 text-xs text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
             <svg class="absolute left-3 top-2.5 h-3.5 w-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
         </div>
 
         <div class="flex flex-wrap items-center gap-2">
             <select wire:model.live="priorityFilter"
-                    class="rounded-lg border border-slate-700 bg-slate-900 px-2.5 py-2 text-xs text-slate-200 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                    class="rounded-lg border border-slate-700 bg-slate-900 px-2.5 py-2 text-xs text-slate-200 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                 <option value="all">All Priorities</option>
                 <option value="critical">Critical</option>
                 <option value="high">High</option>
@@ -82,7 +82,7 @@
             </select>
 
             <select wire:model.live="assigneeFilter"
-                    class="rounded-lg border border-slate-700 bg-slate-900 px-2.5 py-2 text-xs text-slate-200 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                    class="rounded-lg border border-slate-700 bg-slate-900 px-2.5 py-2 text-xs text-slate-200 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                 <option value="all">All Assignees</option>
                 <option value="unassigned">Unassigned</option>
                 @foreach($assignees as $u)
@@ -91,7 +91,7 @@
             </select>
 
             <select wire:model.live="statusFilter"
-                    class="rounded-lg border border-slate-700 bg-slate-900 px-2.5 py-2 text-xs text-slate-200 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                    class="rounded-lg border border-slate-700 bg-slate-900 px-2.5 py-2 text-xs text-slate-200 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                 <option value="all">All Statuses</option>
                 <option value="pending">Pending</option>
                 <option value="active">Active</option>
@@ -128,7 +128,7 @@
                     <!-- Task Cards in this Stage -->
                     <div class="space-y-2.5 min-h-[120px]">
                         @forelse($tasksInStage as $task)
-                            <div class="rounded-lg border border-slate-800 bg-slate-900/90 p-3 shadow-sm hover:border-indigo-500/60 hover:shadow-md transition-all group">
+                            <div class="rounded-lg border border-slate-800 bg-slate-900/90 p-3 shadow-sm hover:border-emerald-500/60 hover:shadow-md transition-all group">
                                 <div class="flex items-center justify-between text-[10px] mb-1.5">
                                     <span class="font-mono font-semibold text-slate-400">{{ $task->task_number }}</span>
                                     <div class="flex items-center gap-1.5">
@@ -149,7 +149,7 @@
                                     </div>
                                 </div>
 
-                                <h4 wire:click="openTaskModal({{ $task->id }})" class="text-xs font-semibold text-slate-100 hover:text-indigo-300 cursor-pointer line-clamp-2 leading-snug">
+                                <h4 wire:click="openTaskModal({{ $task->id }})" class="text-xs font-semibold text-slate-100 hover:text-emerald-300 cursor-pointer line-clamp-2 leading-snug">
                                     {{ $task->title }}
                                 </h4>
 
@@ -176,7 +176,7 @@
 
                                     <!-- Stage advance dropdown -->
                                     <select wire:change="moveTaskToStage({{ $task->id }}, $event.target.value)"
-                                            class="rounded bg-slate-950 border border-slate-700 px-1.5 py-0.5 text-[10px] text-slate-300 focus:outline-none focus:border-indigo-500">
+                                            class="rounded bg-slate-950 border border-slate-700 px-1.5 py-0.5 text-[10px] text-slate-300 focus:outline-none focus:border-emerald-500">
                                         <option value="" disabled selected>Move Stage &darr;</option>
                                         @foreach($stages as $targetStage)
                                             @if($targetStage->id !== $stage->id)
@@ -217,11 +217,11 @@
                     <tbody class="divide-y divide-slate-800/80">
                         @forelse($allTasks as $task)
                             <tr class="hover:bg-slate-900/50 transition-colors">
-                                <td class="px-4 py-3 font-mono font-semibold text-indigo-400">
+                                <td class="px-4 py-3 font-mono font-semibold text-emerald-400">
                                     {{ $task->task_number }}
                                 </td>
                                 <td class="px-4 py-3 font-medium text-slate-100 max-w-sm">
-                                    <button wire:click="openTaskModal({{ $task->id }})" class="hover:text-indigo-400 transition-colors text-left">
+                                    <button wire:click="openTaskModal({{ $task->id }})" class="hover:text-emerald-400 transition-colors text-left">
                                         {{ $task->title }}
                                     </button>
                                     @if($task->isBlocked())
@@ -291,8 +291,8 @@
                 <form wire:submit="createTask" class="space-y-4">
                     <div>
                         <label class="block text-xs font-medium text-slate-300">Task Title</label>
-                        <input type="text" wire:model="newTaskTitle" placeholder="e.g. Implement Triton Inference Hedging"
-                               class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                        <input type="text" wire:model="newTaskTitle" placeholder="e.g. Autonomous Blocker Triaging Logic"
+                               class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                         @error('newTaskTitle') <span class="text-[11px] text-rose-400">{{ $message }}</span> @enderror
                     </div>
 
@@ -300,7 +300,7 @@
                         <div>
                             <label class="block text-xs font-medium text-slate-300">Initial Stage</label>
                             <select wire:model="newTaskStageId"
-                                    class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                    class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                                 @foreach($stages as $stg)
                                     <option value="{{ $stg->id }}">{{ $stg->name }}</option>
                                 @endforeach
@@ -310,7 +310,7 @@
                         <div>
                             <label class="block text-xs font-medium text-slate-300">Priority Level</label>
                             <select wire:model="newTaskPriority"
-                                    class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                    class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                                 <option value="low">Low</option>
                                 <option value="medium">Medium</option>
                                 <option value="high">High</option>
@@ -323,7 +323,7 @@
                         <div>
                             <label class="block text-xs font-medium text-slate-300">Assignee</label>
                             <select wire:model="newTaskAssigneeId"
-                                    class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                    class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                                 <option value="">Unassigned</option>
                                 @foreach($assignees as $u)
                                     <option value="{{ $u->id }}">{{ $u->name }} ({{ $u->role }})</option>
@@ -334,7 +334,7 @@
                         <div>
                             <label class="block text-xs font-medium text-slate-300">Target Deadline</label>
                             <input type="date" wire:model="newTaskDeadline"
-                                   class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                   class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                         </div>
                     </div>
 
@@ -342,20 +342,20 @@
                         <div>
                             <label class="block text-xs font-medium text-slate-300">Est. Hours</label>
                             <input type="number" step="0.5" wire:model="newTaskEstimatedHours" placeholder="e.g. 16.0"
-                                   class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                   class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                         </div>
 
                         <div>
                             <label class="block text-xs font-medium text-slate-300">Tags (comma separated)</label>
-                            <input type="text" wire:model="newTaskTagsInput" placeholder="Triton, GPU, SOC2"
-                                   class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                            <input type="text" wire:model="newTaskTagsInput" placeholder="AI, Autonomous, Backend"
+                                   class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                         </div>
                     </div>
 
                     <div>
                         <label class="block text-xs font-medium text-slate-300">Task Scope & Description</label>
                         <textarea wire:model="newTaskDescription" rows="3" placeholder="Provide actionable instructions, operational constraints, and completion criteria..."
-                                  class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"></textarea>
+                                  class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"></textarea>
                     </div>
 
                     <div class="flex justify-end gap-2 pt-3 border-t border-slate-800">
@@ -364,7 +364,7 @@
                             Cancel
                         </button>
                         <button type="submit"
-                                class="rounded-lg bg-indigo-600 px-4 py-2 text-xs font-semibold text-white hover:bg-indigo-500 transition-colors shadow">
+                                class="rounded-lg bg-emerald-600 px-4 py-2 text-xs font-semibold text-white hover:bg-emerald-500 transition-colors shadow shadow-emerald-600/20">
                             Create & Commit Task
                         </button>
                     </div>
@@ -380,7 +380,7 @@
             <div class="w-full max-w-2xl rounded-xl border border-slate-800 bg-slate-900 p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
                 <div class="flex items-center justify-between border-b border-slate-800 pb-3">
                     <div class="flex items-center gap-2">
-                        <span class="font-mono text-xs font-bold text-indigo-400 bg-indigo-950/60 border border-indigo-800/60 rounded px-2 py-0.5">
+                        <span class="font-mono text-xs font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 rounded px-2 py-0.5">
                             {{ $selectedTask->task_number }}
                         </span>
                         <h3 class="text-base font-bold text-white">Task Details & Audit History</h3>
@@ -392,14 +392,14 @@
                     <div>
                         <label class="block text-xs font-medium text-slate-300">Task Title</label>
                         <input type="text" wire:model="editTitle"
-                               class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                               class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                     </div>
 
                     <div class="grid grid-cols-3 gap-3">
                         <div>
                             <label class="block text-xs font-medium text-slate-300">Stage</label>
                             <select wire:model="editStageId"
-                                    class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                    class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                                 @foreach($stages as $stg)
                                     <option value="{{ $stg->id }}">{{ $stg->name }}</option>
                                 @endforeach
@@ -409,7 +409,7 @@
                         <div>
                             <label class="block text-xs font-medium text-slate-300">Status</label>
                             <select wire:model="editStatus"
-                                    class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                    class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                                 <option value="pending">Pending</option>
                                 <option value="active">Active</option>
                                 <option value="blocked">Blocked</option>
@@ -420,7 +420,7 @@
                         <div>
                             <label class="block text-xs font-medium text-slate-300">Priority</label>
                             <select wire:model="editPriority"
-                                    class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                    class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                                 <option value="low">Low</option>
                                 <option value="medium">Medium</option>
                                 <option value="high">High</option>
@@ -433,7 +433,7 @@
                         <div>
                             <label class="block text-xs font-medium text-slate-300">Assignee</label>
                             <select wire:model="editAssigneeId"
-                                    class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                    class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                                 <option value="">Unassigned</option>
                                 @foreach($assignees as $u)
                                     <option value="{{ $u->id }}">{{ $u->name }}</option>
@@ -444,7 +444,7 @@
                         <div>
                             <label class="block text-xs font-medium text-slate-300">Target Deadline</label>
                             <input type="date" wire:model="editDeadline"
-                                   class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                   class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                         </div>
                     </div>
 
@@ -460,19 +460,19 @@
                         <div>
                             <label class="block text-xs font-medium text-slate-300">Est. Hours</label>
                             <input type="number" step="0.5" wire:model="editEstimatedHours"
-                                   class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                   class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                         </div>
                         <div>
                             <label class="block text-xs font-medium text-slate-300">Actual Hours Logged</label>
                             <input type="number" step="0.5" wire:model="editActualHours"
-                                   class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                   class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                         </div>
                     </div>
 
                     <div>
                         <label class="block text-xs font-medium text-slate-300">Task Scope & Description</label>
                         <textarea wire:model="editDescription" rows="3"
-                                  class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"></textarea>
+                                  class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"></textarea>
                     </div>
 
                     <div class="flex justify-end gap-2 pt-2 border-t border-slate-800">
@@ -481,7 +481,7 @@
                             Cancel
                         </button>
                         <button type="submit"
-                                class="rounded-lg bg-indigo-600 px-4 py-2 text-xs font-semibold text-white hover:bg-indigo-500 transition-colors shadow">
+                                class="rounded-lg bg-emerald-600 px-4 py-2 text-xs font-semibold text-white hover:bg-emerald-500 transition-colors shadow shadow-emerald-600/20">
                             Save Changes
                         </button>
                     </div>
@@ -497,9 +497,9 @@
                     <!-- Add Note Input -->
                     <div class="flex gap-2">
                         <input type="text" wire:model="newAuditNote" placeholder="Add an operational audit note..."
-                               class="flex-1 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-xs text-slate-100 placeholder-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                               class="flex-1 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-xs text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                         <button type="button" wire:click="addAuditNote"
-                                class="rounded-lg bg-slate-800 hover:bg-indigo-600 text-slate-200 px-3 py-1.5 text-xs font-semibold transition-colors">
+                                class="rounded-lg bg-slate-800 hover:bg-emerald-600 text-slate-200 px-3 py-1.5 text-xs font-semibold transition-colors">
                             Log Note
                         </button>
                     </div>

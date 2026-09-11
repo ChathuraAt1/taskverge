@@ -8,7 +8,7 @@
 
         @if(auth()->user()->canManageWorkflows())
             <button wire:click="openCreateModal"
-                    class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-3.5 py-2 text-xs font-semibold text-white shadow hover:bg-indigo-500 transition-colors">
+                    class="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-3.5 py-2 text-xs font-semibold text-white shadow hover:bg-emerald-500 transition-colors">
                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
                 New Workflow Pipeline
             </button>
@@ -19,13 +19,13 @@
     <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 bg-slate-950/60 p-3 rounded-xl border border-slate-800">
         <div class="relative flex-1">
             <input type="text" wire:model.live.debounce.300ms="search" placeholder="Search workflows by title or description..."
-                   class="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 pl-9 text-xs text-slate-100 placeholder-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                   class="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 pl-9 text-xs text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
             <svg class="absolute left-3 top-2.5 h-3.5 w-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
         </div>
 
         <div class="flex items-center gap-2">
             <select wire:model.live="selectedDepartment"
-                    class="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs text-slate-200 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                    class="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs text-slate-200 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                 <option value="all">All Departments</option>
                 @foreach($departments as $dept)
                     <option value="{{ $dept }}">{{ $dept }}</option>
@@ -33,7 +33,7 @@
             </select>
 
             <select wire:model.live="selectedStatus"
-                    class="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs text-slate-200 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                    class="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs text-slate-200 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                 <option value="all">All Statuses</option>
                 <option value="active">Active Only</option>
                 <option value="paused">Paused</option>
@@ -65,7 +65,7 @@
                             </button>
                         </div>
 
-                        <h3 class="text-base font-bold text-white mt-2 group-hover:text-indigo-400 transition-colors">
+                        <h3 class="text-base font-bold text-white mt-2 group-hover:text-emerald-400 transition-colors">
                             <a href="{{ route('workflows.show', $workflow) }}">{{ $workflow->title }}</a>
                         </h3>
 
@@ -82,7 +82,7 @@
                                 <span class="font-mono font-semibold text-slate-200">{{ $workflow->progress_percentage }}%</span>
                             </div>
                             <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-                                <div class="bg-indigo-500 h-full rounded-full" style="width: {{ $workflow->progress_percentage }}%"></div>
+                                <div class="bg-emerald-500 h-full rounded-full" style="width: {{ $workflow->progress_percentage }}%"></div>
                             </div>
                         </div>
 
@@ -117,7 +117,7 @@
                             </div>
 
                             <a href="{{ route('workflows.show', $workflow) }}"
-                               class="inline-flex items-center gap-1 text-xs font-semibold text-indigo-400 hover:text-indigo-300">
+                               class="inline-flex items-center gap-1 text-xs font-semibold text-emerald-400 hover:text-emerald-300">
                                 Open Workspace &rarr;
                             </a>
                         </div>
@@ -140,8 +140,8 @@
                 <form wire:submit="createWorkflow" class="space-y-4">
                     <div>
                         <label class="block text-xs font-medium text-slate-300">Pipeline Title</label>
-                        <input type="text" wire:model="newTitle" placeholder="e.g. Multi-Cloud Triton Serving Architecture"
-                               class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 placeholder-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                        <input type="text" wire:model="newTitle" placeholder="e.g. Autonomous Task Triage Engine"
+                               class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                         @error('newTitle') <span class="text-[11px] text-rose-400">{{ $message }}</span> @enderror
                     </div>
 
@@ -149,16 +149,17 @@
                         <div>
                             <label class="block text-xs font-medium text-slate-300">Department</label>
                             <input type="text" wire:model="newDepartment" placeholder="Operations, Logistics, etc."
-                                   class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                   class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                             @error('newDepartment') <span class="text-[11px] text-rose-400">{{ $message }}</span> @enderror
                         </div>
 
                         <div>
                             <label class="block text-xs font-medium text-slate-300">Accent Color</label>
                             <select wire:model="newColor"
-                                    class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
-                                <option value="indigo">Indigo</option>
+                                    class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                                 <option value="emerald">Emerald</option>
+                                <option value="teal">Teal</option>
+                                <option value="indigo">Indigo</option>
                                 <option value="blue">Blue</option>
                                 <option value="purple">Purple</option>
                                 <option value="amber">Amber</option>
@@ -170,7 +171,7 @@
                     <div>
                         <label class="block text-xs font-medium text-slate-300">Workflow Administrator / Owner</label>
                         <select wire:model="newOwnerId"
-                                class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                                class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                             @foreach($managers as $mgr)
                                 <option value="{{ $mgr->id }}">{{ $mgr->name }} ({{ $mgr->role }})</option>
                             @endforeach
@@ -180,11 +181,11 @@
                     <div>
                         <label class="block text-xs font-medium text-slate-300">Description & Mission Objectives</label>
                         <textarea wire:model="newDescription" rows="3" placeholder="Outline scope, operational dependencies, and key deliverables..."
-                                  class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 placeholder-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"></textarea>
+                                  class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"></textarea>
                     </div>
 
-                    <div class="rounded-lg bg-indigo-950/30 border border-indigo-500/20 p-3 text-[11px] text-indigo-300 leading-relaxed">
-                        <strong class="font-semibold">Automated Setup:</strong> 5 enterprise stages (Backlog, Active Processing, Review & QA, Blocked, and Completed) will be provisioned automatically with customizable stage workflows.
+                    <div class="rounded-lg bg-emerald-950/30 border border-emerald-500/20 p-3 text-[11px] text-emerald-300 leading-relaxed">
+                        <strong class="font-semibold">Autonomous Setup:</strong> 5 enterprise stages (Backlog, Active Processing, Review & QA, Blocked, and Completed) will be provisioned automatically with customizable stage workflows.
                     </div>
 
                     <div class="flex justify-end gap-2 pt-3 border-t border-slate-800">
@@ -193,7 +194,7 @@
                             Cancel
                         </button>
                         <button type="submit"
-                                class="rounded-lg bg-indigo-600 px-4 py-2 text-xs font-semibold text-white hover:bg-indigo-500 transition-colors shadow">
+                                class="rounded-lg bg-emerald-600 px-4 py-2 text-xs font-semibold text-white hover:bg-emerald-500 transition-colors shadow">
                             Provision Pipeline
                         </button>
                     </div>
