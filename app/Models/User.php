@@ -161,6 +161,42 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the full configuration for the user's active subscription tier.
+     */
+    public function getPlanConfig(): array
+    {
+        $plan = $this->subscription_plan ?: 'free';
+        return config("plans.{$plan}", config('plans.free', []));
+    }
+
+    /**
+     * Monthly AI Copilot query limit (null = unlimited).
+     */
+    public function getCopilotLimit(): ?int
+    {
+        $config = $this->getPlanConfig();
+        return array_key_exists('copilot_queries', $config) ? $config['copilot_queries'] : 20;
+    }
+
+    /**
+     * Analytics historical retention in days (null = unlimited).
+     */
+    public function getAnalyticsHistoryDays(): ?int
+    {
+        $config = $this->getPlanConfig();
+        return array_key_exists('analytics_days', $config) ? $config['analytics_days'] : 7;
+    }
+
+    /**
+     * Audit log retention in days (null = unlimited).
+     */
+    public function getAuditRetentionDays(): ?int
+    {
+        $config = $this->getPlanConfig();
+        return array_key_exists('audit_retention_days', $config) ? $config['audit_retention_days'] : 7;
+    }
+
+    /**
      * Get avatar image URL or fallback to UI avatars.
      */
     public function getAvatarAttribute(): string
@@ -174,3 +210,4 @@ class User extends Authenticatable
         return "https://ui-avatars.com/api/?name={$name}&color=4f46e5&background=e0e7ff&bold=true";
     }
 }
+

@@ -230,25 +230,29 @@
                     <ul class="text-slate-300 space-y-1.5 text-[11px]">
                         <li class="flex items-center gap-2">
                             <span class="text-emerald-400 font-bold">&check;</span>
-                            Full access to all {{ $seats }} operator workspaces
+                            Full access to all {{ $seats }} operator workspaces &amp; Team Hub
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-emerald-400 font-bold">&check;</span>
+                            {{ $plan === 'intelligence' ? 'Unlimited AI Copilot queries & custom LLM keys' : '500 AI Copilot queries / month' }}
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-emerald-400 font-bold">&check;</span>
+                            {{ $plan === 'intelligence' ? 'Unlimited analytics history & predictive forecasting' : '90-day analytics & SLA risk telemetry' }}
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-emerald-400 font-bold">&check;</span>
+                            {{ $plan === 'intelligence' ? 'Permanent immutable compliance audit trail' : '90-day compliance audit retention & CSV export' }}
                         </li>
                         @if($plan === 'intelligence')
                             <li class="flex items-center gap-2">
                                 <span class="text-emerald-400 font-bold">&check;</span>
-                                NVIDIA Triton inference server acceleration
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <span class="text-emerald-400 font-bold">&check;</span>
-                                Nemotron reasoning engine for bottleneck prediction
+                                NVIDIA Triton inference server acceleration &amp; Nemotron
                             </li>
                         @endif
                         <li class="flex items-center gap-2">
                             <span class="text-emerald-400 font-bold">&check;</span>
-                            SOC2 Type II & ISO 27001 audit-ready traceability
-                        </li>
-                        <li class="flex items-center gap-2">
-                            <span class="text-emerald-400 font-bold">&check;</span>
-                            Downloadable corporate VAT receipts & invoices
+                            Downloadable corporate VAT receipts &amp; invoices
                         </li>
                     </ul>
                 </div>

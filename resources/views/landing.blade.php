@@ -1115,10 +1115,11 @@
                     <div class="text-4xl font-extrabold text-white">$0 <span class="text-xs text-slate-400 font-normal">/ 14 days</span></div>
                     <p class="text-[11px] text-emerald-400/80 font-mono">No credit card required to start</p>
                     <ul class="text-xs sm:text-sm text-slate-300 space-y-2.5 pt-4 border-t border-slate-800">
-                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Up to 3 active workflows</li>
-                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Up to 3 team member accounts</li>
-                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Instant Kanban &amp; Table views</li>
-                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Autonomous triage basics</li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Up to 3 active workflows &amp; 50 tasks</li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Up to 3 team members</li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> <strong>20 AI Copilot queries / mo</strong></li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> 7-day analytics &amp; basic telemetry</li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> 7-day compliance audit trail</li>
                         <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Standard community support</li>
                     </ul>
                 </div>
@@ -1155,11 +1156,11 @@
 
                     <ul class="text-xs sm:text-sm text-slate-200 space-y-2.5 pt-4 border-t border-emerald-900/60">
                         <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> <strong>Unlimited</strong> workflows &amp; tasks</li>
-                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Up to 25 team members</li>
-                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Real-time Intelligence Dashboard</li>
-                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Predictive Bottleneck Radar (48h advance warning)</li>
-                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> 1-Click Bottleneck Resolution</li>
-                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Full chronological activity audit logs</li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Up to 25 team members (Capacity Hub)</li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> <strong>500 AI Copilot queries / mo</strong></li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> <strong>90-day analytics &amp; SLA risk radar</strong></li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> 90-day compliance audit log &amp; CSV export</li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> 1-Click Bottleneck Resolution &amp; Standup</li>
                         <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Expedited support SLA (under 4 hours)</li>
                     </ul>
                 </div>
@@ -1197,9 +1198,10 @@
                     <ul class="text-xs sm:text-sm text-slate-300 space-y-2.5 pt-4 border-t border-slate-800">
                         <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> All Operations Core features</li>
                         <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> <strong>Unlimited</strong> team members &amp; departments</li>
-                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Self-healing pipeline orchestration</li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> <strong>Unlimited AI Copilot queries &amp; custom keys</strong></li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> <strong>Unlimited analytics history &amp; forecasting</strong></li>
+                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Permanent immutable compliance audit trail</li>
                         <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Advanced Admin Panel with custom roles</li>
-                        <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> Dedicated onboarding architect</li>
                         <li class="flex items-center gap-2.5"><span class="text-emerald-400 font-bold">&check;</span> 99.9% uptime SLA &amp; 24/7 priority support</li>
                     </ul>
                 </div>

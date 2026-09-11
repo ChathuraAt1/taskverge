@@ -5,10 +5,14 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\InstallController;
 use App\Livewire\AdminPanel;
+use App\Livewire\AnalyticsDashboard;
+use App\Livewire\AuditLog;
 use App\Livewire\Checkout;
 use App\Livewire\CheckoutSuccess;
+use App\Livewire\CopilotWorkspace;
 use App\Livewire\Dashboard;
 use App\Livewire\TasksIndex;
+use App\Livewire\TeamHub;
 use App\Livewire\WorkflowsIndex;
 use App\Livewire\WorkflowWorkspace;
 use Illuminate\Support\Facades\Route;
@@ -54,9 +58,13 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('app')->group(function () {
         Route::get('/', Dashboard::class)->name('dashboard');
+        Route::get('/copilot', CopilotWorkspace::class)->name('copilot');
         Route::get('/workflows', WorkflowsIndex::class)->name('workflows.index');
         Route::get('/workflows/{workflow:slug}', WorkflowWorkspace::class)->name('workflows.show');
         Route::get('/tasks', TasksIndex::class)->name('tasks.index');
+        Route::get('/analytics', AnalyticsDashboard::class)->name('analytics');
+        Route::get('/team', TeamHub::class)->name('team');
+        Route::get('/audit', AuditLog::class)->name('audit');
         Route::get('/admin', AdminPanel::class)->name('admin.panel');
     });
 });
