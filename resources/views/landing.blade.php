@@ -1386,7 +1386,7 @@
             <div class="lg:col-span-5 rounded-3xl border border-slate-800 bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 sm:p-8 flex flex-col justify-between shadow-2xl space-y-6">
                 <div>
                     <h3 class="text-xl font-bold text-white">Send Us a Message</h3>
-                    <p class="text-xs text-slate-400 mt-1">All submissions route directly to <strong class="text-emerald-400 font-mono">help@taskverge.net</strong> with full ticket telemetry.</p>
+                    <p class="text-xs text-slate-400 mt-1">All submissions route directly to <strong class="text-emerald-400 font-mono">our team</strong> with full ticket telemetry.</p>
                 </div>
 
                 <form method="POST" action="{{ route('contact.submit') }}" class="space-y-4">
