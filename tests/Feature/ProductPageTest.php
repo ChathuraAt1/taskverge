@@ -47,14 +47,17 @@ class ProductPageTest extends TestCase
         $response->assertSee(route('product'));
     }
 
-    public function test_footer_renders_facebook_youtube_twitter_links(): void
+    public function test_footer_renders_social_links(): void
     {
         $response = $this->get('/');
 
         $response->assertStatus(200);
-        $response->assertSee('facebook.com');
-        $response->assertSee('youtube.com');
-        $response->assertSee('x.com');
+        $response->assertSee('https://medium.com/@taskverg');
+        $response->assertSee('https://www.youtube.com/@Taskverge');
+        $response->assertSee('https://www.facebook.com/taskverge/');
+        $response->assertSee('fa-brands fa-medium');
+        $response->assertSee('fa-brands fa-youtube');
+        $response->assertSee('fa-brands fa-facebook-f');
     }
 
     public function test_product_page_cta_links_to_dashboard(): void
