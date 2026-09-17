@@ -174,10 +174,11 @@
     </section>
 
     <!-- 3. WHAT IT DOES: Fluid Morphing Layout with Full-Section Moving Gradient & Fixed Expand Modal Overlay -->
+ 
     <section id="what-it-does" class="relative px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="text-center max-w-3xl mx-auto mb-12">
             <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">What It Does</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Everything You Need to Keep Work Moving</h2>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Work, Aligned Around What Matters</h2>
             <p class="text-sm sm:text-base text-slate-400 mt-2">Simple, intuitive workflow tools that eliminate status chasing and keep everyone aligned.</p>
         </div>
 
@@ -288,19 +289,19 @@
 
                         <div class="space-y-3 transition-opacity duration-500">
                             <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-emerald-300 transition-colors">
-                                Smart Work Balancing
+                                Keep Work Moving Across Your Team
                             </h3>
                             <p class="text-sm text-slate-300 leading-relaxed">
-                                Assigns tasks automatically based on who has the time and skills. Work gets started faster, handoffs happen naturally, and no team member is overloaded.
+                                Assign tasks based on responsibility, priority, and availability so everyone knows what needs to be done and who owns it. TaskVerge keeps assignments organized and makes handoffs easier to manage.
                             </p>
                         </div>
 
                         <div class="mt-6 pt-4 border-t border-slate-800/80 flex flex-wrap items-center gap-2 text-xs">
                             <span class="rounded-lg bg-slate-900/90 border border-slate-800 px-3 py-1.5 text-slate-300">
-                                Launch Campaign &rarr; <strong class="text-emerald-400">Auto-Assigned to Design</strong>
+                                Website update &rarr; <strong class="text-emerald-400">Assigned to Marketing</strong>
                             </span>
                             <span class="rounded-lg bg-slate-900/90 border border-slate-800 px-3 py-1.5 text-slate-300">
-                                Client Review &rarr; <strong class="text-teal-400">Auto-Assigned to Accounts</strong>
+                                Client Review &rarr; <strong class="text-teal-400">Assigned to Accounts</strong>
                             </span>
                         </div>
                     </div>
@@ -322,7 +323,7 @@
                         <div class="relative z-10 p-6 flex items-center justify-between">
                             <span class="inline-flex items-center gap-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-slate-700 px-3 py-1 text-xs font-semibold text-emerald-300">
                                 <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                                Team Hub
+                                Team Workspace
                             </span>
                             <button 
                                 @click.stop="toggleExpand(1)"
@@ -337,10 +338,10 @@
 
                         <div class="relative z-10 p-6 mt-auto">
                             <h4 class="text-lg sm:text-xl font-bold text-white drop-shadow-md">
-                                Built for Teams That Deliver
+                                One Place for Everyone's Work
                             </h4>
                             <p class="text-xs sm:text-sm text-slate-200 mt-1 drop-shadow-md">
-                                Keep everyone connected in one clean place without endless meetings.
+                                Give your team a shared view of tasks, deadlines, responsibilities, and workflow progress.
                             </p>
                         </div>
                     </div>
@@ -358,7 +359,7 @@
                         <div class="flex items-center justify-between mb-4">
                             <div class="inline-flex items-center gap-2 rounded-xl bg-teal-500/10 border border-teal-500/20 px-3 py-1.5 text-xs font-semibold text-teal-300">
                                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                                <span>Blocker Prevention</span>
+                                <span>Bottleneck Visibility</span>
                             </div>
                             <button 
                                 @click.stop="toggleExpand(2)"
@@ -370,13 +371,12 @@
                                 </svg>
                             </button>
                         </div>
-
                         <div class="space-y-3 transition-opacity duration-500">
                             <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-teal-300 transition-colors">
-                                Instant Roadblock Clearing
+                                Identify Delays Before They Disrupt Work
                             </h3>
                             <p class="text-sm text-slate-300 leading-relaxed">
-                                When work gets delayed waiting on approvals or feedback, TaskVerge spots the holdup immediately and gives you 1-click ways to unblock it.
+                                See which tasks are overdue, blocked, or waiting for action. TaskVerge helps managers quickly identify where work is slowing down so the right team member can take action.
                             </p>
                         </div>
 
@@ -396,7 +396,7 @@
                         <div class="flex items-center justify-between mb-4">
                             <div class="inline-flex items-center gap-2 rounded-xl bg-teal-500/10 border border-teal-500/20 px-3 py-1.5 text-xs font-semibold text-teal-300">
                                 <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                <span>Live Visibility</span>
+                                <span>Live Workflow Visibility</span>
                             </div>
                             <button 
                                 @click.stop="toggleExpand(3)"
@@ -411,10 +411,10 @@
 
                         <div class="space-y-3 transition-opacity duration-500">
                             <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-teal-300 transition-colors">
-                                Effortless Team Visibility
+                                Know Where Work Stands
                             </h3>
                             <p class="text-sm text-slate-300 leading-relaxed">
-                                See how every project is progressing in real time. Know what’s finished, what’s active, and what needs attention without sending a single status email.
+                                Get a clear view of what is completed, active, pending, overdue, or blocked. TaskVerge gives managers and teams the operational visibility they need to follow progress and keep priorities on track.
                             </p>
                         </div>
 
@@ -719,44 +719,58 @@
     <section id="testimonials" class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="text-center max-w-3xl mx-auto mb-16">
             <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">Customer Stories</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Loved by Teams Who Value Clarity</h2>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">What Teams Could Say About TaskVerge</h2>
             <p class="text-sm sm:text-base text-slate-400 mt-2">See how leaders in operations, engineering, and studios eliminated project clutter.</p>
         </div>
 
         <!-- Interactive Testimonials Container with Alpine.js -->
+         <!-- 
+        “Finally, we have a clear view of what is happening across our team's daily workload. Task ownership, deadlines, and priorities are much easier to follow from one place.”
+
+Darshan Prasad, Operations Manager, Enterprise Services
+
+“TaskVerge makes it easier to spot work that needs attention before it becomes a bigger operational issue. The workflow visibility gives our team a much clearer picture of progress.”
+
+Tania  Bennett ,Project Manager, Technology Operations
+
+“We wanted something more structured than spreadsheets but still simple enough for our teams to use every day. TaskVerge brings tasks, responsibilities, and workflow progress into one practical workspace.”
+
+Madusha Lakshan ,Department Lead, Business Operations
+
+         -->
         <div 
             x-data="{
                 activeId: 0,
                 testimonials: [
                     {
                         id: 0,
-                        name: 'Elena Rostova',
-                        role: 'Head of Operations',
-                        company: 'NexaGrowth',
+                        name: 'Darshan Prasad',
+                        role: 'Operations Manager',
+                        company: 'Enterprise Services',
                         avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80',
-                        initials: 'ER',
+                        initials: 'DP',
                         rating: 5,
                         badge: 'Saved 312 hrs / mo',
-                        quote: 'Before TaskVerge, we spent 4 hours every Monday in sync meetings just trying to figure out what was stuck. Now, our dashboard highlights blockers immediately, cutting meetings down to 30 minutes.'
+                        quote: 'Finally, we have a clear view of what is happening across our team's daily workload. Task ownership, deadlines, and priorities are much easier to follow from one place.'
                     },
                     {
                         id: 1,
-                        name: 'Marcus Chen',
-                        role: 'VP of Engineering',
-                        company: 'CloudCore',
+                        name: 'Tania  Bennett',
+                        role: 'Project Manager',
+                        company: 'Technology Operations',
                         avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80',
-                        initials: 'MC',
+                        initials: 'TB',
                         rating: 4.5,
                         badge: '99.4% On-Time Delivery',
-                        quote: 'The automatic work balancing and clear blocker reasons are pure gold. Engineers don’t just mark things as stuck—the system shows exactly what is missing so it gets resolved in minutes.'
+                        quote: 'TaskVerge makes it easier to spot work that needs attention before it becomes a bigger operational issue. The workflow visibility gives our team a much clearer picture of progress.'
                     },
                     {
                         id: 2,
-                        name: 'Sarah Jenkins',
-                        role: 'Managing Director',
-                        company: 'StudioCraft',
+                        name: 'Madusha Lakshan',
+                        role: 'Department Lead',
+                        company: 'Business Operations',
                         avatar: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=160&q=80',
-                        initials: 'SJ',
+                        initials: 'ML',
                         rating: 4.8,
                         badge: '5-Min Team Onboarding',
                         quote: 'We replaced an enterprise tool that required a two-week onboarding course. Our client coordinators and designers were actively using TaskVerge within 5 minutes of sending the invites.'
@@ -774,14 +788,25 @@
                     },
                     {
                         id: 4,
-                        name: 'Liam O\'Connor',
-                        role: 'Engineering Lead',
+                        name: 'Kasun Perera',
+                        role: 'Operations Lead',
                         company: 'NorthStar',
                         avatar: null,
-                        initials: 'LO',
+                        initials: 'KP',
                         rating: 4.5,
                         badge: '85% Faster Unblocking',
-                        quote: 'The 1-click unblock feature is so simple yet effective. Bottlenecks that used to linger for days get resolved before our lunch break.'
+                        quote: 'Having tasks, deadlines, and ownership visible in one place has made our daily coordination much simpler. We spend less time chasing updates and more time keeping important work on track.'
+                    },
+                    {
+                        id: 5,
+                        name: 'Tharindu Jayasinghe',
+                        role: 'Project Operations Manager',
+                        company: 'NorthStar',
+                        avatar: null,
+                        initials: 'TJ',
+                        rating: 4.5,
+                        badge: '85% Faster Unblocking',
+                        quote: 'TaskVerge gives our managers a practical way to understand workflow progress without checking multiple systems. It makes priorities, pending tasks, and team responsibilities much easier to manage.'
                     }
                 ]
             }"
@@ -1219,35 +1244,35 @@
     <section id="faq" class="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <div class="text-center mb-12">
             <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">FAQ</span>
-            <h2 class="text-3xl font-extrabold text-white mt-1">Common Questions Answered</h2>
+            <h2 class="text-3xl font-extrabold text-white mt-1">Frequently Asked Questions</h2>
         </div>
 
         <div class="space-y-4">
             <div class="rounded-2xl border border-slate-800 bg-slate-950 p-6 space-y-2 shadow-sm">
-                <h3 class="text-sm sm:text-base font-bold text-white">How does the autonomous task routing work?</h3>
+                <h3 class="text-sm sm:text-base font-bold text-white">What can TaskVerge help my team manage?</h3>
                 <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                    TaskVerge evaluates incoming tasks against team capacity, department skills, and active commitments, automatically tagging priority and routing each task to the best-suited stage and owner.
+                    TaskVerge gives teams one place to create, assign, organize, and monitor business tasks and workflows. You can manage priorities, deadlines, ownership, progress, and task history without relying on disconnected spreadsheets, emails, or multiple tools.
                 </p>
             </div>
 
             <div class="rounded-2xl border border-slate-800 bg-slate-950 p-6 space-y-2 shadow-sm">
-                <h3 class="text-sm sm:text-base font-bold text-white">Can I switch between Kanban boards and List tables?</h3>
+                <h3 class="text-sm sm:text-base font-bold text-white">Can TaskVerge help us identify delayed or blocked work?</h3>
                 <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                    Yes! Every workflow comes with an instant dual-view toggle. You can view your project as a visual card board or as an organized data table whenever you like.
+                    Yes. TaskVerge provides visibility into overdue, blocked, active, and completed tasks. Teams can quickly see where work is slowing down, who owns each task, and which priorities need attention.
                 </p>
             </div>
 
             <div class="rounded-2xl border border-slate-800 bg-slate-950 p-6 space-y-2 shadow-sm">
-                <h3 class="text-sm sm:text-base font-bold text-white">What is the Predictive Bottleneck Radar?</h3>
+                <h3 class="text-sm sm:text-base font-bold text-white">Can different team members have different levels of access?</h3>
                 <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                    The radar tracks how long cards linger in review or pending stages. If progress slows down relative to historical sprint norms, it raises early warning flags 48 hours in advance so managers can unblock before due dates are breached.
+                    Yes. TaskVerge is designed with user roles and access controls so organizations can manage who can view, update, assign, and manage workflow information. This helps keep operational data structured and controlled.
                 </p>
             </div>
 
             <div class="rounded-2xl border border-slate-800 bg-slate-950 p-6 space-y-2 shadow-sm">
-                <h3 class="text-sm sm:text-base font-bold text-white">Can I try TaskVerge before buying?</h3>
+                <h3 class="text-sm sm:text-base font-bold text-white">Is TaskVerge suitable for growing enterprise teams?</h3>
                 <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-                    Absolutely. You can start a free trial with no credit card required, or test our live demo personas directly on the login page.
+                    TaskVerge is designed to support teams as their workflows become more complex. Its structured task management, workflow organization, activity history, and integration ready architecture provide a foundation that can grow with changing operational needs.
                 </p>
             </div>
         </div>
@@ -1596,13 +1621,13 @@
     <section class="px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
         <div class="rounded-3xl border border-emerald-500/30 bg-gradient-to-r from-emerald-950/60 via-slate-950 to-teal-950/40 p-10 sm:p-14 text-center space-y-6 shadow-2xl relative overflow-hidden">
             <div class="absolute -right-20 -top-20 w-60 h-60 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Ready for autonomous workflow intelligence?</h2>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Autonomous Task & Workflow Intelligence</h2>
             <p class="text-sm sm:text-base text-slate-300 max-w-xl mx-auto leading-relaxed">
-                Join teams who organize their daily work with visual clarity, fast autonomous triage, and zero clutter.
+                One workspace for clearer task ownership, smoother workflows, and better operational visibility.
             </p>
             <div class="flex flex-wrap items-center justify-center gap-3.5 pt-2">
                 <a href="{{ route('register') }}" class="rounded-xl bg-emerald-600 px-7 py-3.5 text-sm font-bold text-white hover:bg-emerald-500 transition-all shadow-xl shadow-emerald-600/30 scale-100 hover:scale-105">
-                    Get Started Free
+                    Streamline Your Workflows
                 </a>
                 <a href="{{ route('login') }}" class="rounded-xl border border-slate-700 bg-slate-900 px-6 py-3.5 text-sm font-semibold text-slate-200 hover:bg-slate-800 hover:text-white transition-colors">
                     Explore Live Workspace
