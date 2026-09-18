@@ -4,12 +4,10 @@
 <div class="flex min-h-[calc(100vh-4rem)] items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="w-full max-w-md space-y-6">
         <div class="text-center">
-            <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 text-white shadow-lg shadow-emerald-500/25">
-                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-                </svg>
-            </div>
-            <h2 class="mt-4 text-2xl font-bold tracking-tight text-white">Sign in to TaskVerge</h2>
+            <a href="{{ route('home') }}" class="inline-block mb-3">
+                <img src="{{ asset('images/logo.webp') }}" alt="TaskVerge" class="h-11 w-auto mx-auto object-contain brightness-110">
+            </a>
+            <h2 class="text-2xl font-bold tracking-tight text-white">Sign in to TaskVerge</h2>
             <p class="mt-1 text-sm text-slate-400">Autonomous Task & Workflow Intelligence</p>
         </div>
 

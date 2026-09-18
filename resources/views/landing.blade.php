@@ -87,7 +87,7 @@
 
                 <!-- Viewport Area with Fixed Scrolling State -->
                 <div class="relative h-48 sm:h-64 md:h-72 w-full rounded-xl overflow-hidden border border-slate-800/70 bg-slate-900 bg-center bg-cover bg-no-repeat sm:bg-fixed"
-                     style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2000&q=80');">
+                     style="background-image: url('{{ asset('images/hero.webp') }}');">
                     <!-- Subtle Dark Gradient Overlays for contrast and blend -->
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
                     <div class="absolute inset-0 bg-emerald-950/15 mix-blend-multiply pointer-events-none"></div>
@@ -115,9 +115,9 @@
                 <div class="lg:col-span-5 relative">
                     <div class="relative rounded-2xl overflow-hidden border border-slate-800 shadow-2xl aspect-[4/3] sm:aspect-square">
                         <img 
-                            src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=900&q=80" 
-                            alt="Team leaders reviewing project strategy in an office" 
-                            class="w-full h-full object-cover object-center filter brightness-90"
+                            src="{{ asset('images/about-us.webp') }}" 
+                            alt="TaskVerge team collaborating on modern workflow intelligence" 
+                            class="w-full h-full object-cover object-center filter brightness-95"
                             loading="lazy"
                         />
                         <div class="absolute inset-0 bg-emerald-950/20 mix-blend-multiply"></div>
@@ -312,8 +312,8 @@
                         class="group relative rounded-3xl border border-slate-800 bg-slate-950 overflow-hidden flex flex-col justify-between hover:border-emerald-500/50 transition-all duration-1000 ease-in-out shadow-xl min-h-[300px]"
                     >
                         <img 
-                            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" 
-                            alt="Creative team collaborating happily around workspace" 
+                            src="{{ asset('images/what-it-does.webp') }}" 
+                            alt="Creative team collaborating happily around TaskVerge workspace" 
                             class="absolute inset-0 w-full h-full object-cover object-center filter brightness-75 group-hover:scale-105 group-hover:brightness-90 transition-all duration-1000"
                             loading="lazy"
                         />
@@ -500,8 +500,8 @@
                         <div class="space-y-6">
                             <div class="relative rounded-2xl overflow-hidden aspect-video border border-slate-800 shadow-xl">
                                 <img 
-                                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" 
-                                    alt="Creative team collaborating happily around workspace" 
+                                    src="{{ asset('images/what-it-does.webp') }}" 
+                                    alt="Creative team collaborating happily around TaskVerge workspace" 
                                     class="w-full h-full object-cover"
                                 />
                             </div>
@@ -614,101 +614,118 @@
             <!-- 4 Step Cards (Fixed height h-[320px] with pre-allocated description space to prevent any height jumping) -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
                 <!-- Step 1 -->
-                <div class="group relative rounded-2xl border border-slate-700/60 bg-slate-900/80 hover:bg-slate-900/95 hover:border-emerald-400/80 backdrop-blur-xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 shadow-2xl h-[320px] overflow-hidden">
-                    <div class="flex items-center justify-between">
-                        <span class="h-12 w-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white font-extrabold text-base flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-transform duration-300">
-                            01
-                        </span>
-                        <span class="text-xs font-mono font-semibold text-emerald-400/90 group-hover:text-emerald-300 transition-colors">Phase 1</span>
+                <div class="group relative rounded-2xl border border-slate-700/60 bg-slate-900/80 hover:bg-slate-900/95 hover:border-emerald-400/80 backdrop-blur-xl p-5 flex flex-col justify-between transition-all duration-300 shadow-2xl min-h-[380px] overflow-hidden">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="h-10 w-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white font-extrabold text-sm flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:scale-105 transition-transform duration-300">
+                                01
+                            </span>
+                            <span class="text-xs font-mono font-semibold text-emerald-400/90 group-hover:text-emerald-300 transition-colors">Phase 1</span>
+                        </div>
+
+                        <!-- Step Laptop Preview -->
+                        <div class="h-32 w-full rounded-xl overflow-hidden border border-slate-800/80 bg-slate-950 mb-3 shadow-inner">
+                            <img src="{{ asset('images/step-by-step-1.webp') }}" alt="Connect Workflows" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 filter brightness-90 group-hover:brightness-100" loading="lazy" />
+                        </div>
                     </div>
 
-                    <!-- Stable Text Block: Moves slightly upward on hover, description smoothly fades in into allocated space -->
-                    <div class="relative transition-transform duration-300 ease-out group-hover:-translate-y-2">
-                        <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-emerald-300 transition-colors duration-200">
+                    <div class="relative transition-transform duration-300 ease-out">
+                        <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-emerald-300 transition-colors duration-200">
                             Connect Workflows
                         </h3>
-                        <!-- Resting subtitle chip -->
-                        <div class="text-xs font-medium text-slate-400 mt-1 transition-opacity duration-200 group-hover:text-slate-300">
+                        <div class="text-[11px] font-medium text-slate-400 mt-0.5">
                             2-min visual setup
                         </div>
-                        <!-- Description with smooth opacity fade within allocated space (no height jumping) -->
-                        <div class="pt-3">
-                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out line-clamp-3">
-                                Set up your team projects in minutes using intuitive templates or custom multi-stage Kanban pipelines.
-                            </p>
-                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed mt-2 line-clamp-3">
+                            Set up your team projects in minutes using intuitive templates or custom multi-stage Kanban pipelines.
+                        </p>
                     </div>
                 </div>
 
                 <!-- Step 2 -->
-                <div class="group relative rounded-2xl border border-slate-700/60 bg-slate-900/80 hover:bg-slate-900/95 hover:border-emerald-400/80 backdrop-blur-xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 shadow-2xl h-[320px] overflow-hidden">
-                    <div class="flex items-center justify-between">
-                        <span class="h-12 w-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white font-extrabold text-base flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-transform duration-300">
-                            02
-                        </span>
-                        <span class="text-xs font-mono font-semibold text-emerald-400/90 group-hover:text-emerald-300 transition-colors">Phase 2</span>
+                <div class="group relative rounded-2xl border border-slate-700/60 bg-slate-900/80 hover:bg-slate-900/95 hover:border-emerald-400/80 backdrop-blur-xl p-5 flex flex-col justify-between transition-all duration-300 shadow-2xl min-h-[380px] overflow-hidden">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="h-10 w-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white font-extrabold text-sm flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:scale-105 transition-transform duration-300">
+                                02
+                            </span>
+                            <span class="text-xs font-mono font-semibold text-emerald-400/90 group-hover:text-emerald-300 transition-colors">Phase 2</span>
+                        </div>
+
+                        <!-- Step Laptop Preview -->
+                        <div class="h-32 w-full rounded-xl overflow-hidden border border-slate-800/80 bg-slate-950 mb-3 shadow-inner">
+                            <img src="{{ asset('images/step-by-step-2.webp') }}" alt="Smart Assignment" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 filter brightness-90 group-hover:brightness-100" loading="lazy" />
+                        </div>
                     </div>
 
-                    <div class="relative transition-transform duration-300 ease-out group-hover:-translate-y-2">
-                        <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-emerald-300 transition-colors duration-200">
+                    <div class="relative transition-transform duration-300 ease-out">
+                        <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-emerald-300 transition-colors duration-200">
                             Smart Assignment
                         </h3>
-                        <div class="text-xs font-medium text-slate-400 mt-1 transition-opacity duration-200 group-hover:text-slate-300">
+                        <div class="text-[11px] font-medium text-slate-400 mt-0.5">
                             Capacity balanced
                         </div>
-                        <div class="pt-3">
-                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out line-clamp-3">
-                                Work is automatically paired with team availability so tasks start without delay and without overburdening members.
-                            </p>
-                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed mt-2 line-clamp-3">
+                            Work is automatically paired with team availability so tasks start without delay and without overburdening members.
+                        </p>
                     </div>
                 </div>
 
                 <!-- Step 3 -->
-                <div class="group relative rounded-2xl border border-slate-700/60 bg-slate-900/80 hover:bg-slate-900/95 hover:border-emerald-400/80 backdrop-blur-xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 shadow-2xl h-[320px] overflow-hidden">
-                    <div class="flex items-center justify-between">
-                        <span class="h-12 w-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white font-extrabold text-base flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-transform duration-300">
-                            03
-                        </span>
-                        <span class="text-xs font-mono font-semibold text-emerald-400/90 group-hover:text-emerald-300 transition-colors">Phase 3</span>
+                <div class="group relative rounded-2xl border border-slate-700/60 bg-slate-900/80 hover:bg-slate-900/95 hover:border-emerald-400/80 backdrop-blur-xl p-5 flex flex-col justify-between transition-all duration-300 shadow-2xl min-h-[380px] overflow-hidden">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="h-10 w-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white font-extrabold text-sm flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:scale-105 transition-transform duration-300">
+                                03
+                            </span>
+                            <span class="text-xs font-mono font-semibold text-emerald-400/90 group-hover:text-emerald-300 transition-colors">Phase 3</span>
+                        </div>
+
+                        <!-- Step Laptop Preview -->
+                        <div class="h-32 w-full rounded-xl overflow-hidden border border-slate-800/80 bg-slate-950 mb-3 shadow-inner">
+                            <img src="{{ asset('images/step-by-step-3.webp') }}" alt="Stay Ahead of Delays" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 filter brightness-90 group-hover:brightness-100" loading="lazy" />
+                        </div>
                     </div>
 
-                    <div class="relative transition-transform duration-300 ease-out group-hover:-translate-y-2">
-                        <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-emerald-300 transition-colors duration-200">
+                    <div class="relative transition-transform duration-300 ease-out">
+                        <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-emerald-300 transition-colors duration-200">
                             Stay Ahead of Delays
                         </h3>
-                        <div class="text-xs font-medium text-slate-400 mt-1 transition-opacity duration-200 group-hover:text-slate-300">
+                        <div class="text-[11px] font-medium text-slate-400 mt-0.5">
                             Proactive alerts
                         </div>
-                        <div class="pt-3">
-                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out line-clamp-3">
-                                Get early warnings 48 hours in advance if approvals slow down before deadlines are in danger.
-                            </p>
-                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed mt-2 line-clamp-3">
+                            Get early warnings 48 hours in advance if approvals slow down before deadlines are in danger.
+                        </p>
                     </div>
                 </div>
 
                 <!-- Step 4 -->
-                <div class="group relative rounded-2xl border border-slate-700/60 bg-slate-900/80 hover:bg-slate-900/95 hover:border-teal-400/80 backdrop-blur-xl p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 shadow-2xl h-[320px] overflow-hidden">
-                    <div class="flex items-center justify-between">
-                        <span class="h-12 w-12 rounded-2xl bg-gradient-to-tr from-teal-600 to-cyan-600 text-white font-extrabold text-base flex items-center justify-center shadow-lg shadow-teal-500/30 group-hover:scale-110 transition-transform duration-300">
-                            04
-                        </span>
-                        <span class="text-xs font-mono font-semibold text-teal-400/90 group-hover:text-teal-300 transition-colors">Phase 4</span>
+                <div class="group relative rounded-2xl border border-slate-700/60 bg-slate-900/80 hover:bg-slate-900/95 hover:border-teal-400/80 backdrop-blur-xl p-5 flex flex-col justify-between transition-all duration-300 shadow-2xl min-h-[380px] overflow-hidden">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="h-10 w-10 rounded-xl bg-gradient-to-tr from-teal-600 to-cyan-600 text-white font-extrabold text-sm flex items-center justify-center shadow-lg shadow-teal-500/30 group-hover:scale-105 transition-transform duration-300">
+                                04
+                            </span>
+                            <span class="text-xs font-mono font-semibold text-teal-400/90 group-hover:text-teal-300 transition-colors">Phase 4</span>
+                        </div>
+
+                        <!-- Step Laptop Preview -->
+                        <div class="h-32 w-full rounded-xl overflow-hidden border border-slate-800/80 bg-slate-950 mb-3 shadow-inner">
+                            <img src="{{ asset('images/step-by-step-4.webp') }}" alt="Clear the Finish Line" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 filter brightness-90 group-hover:brightness-100" loading="lazy" />
+                        </div>
                     </div>
 
-                    <div class="relative transition-transform duration-300 ease-out group-hover:-translate-y-2">
-                        <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-teal-300 transition-colors duration-200">
+                    <div class="relative transition-transform duration-300 ease-out">
+                        <h3 class="text-base sm:text-lg font-bold text-white group-hover:text-teal-300 transition-colors duration-200">
                             Clear the Finish Line
                         </h3>
-                        <div class="text-xs font-medium text-slate-400 mt-1 transition-opacity duration-200 group-hover:text-slate-300">
+                        <div class="text-[11px] font-medium text-slate-400 mt-0.5">
                             1-click resolution
                         </div>
-                        <div class="pt-3">
-                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out line-clamp-3">
-                                Resolve roadblocks with 1-click unblock actions and keep deliverables moving cleanly to completion.
-                            </p>
-                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed mt-2 line-clamp-3">
+                            Resolve roadblocks with 1-click unblock actions and keep deliverables moving cleanly to completion.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -747,18 +764,18 @@ Madusha Lakshan ,Department Lead, Business Operations
                         name: 'Darshan Prasad',
                         role: 'Operations Manager',
                         company: 'Enterprise Services',
-                        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80',
+                        avatar: '{{ asset('images/testimonial-1.webp') }}',
                         initials: 'DP',
                         rating: 5,
                         badge: 'Saved 312 hrs / mo',
-                        quote: 'Finally, we have a clear view of what is happening across our team's daily workload. Task ownership, deadlines, and priorities are much easier to follow from one place.'
+                        quote: 'Finally, we have a clear view of what is happening across our team\'s daily workload. Task ownership, deadlines, and priorities are much easier to follow from one place.'
                     },
                     {
                         id: 1,
-                        name: 'Tania  Bennett',
+                        name: 'Tania Bennett',
                         role: 'Project Manager',
                         company: 'Technology Operations',
-                        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80',
+                        avatar: '{{ asset('images/testimonial-2.webp') }}',
                         initials: 'TB',
                         rating: 4.5,
                         badge: '99.4% On-Time Delivery',
@@ -769,43 +786,32 @@ Madusha Lakshan ,Department Lead, Business Operations
                         name: 'Madusha Lakshan',
                         role: 'Department Lead',
                         company: 'Business Operations',
-                        avatar: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=160&q=80',
+                        avatar: '{{ asset('images/testimonial-3.webp') }}',
                         initials: 'ML',
                         rating: 4.8,
                         badge: '5-Min Team Onboarding',
-                        quote: 'We replaced an enterprise tool that required a two-week onboarding course. Our client coordinators and designers were actively using TaskVerge within 5 minutes of sending the invites.'
+                        quote: 'We wanted something more structured than spreadsheets but still simple enough for our teams to use every day. TaskVerge brings tasks, responsibilities, and workflow progress into one practical workspace.'
                     },
                     {
                         id: 3,
-                        name: 'David Kim',
-                        role: 'Product Lead',
-                        company: 'Veloce Labs',
-                        avatar: null,
-                        initials: 'DK',
-                        rating: 4,
-                        badge: 'Zero Forgotten Tasks',
-                        quote: 'Having real-time project health without sending daily reminder messages has changed our work culture completely. The team is calmer, more focused, and consistently hits delivery dates.'
-                    },
-                    {
-                        id: 4,
                         name: 'Kasun Perera',
                         role: 'Operations Lead',
                         company: 'NorthStar',
-                        avatar: null,
+                        avatar: '{{ asset('images/testimonial-4.webp') }}',
                         initials: 'KP',
                         rating: 4.5,
                         badge: '85% Faster Unblocking',
                         quote: 'Having tasks, deadlines, and ownership visible in one place has made our daily coordination much simpler. We spend less time chasing updates and more time keeping important work on track.'
                     },
                     {
-                        id: 5,
+                        id: 4,
                         name: 'Tharindu Jayasinghe',
                         role: 'Project Operations Manager',
                         company: 'NorthStar',
-                        avatar: null,
+                        avatar: '{{ asset('images/testimonial-5.webp') }}',
                         initials: 'TJ',
-                        rating: 4.5,
-                        badge: '85% Faster Unblocking',
+                        rating: 5,
+                        badge: '99.8% SLA Compliance',
                         quote: 'TaskVerge gives our managers a practical way to understand workflow progress without checking multiple systems. It makes priorities, pending tasks, and team responsibilities much easier to manage.'
                     }
                 ]
@@ -1054,43 +1060,35 @@ Madusha Lakshan ,Department Lead, Business Operations
 
         <!-- Extra Feature Grid Highlights -->
         <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="rounded-2xl border border-slate-800/80 bg-slate-950/70 p-6 space-y-3">
-                <div class="h-10 w-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
-                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                    </svg>
+            <div class="rounded-2xl border border-slate-800/80 bg-slate-950/70 p-6 space-y-3 group hover:border-emerald-500/40 hover:bg-slate-900/60 transition-all duration-300">
+                <div class="h-12 w-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center p-2 group-hover:scale-105 transition-transform">
+                    <img src="{{ asset('images/the-difference-1.webp') }}" alt="Autonomous Stage Transitions" class="h-full w-full object-contain">
                 </div>
-                <h3 class="text-sm font-bold text-white">Autonomous Stage Transitions</h3>
+                <h3 class="text-sm font-bold text-white group-hover:text-emerald-300 transition-colors">Autonomous Stage Transitions</h3>
                 <p class="text-xs text-slate-400 leading-relaxed">Pipelines advance cards automatically as requirements and reviews are marked satisfied.</p>
             </div>
 
-            <div class="rounded-2xl border border-slate-800/80 bg-slate-950/70 p-6 space-y-3">
-                <div class="h-10 w-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
-                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                    </svg>
+            <div class="rounded-2xl border border-slate-800/80 bg-slate-950/70 p-6 space-y-3 group hover:border-teal-500/40 hover:bg-slate-900/60 transition-all duration-300">
+                <div class="h-12 w-12 rounded-xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center p-2 group-hover:scale-105 transition-transform">
+                    <img src="{{ asset('images/the-difference-2.webp') }}" alt="Workload Balance Guard" class="h-full w-full object-contain">
                 </div>
-                <h3 class="text-sm font-bold text-white">Workload Balance Guard</h3>
+                <h3 class="text-sm font-bold text-white group-hover:text-teal-300 transition-colors">Workload Balance Guard</h3>
                 <p class="text-xs text-slate-400 leading-relaxed">Monitors individual velocity to prevent burn-out by re-distributing incoming queue surges.</p>
             </div>
 
-            <div class="rounded-2xl border border-slate-800/80 bg-slate-950/70 p-6 space-y-3">
-                <div class="h-10 w-10 rounded-xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400">
-                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
+            <div class="rounded-2xl border border-slate-800/80 bg-slate-950/70 p-6 space-y-3 group hover:border-cyan-500/40 hover:bg-slate-900/60 transition-all duration-300">
+                <div class="h-12 w-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center p-2 group-hover:scale-105 transition-transform">
+                    <img src="{{ asset('images/the-difference-3.webp') }}" alt="Proactive SLA Radar" class="h-full w-full object-contain">
                 </div>
-                <h3 class="text-sm font-bold text-white">Proactive SLA Radar</h3>
+                <h3 class="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors">Proactive SLA Radar</h3>
                 <p class="text-xs text-slate-400 leading-relaxed">Alerts stakeholders 48 hours before any deadline is in jeopardy, avoiding emergency fixes.</p>
             </div>
 
-            <div class="rounded-2xl border border-slate-800/80 bg-slate-950/70 p-6 space-y-3">
-                <div class="h-10 w-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
-                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                    </svg>
+            <div class="rounded-2xl border border-slate-800/80 bg-slate-950/70 p-6 space-y-3 group hover:border-emerald-500/40 hover:bg-slate-900/60 transition-all duration-300">
+                <div class="h-12 w-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center p-2 group-hover:scale-105 transition-transform">
+                    <img src="{{ asset('images/the-difference-4.webp') }}" alt="Enterprise Security & Audit" class="h-full w-full object-contain">
                 </div>
-                <h3 class="text-sm font-bold text-white">Enterprise Security &amp; Audit</h3>
+                <h3 class="text-sm font-bold text-white group-hover:text-emerald-300 transition-colors">Enterprise Security &amp; Audit</h3>
                 <p class="text-xs text-slate-400 leading-relaxed">Strict role-based boundaries, Turnstile bot shields, and full chronological task histories.</p>
             </div>
         </div>

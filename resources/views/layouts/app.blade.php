@@ -7,6 +7,9 @@
 
     <title>{{ $title ?? 'Workspace' }} - {{ config('app.name', 'TaskVerge') }}</title>
 
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=plus-jakarta-sans:400,500,600,700,800" rel="stylesheet" />
 
@@ -33,15 +36,7 @@
             <!-- Brand -->
             <div class="flex items-center justify-between">
                 <a href="{{ route('dashboard') }}" class="flex items-center gap-2.5">
-                    <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-tr from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/20">
-                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
-                        </svg>
-                    </div>
-                    <div>
-                        <span class="text-xl font-bold tracking-tight text-white">Task<span class="text-emerald-400">Verge</span></span>
-                        <p class="text-[10px] tracking-wider uppercase font-semibold text-slate-400">Workflow Intelligence</p>
-                    </div>
+                    <img src="{{ asset('images/logo.webp') }}" alt="TaskVerge" class="h-8 w-auto object-contain brightness-110">
                 </a>
 
                 <button @click="sidebarOpen = false" class="lg:hidden text-slate-400 hover:text-white">
