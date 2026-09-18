@@ -18,10 +18,10 @@ class ContactTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Get in Touch');
         $response->assertSee('help@taskverge.net');
-        $response->assertSee('San Francisco');
-        $response->assertSee('London');
-        $response->assertSee('+1 (415) 802-2040');
-        $response->assertSee('+44 (20) 7946 0830');
+        $response->assertSee('Taskverge LLC');
+        $response->assertSee('Taskverge PVT LTD');
+        $response->assertSee('+12038708505');
+        $response->assertSee('+94717285555');
         $response->assertSee('Send Message');
     }
 

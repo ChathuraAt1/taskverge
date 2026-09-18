@@ -763,7 +763,6 @@ Madusha Lakshan ,Department Lead, Business Operations
                         id: 0,
                         name: 'Darshan Prasad',
                         role: 'Operations Manager',
-                        company: 'Enterprise Services',
                         avatar: '{{ asset('images/testimonial-1.webp') }}',
                         initials: 'DP',
                         rating: 5,
@@ -774,7 +773,6 @@ Madusha Lakshan ,Department Lead, Business Operations
                         id: 1,
                         name: 'Tania Bennett',
                         role: 'Project Manager',
-                        company: 'Technology Operations',
                         avatar: '{{ asset('images/testimonial-2.webp') }}',
                         initials: 'TB',
                         rating: 4.5,
@@ -785,7 +783,6 @@ Madusha Lakshan ,Department Lead, Business Operations
                         id: 2,
                         name: 'Madusha Lakshan',
                         role: 'Department Lead',
-                        company: 'Business Operations',
                         avatar: '{{ asset('images/testimonial-3.webp') }}',
                         initials: 'ML',
                         rating: 4.8,
@@ -796,7 +793,6 @@ Madusha Lakshan ,Department Lead, Business Operations
                         id: 3,
                         name: 'Kasun Perera',
                         role: 'Operations Lead',
-                        company: 'NorthStar',
                         avatar: '{{ asset('images/testimonial-4.webp') }}',
                         initials: 'KP',
                         rating: 4.5,
@@ -807,7 +803,6 @@ Madusha Lakshan ,Department Lead, Business Operations
                         id: 4,
                         name: 'Tharindu Jayasinghe',
                         role: 'Project Operations Manager',
-                        company: 'NorthStar',
                         avatar: '{{ asset('images/testimonial-5.webp') }}',
                         initials: 'TJ',
                         rating: 5,
@@ -858,7 +853,7 @@ Madusha Lakshan ,Department Lead, Business Operations
                         </template>
                         <div>
                             <div class="text-sm font-bold text-white" x-text="testimonials[activeId].name"></div>
-                            <div class="text-xs text-emerald-400" x-text="testimonials[activeId].role + ', ' + testimonials[activeId].company"></div>
+                            <div class="text-xs text-emerald-400" x-text="testimonials[activeId].role"></div>
                         </div>
                     </div>
                     <span class="text-[11px] text-slate-500 hidden sm:inline">Active Spotlight</span>
@@ -1277,7 +1272,7 @@ Madusha Lakshan ,Department Lead, Business Operations
     </section>
 
     <!-- 10. CONTACT US: 2 Branch Locations with Google Maps & Live Support Form -->
-    <section id="contact" class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto" x-data="{ activeBranch: 'sf' }">
+    <section id="contact" class="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto" x-data="{ activeBranch: 'sl' }">
         <div class="text-center max-w-3xl mx-auto mb-16">
             <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">Get in Touch</span>
             <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Contact Our Global Teams</h2>
@@ -1298,50 +1293,50 @@ Madusha Lakshan ,Department Lead, Business Operations
             <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
                 <!-- Branch Selector Pills -->
                 <div class="flex items-center justify-between flex-wrap gap-3 pb-2 border-b border-slate-800">
-                    <div class="text-xs font-bold text-slate-300 uppercase tracking-wider">Operational Branches</div>
+                    <div class="text-xs font-bold text-slate-300 uppercase tracking-wider">Corporate Presence</div>
                     <div class="inline-flex rounded-xl bg-slate-900 border border-slate-800 p-1">
                         <button 
                             type="button" 
-                            @click="activeBranch = 'sf'" 
+                            @click="activeBranch = 'sl'" 
                             class="px-4 py-1.5 rounded-lg text-xs font-bold transition-all"
-                            :class="activeBranch === 'sf' ? 'bg-emerald-600 text-white shadow-md' : 'text-slate-400 hover:text-white'"
+                            :class="activeBranch === 'sl' ? 'bg-emerald-600 text-white shadow-md' : 'text-slate-400 hover:text-white'"
                         >
-                            San Francisco HQ
+                            Head Office (Sri Lanka)
                         </button>
                         <button 
                             type="button" 
-                            @click="activeBranch = 'london'" 
+                            @click="activeBranch = 'usa'" 
                             class="px-4 py-1.5 rounded-lg text-xs font-bold transition-all"
-                            :class="activeBranch === 'london' ? 'bg-emerald-600 text-white shadow-md' : 'text-slate-400 hover:text-white'"
+                            :class="activeBranch === 'usa' ? 'bg-emerald-600 text-white shadow-md' : 'text-slate-400 hover:text-white'"
                         >
-                            London EMEA Hub
+                            USA Branch (Taskverge LLC)
                         </button>
                     </div>
                 </div>
 
-                <!-- Branch 1: San Francisco -->
-                <div x-show="activeBranch === 'sf'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-4">
+                <!-- Head Office: Sri Lanka (Taskverge PVT LTD) -->
+                <div x-show="activeBranch === 'sl'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-4">
                     <div class="rounded-2xl border border-slate-800 bg-slate-950 p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl">
                         <div>
                             <div class="inline-flex items-center gap-2 text-xs font-bold text-emerald-400 uppercase tracking-wider">
                                 <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                                Global Headquarters
+                                Global Headquarters &amp; Head Office
                             </div>
-                            <h3 class="text-xl font-bold text-white mt-1">TaskVerge Americas • San Francisco</h3>
-                            <p class="text-xs text-slate-400 mt-1">500 Howard Street, Suite 400, San Francisco, CA 94105, United States</p>
+                            <h3 class="text-xl font-bold text-white mt-1">Taskverge PVT LTD</h3>
+                            <p class="text-xs text-slate-400 mt-1">165/7 Pickerings Road, Colombo 01500, Sri Lanka</p>
                         </div>
                         <div class="space-y-1 sm:text-right border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-800/80">
-                            <div class="text-xs text-slate-400 font-mono">Direct Support Phone</div>
-                            <a href="tel:+14158022040" class="text-sm font-bold text-emerald-300 hover:text-emerald-200 transition-colors font-mono">+1 (415) 802-2040</a>
-                            <div class="text-[11px] text-slate-500 font-mono">Mon–Fri 8:00 AM – 6:00 PM PST</div>
+                            <div class="text-xs text-slate-400 font-mono">Head Office Phone</div>
+                            <a href="tel:+94717285555" class="text-sm font-bold text-emerald-300 hover:text-emerald-200 transition-colors font-mono">+94717285555</a>
+                            <div class="text-[11px] text-slate-500 font-mono">Mon–Fri 9:00 AM – 6:00 PM IST</div>
                         </div>
                     </div>
 
-                    <!-- San Francisco Embedded Google Map -->
+                    <!-- Sri Lanka Embedded Google Map -->
                     <div class="rounded-3xl border border-slate-800 overflow-hidden shadow-2xl h-[300px] relative bg-slate-900">
                         <iframe 
-                            title="TaskVerge San Francisco Headquarters Map"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.084883391295!2d-122.39893462348566!3d37.78801997198207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085807cb67d5e4b%3A0x6e5c8e390c2ebaa8!2s500%20Howard%20St%2C%20San%20Francisco%2C%20CA%2094105!5e0!3m2!1sen!2sus!4v1710000000000!5m2!1sen!2sus" 
+                            title="Taskverge PVT LTD Head Office Map"
+                            src="https://maps.google.com/maps?q=165/7+Pickerings+Road,+Colombo+01500,+Sri+Lanka&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed" 
                             width="100%" 
                             height="100%" 
                             style="border:0; filter: invert(90%) hue-rotate(180deg) contrast(1.1);" 
@@ -1353,29 +1348,29 @@ Madusha Lakshan ,Department Lead, Business Operations
                     </div>
                 </div>
 
-                <!-- Branch 2: London -->
-                <div x-show="activeBranch === 'london'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-4">
+                <!-- Branch: USA (Taskverge LLC) -->
+                <div x-show="activeBranch === 'usa'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" class="space-y-4">
                     <div class="rounded-2xl border border-slate-800 bg-slate-950 p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xl">
                         <div>
                             <div class="inline-flex items-center gap-2 text-xs font-bold text-teal-400 uppercase tracking-wider">
                                 <span class="h-2 w-2 rounded-full bg-teal-400 animate-pulse"></span>
-                                EMEA Operations Hub
+                                Americas Branch Office
                             </div>
-                            <h3 class="text-xl font-bold text-white mt-1">TaskVerge Europe • London</h3>
-                            <p class="text-xs text-slate-400 mt-1">25 Bank Street, Canary Wharf, London E14 5JP, United Kingdom</p>
+                            <h3 class="text-xl font-bold text-white mt-1">Taskverge LLC</h3>
+                            <p class="text-xs text-slate-400 mt-1">255 Ferry Blvd, Stratford, CT 06615, United States</p>
                         </div>
                         <div class="space-y-1 sm:text-right border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-800/80">
-                            <div class="text-xs text-slate-400 font-mono">EMEA Support Phone</div>
-                            <a href="tel:+442079460830" class="text-sm font-bold text-teal-300 hover:text-teal-200 transition-colors font-mono">+44 (20) 7946 0830</a>
-                            <div class="text-[11px] text-slate-500 font-mono">Mon–Fri 9:00 AM – 6:00 PM GMT</div>
+                            <div class="text-xs text-slate-400 font-mono">USA Branch Phone</div>
+                            <a href="tel:+12038708505" class="text-sm font-bold text-teal-300 hover:text-teal-200 transition-colors font-mono">+12038708505</a>
+                            <div class="text-[11px] text-slate-500 font-mono">Mon–Fri 8:00 AM – 6:00 PM EST</div>
                         </div>
                     </div>
 
-                    <!-- London Embedded Google Map -->
+                    <!-- USA Embedded Google Map -->
                     <div class="rounded-3xl border border-slate-800 overflow-hidden shadow-2xl h-[300px] relative bg-slate-900">
                         <iframe 
-                            title="TaskVerge London EMEA Hub Map"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.541460309855!2d-0.021578623438965934!3d51.503299711019625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487602b9e693b7a5%3A0x6d88c0378b8719bc!2s25%20Bank%20St%2C%20London%20E14%205JP%2C%20UK!5e0!3m2!1sen!2suk!4v1710000000000!5m2!1sen!2suk" 
+                            title="Taskverge LLC USA Branch Map"
+                            src="https://maps.google.com/maps?q=255+Ferry+Blvd,+Stratford,+CT+06615,+USA&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed" 
                             width="100%" 
                             height="100%" 
                             style="border:0; filter: invert(90%) hue-rotate(180deg) contrast(1.1);" 
@@ -1550,8 +1545,8 @@ Madusha Lakshan ,Department Lead, Business Operations
                                 name="branch"
                                 class="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2.5 text-xs text-white focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-colors"
                             >
-                                <option value="San Francisco HQ (Americas)">San Francisco HQ (Americas)</option>
-                                <option value="London EMEA Hub (Europe)">London EMEA Hub (Europe)</option>
+                                <option value="Taskverge PVT LTD (Sri Lanka Head Office)">Head Office - Taskverge PVT LTD (Colombo, Sri Lanka)</option>
+                                <option value="Taskverge LLC (USA Branch)">USA Branch - Taskverge LLC (Stratford, CT)</option>
                                 <option value="General Global Support">General Global Support</option>
                             </select>
                         </div>

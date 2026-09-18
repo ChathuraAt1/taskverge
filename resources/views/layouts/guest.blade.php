@@ -151,9 +151,9 @@
                             <span>help@taskverge.net</span>
                         </a>
                         <span class="text-slate-700">•</span>
-                        <span class="text-slate-400">San Francisco HQ</span>
+                        <span class="text-slate-400">Head Office: Taskverge PVT LTD (Sri Lanka)</span>
                         <span class="text-slate-700">•</span>
-                        <span class="text-slate-400">London Hub</span>
+                        <span class="text-slate-400">USA Branch: Taskverge LLC</span>
                     </div>
                 </div>
 
@@ -185,7 +185,7 @@
 
             <!-- Bottom Sub-bar: Copyright & Legal -->
             <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-                <p>&copy; {{ date('Y') }} TaskVerge Inc. All rights reserved.</p>
+                <p>&copy; {{ date('Y') }} Taskverge LLC &amp; Taskverge PVT LTD. All rights reserved.</p>
                 <div class="flex flex-wrap items-center gap-6">
                     <a href="{{ route('home') }}#contact" class="hover:text-slate-400 transition-colors">Support & Inquiries</a>
                     <span class="hover:text-slate-400 cursor-pointer transition-colors">Privacy Policy</span>
