@@ -155,6 +155,18 @@
                         <span class="text-slate-700">•</span>
                         <span class="text-slate-400">USA Branch: Taskverge LLC</span>
                     </div>
+                    <!-- Company profile section -->
+                    <div class="flex items-center gap-4">
+                        <a href="https://www.f6s.com/taskverge" target="_blank" class="inline-flex items-center gap-2 text-slate-400 hover:text-emerald-400 transition-colors text-xs">
+                        <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                            <p>F6S</p>
+                        </a>
+                        <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                        <a href="https://www.crunchbase.com/organization/taskverge" target="_blank" class="inline-flex items-center gap-2 text-slate-400 hover:text-emerald-400 transition-colors text-xs">
+                            <p>Crunchbase</p>
+                        </a>
+                        <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                    </div>
                 </div>
 
                 <!-- Navigation Anchors & Social Links -->
@@ -163,7 +175,6 @@
                         <a href="{{ route('home') }}#what-it-does" class="hover:text-white transition-colors">Capabilities</a>
                         <a href="{{ route('home') }}#how-it-works" class="hover:text-white transition-colors">How It Works</a>
                         <a href="{{ route('home') }}#testimonials" class="hover:text-white transition-colors">Stories</a>
-                        <a href="{{ route('home') }}#benefits" class="hover:text-white transition-colors">Benefits</a>
                         <a href="{{ route('home') }}#why-different" class="hover:text-white transition-colors">Why TaskVerge</a>
                         <a href="{{ route('home') }}#pricing" class="hover:text-white transition-colors">Pricing</a>
                         <a href="{{ route('home') }}#contact" class="text-emerald-400 hover:text-emerald-300 transition-colors">Contact</a>
@@ -179,6 +190,9 @@
                         <a href="https://www.facebook.com/taskverge/" target="_blank" rel="noopener noreferrer" class="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-800 bg-slate-900/60 hover:bg-slate-800 hover:text-white transition-all text-sm" title="Facebook">
                             <i class="fa-brands fa-facebook-f"></i>
                         </a>
+                        <a href="https://www.linkedin.com/company/taskverge1" target="_blank" rel="noopener noreferrer" class="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-800 bg-slate-900/60 hover:bg-slate-800 hover:text-white transition-all text-sm" title="LinkedIn">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -188,9 +202,8 @@
                 <p>&copy; {{ date('Y') }} Taskverge LLC &amp; Taskverge PVT LTD. All rights reserved.</p>
                 <div class="flex flex-wrap items-center gap-6">
                     <a href="{{ route('home') }}#contact" class="hover:text-slate-400 transition-colors">Support & Inquiries</a>
-                    <span class="hover:text-slate-400 cursor-pointer transition-colors">Privacy Policy</span>
-                    <span class="hover:text-slate-400 cursor-pointer transition-colors">Terms of Service</span>
-                    <span class="hover:text-slate-400 cursor-pointer transition-colors">Security</span>
+                    <a href="{{ route('privacy') }}" class="hover:text-slate-400 transition-colors">Privacy Policy</a>
+                    <a href="{{ route('terms') }}" class="hover:text-slate-400 transition-colors">Terms of Service</a>
                 </div>
             </div>
         </div>

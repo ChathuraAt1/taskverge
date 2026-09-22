@@ -26,6 +26,8 @@ use Illuminate\Support\Facades\Route;
 // Public Technical Product Landing Page & Contact
 Route::view('/', 'landing')->name('home');
 Route::view('/product', 'product')->name('product');
+Route::view('/privacy', 'privacy')->name('privacy');
+Route::view('/terms', 'terms')->name('terms');
 Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
 
 // System & Database Installer (gated via ENABLE_INSTALLER_ROUTE in .env)

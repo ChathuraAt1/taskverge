@@ -16,4 +16,38 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_privacy_policy_page_renders_successfully_with_contact_details(): void
+    {
+        $response = $this->get('/privacy');
+
+        $response->assertStatus(200);
+        $response->assertSee('Privacy Policy');
+        $response->assertSee('September 22, 2026');
+        $response->assertSee('Taskverge PVT LTD');
+        $response->assertSee('165/7 Pickerings Road, Colombo 01500, Sri Lanka');
+        $response->assertSee('Taskverge LLC');
+        $response->assertSee('255 Ferry Blvd, Stratford, CT 06615, United States');
+        $response->assertSee('help@taskverge.net');
+        $response->assertSee('+94717285555');
+        $response->assertSee('+12038708505');
+    }
+
+    public function test_terms_page_renders_successfully_with_contact_details(): void
+    {
+        $response = $this->get('/terms');
+
+        $response->assertStatus(200);
+        $response->assertSee('Terms and Conditions');
+        $response->assertSee('September 22, 2026');
+        $response->assertSee('Taskverge PVT LTD');
+        $response->assertSee('165/7 Pickerings Road, Colombo 01500, Sri Lanka');
+        $response->assertSee('Taskverge LLC');
+        $response->assertSee('255 Ferry Blvd, Stratford, CT 06615, United States');
+        $response->assertSee('help@taskverge.net');
+        $response->assertSee('+94717285555');
+        $response->assertSee('+12038708505');
+    }
 }
+
+
