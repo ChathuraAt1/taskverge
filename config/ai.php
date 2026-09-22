@@ -12,6 +12,6 @@ return [
     */
     'endpoint' => env('AI_API_ENDPOINT', 'https://api.groq.com/openai/v1'),
     'api_key' => env('AI_API_KEY', ''),
-    'model' => env('AI_MODEL', 'llama-3.3-70b-versatile'),
+    'model' => env('AI_MODEL', 'openai/gpt-oss-120b'),
     'timeout' => (int) env('AI_TIMEOUT', 15),
 ];

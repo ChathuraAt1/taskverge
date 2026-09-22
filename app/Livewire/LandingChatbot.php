@@ -22,7 +22,7 @@ class LandingChatbot extends Component
         $this->messages = [
             [
                 'role' => 'assistant',
-                'content' => "👋 Hi there! I'm the **TaskVerge AI Assistant** connected to the **Cortex™ Intelligence Engine**.\n\nI can help you explore our autonomous workflow engine, pricing, platform features, or corporate details. What would you like to know?",
+                'content' => "Welcome to TaskVerge. I am the TaskVerge AI Assistant connected to the Cortex™ Intelligence Engine.\n\nI can help you explore our autonomous workflow engine, pricing, platform features, or corporate details. What would you like to know?",
                 'time' => now()->format('H:i'),
             ],
         ];
@@ -31,11 +31,15 @@ class LandingChatbot extends Component
     public function toggleChat(): void
     {
         $this->isOpen = !$this->isOpen;
+        if ($this->isOpen) {
+            $this->dispatch('chat-updated');
+        }
     }
 
     public function openChat(): void
     {
         $this->isOpen = true;
+        $this->dispatch('chat-updated');
     }
 
     public function closeChat(): void
@@ -65,6 +69,7 @@ class LandingChatbot extends Component
 
         $this->inputMessage = '';
         $this->isTyping = true;
+        $this->dispatch('chat-updated');
 
         try {
             $aiService = app(CortexAiService::class);
@@ -79,12 +84,13 @@ class LandingChatbot extends Component
         } catch (\Throwable $e) {
             $this->messages[] = [
                 'role' => 'assistant',
-                'content' => "Thank you for reaching out! You can learn more about our platform capabilities or reach out directly to **help@taskverge.net** or call **+94717285555**.",
+                'content' => "Thank you for reaching out! You can learn more about our platform capabilities or reach out directly to help@taskverge.net or call +94717285555.",
                 'source' => 'TaskVerge Support',
                 'time' => now()->format('H:i'),
             ];
         } finally {
             $this->isTyping = false;
+            $this->dispatch('chat-updated');
         }
     }
 

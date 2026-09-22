@@ -15,9 +15,9 @@ class CortexAiService
      */
     public function suggestTriage(string $title, ?string $description = null): array
     {
-        $apiKey = config('ai.api_key');
+        $apiKey = config('ai.api_key') ?: env('AI_API_KEY');
         $endpoint = rtrim(config('ai.endpoint', 'https://api.groq.com/openai/v1'), '/');
-        $model = config('ai.model', 'llama-3.3-70b-versatile');
+        $model = config('ai.model', 'openai/gpt-oss-120b');
 
         if (!empty($apiKey)) {
             try {
@@ -58,6 +58,8 @@ class CortexAiService
                             'source' => 'Cortex AI (' . $model . ')',
                         ];
                     }
+                } else {
+                    Log::warning("Cortex AI triage HTTP error [{$response->status()}]: " . $response->body());
                 }
             } catch (\Throwable $e) {
                 Log::warning('Cortex AI triage endpoint error: ' . $e->getMessage());
@@ -73,9 +75,9 @@ class CortexAiService
      */
     public function analyzeBlocker(Task $task): array
     {
-        $apiKey = config('ai.api_key');
+        $apiKey = config('ai.api_key') ?: env('AI_API_KEY');
         $endpoint = rtrim(config('ai.endpoint', 'https://api.groq.com/openai/v1'), '/');
-        $model = config('ai.model', 'llama-3.3-70b-versatile');
+        $model = config('ai.model', 'openai/gpt-oss-120b');
 
         $reason = $task->blocked_reason ?: 'No explicit blocker reason logged.';
 
@@ -113,6 +115,8 @@ class CortexAiService
                             'source' => 'Cortex AI (' . $model . ')',
                         ];
                     }
+                } else {
+                    Log::warning("Cortex AI blocker analysis HTTP error [{$response->status()}]: " . $response->body());
                 }
             } catch (\Throwable $e) {
                 Log::warning('Cortex AI blocker analysis error: ' . $e->getMessage());
@@ -134,9 +138,9 @@ class CortexAiService
      */
     public function generateStandupSummary(User $user, Collection $activeTasks, Collection $completedTasks, Collection $blockedTasks): string
     {
-        $apiKey = config('ai.api_key');
+        $apiKey = config('ai.api_key') ?: env('AI_API_KEY');
         $endpoint = rtrim(config('ai.endpoint', 'https://api.groq.com/openai/v1'), '/');
-        $model = config('ai.model', 'llama-3.3-70b-versatile');
+        $model = config('ai.model', 'openai/gpt-oss-120b');
 
         $completedTitles = $completedTasks->pluck('title')->implode(', ') ?: 'None';
         $activeTitles = $activeTasks->pluck('title')->implode(', ') ?: 'None';
@@ -167,6 +171,8 @@ class CortexAiService
                     if (!empty($content)) {
                         return $content;
                     }
+                } else {
+                    Log::warning("Cortex AI standup generation HTTP error [{$response->status()}]: " . $response->body());
                 }
             } catch (\Throwable $e) {
                 Log::warning('Cortex AI standup generation error: ' . $e->getMessage());
@@ -379,9 +385,9 @@ class CortexAiService
      */
     public function chatWithLandingVisitor(array $history, string $userMessage): array
     {
-        $apiKey = config('ai.api_key');
+        $apiKey = config('ai.api_key') ?: env('AI_API_KEY');
         $endpoint = rtrim(config('ai.endpoint', 'https://api.groq.com/openai/v1'), '/');
-        $model = config('ai.model', 'llama-3.3-70b-versatile');
+        $model = config('ai.model', 'openai/gpt-oss-120b');
 
         $systemPrompt = <<<SYS
 You are the official TaskVerge AI Assistant on taskverge.net.
@@ -389,7 +395,7 @@ TaskVerge is an enterprise Autonomous Task & Workflow Intelligence platform that
 
 Key Knowledge Base:
 - Core Capabilities: Autonomous stage transitions, proactive 48h SLA radar, real-time workload balancing guard, interactive Kanban workspaces, automated bottleneck unblocking, enterprise audit trails.
-- Cortex AI Architecture: Powered by TensorRT-LLM and accelerated inference for automated task triage, blocker diagnosis, and natural language Copilot orchestration.
+- Cortex AI Architecture: Powered by accelerated inference for automated task triage, blocker diagnosis, and natural language Copilot orchestration.
 - Pricing Tiers:
   * Free Trial: 14 days full evaluation, 1 active pipeline, 3 team seats, up to 50 active tasks.
   * Operations Core ($49/month): 5 operational pipelines, 15 team seats, proactive SLA alerts, automated task triage.
@@ -399,10 +405,10 @@ Key Knowledge Base:
   * USA Branch Office: Taskverge LLC, 255 Ferry Blvd, Stratford, CT 06615, United States (Phone: +12038708505)
   * Support Email: help@taskverge.net
 - Instructions:
-  * Be helpful, friendly, concise, and professional.
-  * Keep responses brief (1-3 short paragraphs or bullet points).
-  * Use markdown formatting.
-  * Suggest relevant actions like starting a free trial or checking out pricing/contact section.
+  * Do NOT use emojis in your responses. Maintain a clean, crisp, and professional corporate tone.
+  * Keep responses concise (1-3 short paragraphs or bullet points).
+  * Use clean markdown formatting.
+  * Suggest relevant actions like starting a free trial or checking out pricing or contact sections.
 SYS;
 
         if (!empty($apiKey)) {
@@ -439,6 +445,8 @@ SYS;
                             'source' => 'TaskVerge AI (' . $model . ')',
                         ];
                     }
+                } else {
+                    Log::warning("Landing AI chat HTTP error [{$response->status()}]: " . $response->body());
                 }
             } catch (\Throwable $e) {
                 Log::warning('Landing AI chat error: ' . $e->getMessage());
@@ -453,20 +461,22 @@ SYS;
      */
     protected function heuristicLandingReply(string $userMessage): array
     {
-        $msg = strtolower($userMessage);
+        $msg = strtolower(trim($userMessage));
 
-        if (preg_match('/(price|pricing|cost|plan|subscription|tier|core|enterprise|free|how much)/i', $msg)) {
-            $reply = "### 💳 TaskVerge Pricing & Plans\n\nTaskVerge offers 3 flexible plans designed to scale with your team:\n\n- **Free Trial (14-Days):** Explore 1 active pipeline, 3 team members, and up to 50 tasks with zero credit card required.\n- **Operations Core ($49/mo):** 5 operational pipelines, 15 team seats, proactive SLA radar alerts, and automated triage.\n- **Enterprise Intelligence ($199/mo):** Unlimited pipelines, unlimited seats, dedicated Cortex Copilot, custom webhooks, and SOC2 audit logging.\n\nYou can explore and subscribe directly in our [Pricing Section](#pricing).";
+        if (preg_match('/^(hi|hello|hey|greetings|good\s*(morning|afternoon|evening))\b/i', $msg)) {
+            $reply = "### Welcome to TaskVerge\n\nI am the TaskVerge AI Assistant. How can I assist you today?\n\n- Inquire about our **workflow automation & capabilities**\n- Compare **pricing plans & 14-day free trial**\n- Access our **global office addresses & contact info**\n- Discover how **Cortex AI** eliminates operational drag";
+        } elseif (preg_match('/(price|pricing|cost|plan|subscription|tier|core|enterprise|how much)/i', $msg)) {
+            $reply = "### TaskVerge Pricing & Plans\n\nTaskVerge provides three transparent tiers designed to scale with your organization:\n\n- **Free Trial (14 Days):** 1 active pipeline, 3 team members, and up to 50 tasks with no credit card required.\n- **Operations Core ($49/month):** 5 operational pipelines, 15 team seats, proactive SLA radar alerts, and automated triage.\n- **Enterprise Intelligence ($199/month):** Unlimited pipelines, unlimited seats, dedicated Cortex Copilot, custom webhooks, and SOC2 audit logging.\n\nReview details and choose your tier in our [Pricing Section](#pricing).";
         } elseif (preg_match('/(contact|support|email|phone|call|address|office|branch|location|where|sri lanka|usa)/i', $msg)) {
-            $reply = "### 📍 Corporate Offices & Global Support\n\n- **Head Office (Sri Lanka):** Taskverge PVT LTD\n  165/7 Pickerings Road, Colombo 01500, Sri Lanka &bull; Phone: **+94717285555**\n- **USA Branch Office:** Taskverge LLC\n  255 Ferry Blvd, Stratford, CT 06615, United States &bull; Phone: **+12038708505**\n- **Universal Support Inbox:** [help@taskverge.net](mailto:help@taskverge.net)\n\nYou can also submit an inquiry using our [Contact Form](#contact).";
-        } elseif (preg_match('/(what is|feature|capability|how it works|cortex|copilot|ai|workflow|task|automate)/i', $msg)) {
-            $reply = "### ⚡ What Makes TaskVerge Different?\n\nTaskVerge is an **Autonomous Workflow Intelligence platform** that stops tasks from stalling between teams:\n\n1. **Autonomous Stage Transitions:** Tasks advance automatically as milestones and criteria are fulfilled.\n2. **Proactive SLA Radar:** Predicts bottlenecks up to 48 hours before deadlines are missed.\n3. **Workload Balance Guard:** Automatically alerts and redistributes unbalanced team queues.\n4. **Cortex Copilot™:** Live natural language assistance to draft, triage, and unblock work items in seconds.\n\nReady to see it in action? You can [Create an Account](/register) or test our interactive demo!";
-        } elseif (preg_match('/(trial|demo|sign up|register|start|test)/i', $msg)) {
-            $reply = "### 🚀 Get Started with TaskVerge\n\nYou can start immediately with our **14-day Free Trial**:\n\n- No credit card required\n- Instant access to intuitive Kanban workspaces\n- Built-in AI triage and team collaboration\n\n👉 [Click here to sign up in 30 seconds](/register) or explore our [Capabilities](#what-it-does).";
+            $reply = "### Corporate Offices & Global Support\n\n- **Head Office (Sri Lanka):** Taskverge PVT LTD\n  165/7 Pickerings Road, Colombo 01500, Sri Lanka | Phone: **+94717285555**\n- **USA Branch Office:** Taskverge LLC\n  255 Ferry Blvd, Stratford, CT 06615, United States | Phone: **+12038708505**\n- **Universal Support Inbox:** [help@taskverge.net](mailto:help@taskverge.net)\n\nYou can also submit an inquiry using our [Contact Form](#contact).";
+        } elseif (preg_match('/(what is|feature|capability|how it works|cortex|copilot|automate|what can you do|capabilities)/i', $msg)) {
+            $reply = "### What Makes TaskVerge Different?\n\nTaskVerge is an **Autonomous Workflow Intelligence platform** that stops tasks from stalling between teams:\n\n1. **Autonomous Stage Transitions:** Tasks advance automatically as milestones and criteria are fulfilled.\n2. **Proactive SLA Radar:** Predicts bottlenecks up to 48 hours before deadlines are missed.\n3. **Workload Balance Guard:** Automatically alerts and redistributes unbalanced team queues.\n4. **Cortex Copilot™:** Live natural language assistance to draft, triage, and unblock work items in seconds.\n\nReady to see it in action? You can [Create an Account](/register) or test our interactive demo!";
+        } elseif (preg_match('/(trial|demo|sign up|register|start|test|free)/i', $msg)) {
+            $reply = "### Get Started with TaskVerge\n\nYou can start immediately with our **14-day Free Trial**:\n\n- No credit card required\n- Instant access to intuitive Kanban workspaces\n- Built-in AI triage and team collaboration\n\n[Click here to sign up](/register) or explore our [Capabilities](#what-it-does).";
         } elseif (preg_match('/(security|privacy|compliance|data|gdpr|safe)/i', $msg)) {
-            $reply = "### 🛡️ Enterprise Security & Privacy\n\nYour operational data is safeguarded with bank-grade encryption:\n\n- Encrypted at rest (AES-256) and in transit (TLS 1.3)\n- Comprehensive immutable Audit Logs for compliance\n- Full compliance with our [Privacy Policy](/privacy) and [Terms of Service](/terms).\n\nFeel free to ask any specific compliance questions!";
+            $reply = "### Enterprise Security & Privacy\n\nYour operational data is safeguarded with enterprise-grade protection:\n\n- Encrypted at rest (AES-256) and in transit (TLS 1.3)\n- Comprehensive immutable Audit Logs for compliance\n- Full compliance with our [Privacy Policy](/privacy) and [Terms of Service](/terms).\n\nFeel free to ask any specific compliance questions!";
         } else {
-            $reply = "### 👋 Welcome to TaskVerge!\n\nI'm your **TaskVerge AI Assistant**. How can I help you today?\n\n- Ask about our **features & workflow automation**\n- Inquire about **pricing & free trials**\n- Ask for our **offices & contact details**\n- Learn how **Cortex AI** eliminates operational bottlenecks\n\nWhat would you like to explore?";
+            $reply = "### Welcome to TaskVerge\n\nI am your **TaskVerge AI Assistant**. How can I help you today?\n\n- Ask about our **features & workflow automation**\n- Inquire about **pricing & free trials**\n- Ask for our **offices & contact details**\n- Learn how **Cortex AI** eliminates operational bottlenecks\n\nWhat would you like to explore?";
         }
 
         return [
