@@ -48,6 +48,27 @@ class ExampleTest extends TestCase
         $response->assertSee('+94717285555');
         $response->assertSee('+12038708505');
     }
+
+    public function test_landing_page_includes_chatbot_and_cookie_consent(): void
+    {
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
+        $response->assertSee('Ask AI');
+        $response->assertSee('TaskVerge Copilot');
+        $response->assertSee('Cookie &amp; Privacy Choices', false);
+    }
+
+    public function test_landing_chatbot_livewire_component_responds_to_queries(): void
+    {
+        \Livewire\Livewire::test(\App\Livewire\LandingChatbot::class)
+            ->assertSee('TaskVerge AI Assistant')
+            ->set('inputMessage', 'What is TaskVerge?')
+            ->call('sendMessage')
+            ->assertSet('inputMessage', '')
+            ->assertSee('Autonomous Workflow Intelligence platform');
+    }
 }
+
 
 

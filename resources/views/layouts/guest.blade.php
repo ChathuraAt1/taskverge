@@ -209,6 +209,13 @@
         </div>
     </footer>
 
+    <!-- Global AI Assistant Chatbot (Floating Bottom-Right) -->
+    <livewire:landing-chatbot />
+
+    <!-- Global Cookie Consent Dialog Box (Floating Bottom-Left) -->
+    <x-cookie-consent />
+
     @livewireScripts
 </body>
 </html>
+

@@ -370,7 +370,110 @@ class CortexAiService
                 'estimated_hours' => 4.0,
             ];
         }
+
         return null;
     }
+
+    /**
+     * Public AI chat for landing page visitors with product, capability, pricing, and contact knowledge.
+     */
+    public function chatWithLandingVisitor(array $history, string $userMessage): array
+    {
+        $apiKey = config('ai.api_key');
+        $endpoint = rtrim(config('ai.endpoint', 'https://api.groq.com/openai/v1'), '/');
+        $model = config('ai.model', 'llama-3.3-70b-versatile');
+
+        $systemPrompt = <<<SYS
+You are the official TaskVerge AI Assistant on taskverge.net.
+TaskVerge is an enterprise Autonomous Task & Workflow Intelligence platform that eliminates operational coordination drag.
+
+Key Knowledge Base:
+- Core Capabilities: Autonomous stage transitions, proactive 48h SLA radar, real-time workload balancing guard, interactive Kanban workspaces, automated bottleneck unblocking, enterprise audit trails.
+- Cortex AI Architecture: Powered by TensorRT-LLM and accelerated inference for automated task triage, blocker diagnosis, and natural language Copilot orchestration.
+- Pricing Tiers:
+  * Free Trial: 14 days full evaluation, 1 active pipeline, 3 team seats, up to 50 active tasks.
+  * Operations Core ($49/month): 5 operational pipelines, 15 team seats, proactive SLA alerts, automated task triage.
+  * Enterprise Intelligence ($199/month): Unlimited pipelines & seats, dedicated Cortex Copilot, custom webhook connectors, SOC2 audit logging, 99.99% SLA.
+- Company & Locations:
+  * Head Office: Taskverge PVT LTD, 165/7 Pickerings Road, Colombo 01500, Sri Lanka (Phone: +94717285555)
+  * USA Branch Office: Taskverge LLC, 255 Ferry Blvd, Stratford, CT 06615, United States (Phone: +12038708505)
+  * Support Email: help@taskverge.net
+- Instructions:
+  * Be helpful, friendly, concise, and professional.
+  * Keep responses brief (1-3 short paragraphs or bullet points).
+  * Use markdown formatting.
+  * Suggest relevant actions like starting a free trial or checking out pricing/contact section.
+SYS;
+
+        if (!empty($apiKey)) {
+            try {
+                $messages = [
+                    ['role' => 'system', 'content' => $systemPrompt],
+                ];
+
+                foreach (array_slice($history, -6) as $msg) {
+                    if (isset($msg['role'], $msg['content']) && in_array($msg['role'], ['user', 'assistant'])) {
+                        $messages[] = [
+                            'role' => $msg['role'],
+                            'content' => $msg['content'],
+                        ];
+                    }
+                }
+
+                $messages[] = ['role' => 'user', 'content' => $userMessage];
+
+                $response = Http::timeout(config('ai.timeout', 15))
+                    ->withToken($apiKey)
+                    ->post("{$endpoint}/chat/completions", [
+                        'model' => $model,
+                        'messages' => $messages,
+                        'temperature' => 0.4,
+                        'max_tokens' => 350,
+                    ]);
+
+                if ($response->successful()) {
+                    $reply = trim($response->json('choices.0.message.content', ''));
+                    if (!empty($reply)) {
+                        return [
+                            'reply' => $reply,
+                            'source' => 'TaskVerge AI (' . $model . ')',
+                        ];
+                    }
+                }
+            } catch (\Throwable $e) {
+                Log::warning('Landing AI chat error: ' . $e->getMessage());
+            }
+        }
+
+        return $this->heuristicLandingReply($userMessage);
+    }
+
+    /**
+     * Fallback heuristic responses for landing page visitors when LLM is offline or unkeyed.
+     */
+    protected function heuristicLandingReply(string $userMessage): array
+    {
+        $msg = strtolower($userMessage);
+
+        if (preg_match('/(price|pricing|cost|plan|subscription|tier|core|enterprise|free|how much)/i', $msg)) {
+            $reply = "### 💳 TaskVerge Pricing & Plans\n\nTaskVerge offers 3 flexible plans designed to scale with your team:\n\n- **Free Trial (14-Days):** Explore 1 active pipeline, 3 team members, and up to 50 tasks with zero credit card required.\n- **Operations Core ($49/mo):** 5 operational pipelines, 15 team seats, proactive SLA radar alerts, and automated triage.\n- **Enterprise Intelligence ($199/mo):** Unlimited pipelines, unlimited seats, dedicated Cortex Copilot, custom webhooks, and SOC2 audit logging.\n\nYou can explore and subscribe directly in our [Pricing Section](#pricing).";
+        } elseif (preg_match('/(contact|support|email|phone|call|address|office|branch|location|where|sri lanka|usa)/i', $msg)) {
+            $reply = "### 📍 Corporate Offices & Global Support\n\n- **Head Office (Sri Lanka):** Taskverge PVT LTD\n  165/7 Pickerings Road, Colombo 01500, Sri Lanka &bull; Phone: **+94717285555**\n- **USA Branch Office:** Taskverge LLC\n  255 Ferry Blvd, Stratford, CT 06615, United States &bull; Phone: **+12038708505**\n- **Universal Support Inbox:** [help@taskverge.net](mailto:help@taskverge.net)\n\nYou can also submit an inquiry using our [Contact Form](#contact).";
+        } elseif (preg_match('/(what is|feature|capability|how it works|cortex|copilot|ai|workflow|task|automate)/i', $msg)) {
+            $reply = "### ⚡ What Makes TaskVerge Different?\n\nTaskVerge is an **Autonomous Workflow Intelligence platform** that stops tasks from stalling between teams:\n\n1. **Autonomous Stage Transitions:** Tasks advance automatically as milestones and criteria are fulfilled.\n2. **Proactive SLA Radar:** Predicts bottlenecks up to 48 hours before deadlines are missed.\n3. **Workload Balance Guard:** Automatically alerts and redistributes unbalanced team queues.\n4. **Cortex Copilot™:** Live natural language assistance to draft, triage, and unblock work items in seconds.\n\nReady to see it in action? You can [Create an Account](/register) or test our interactive demo!";
+        } elseif (preg_match('/(trial|demo|sign up|register|start|test)/i', $msg)) {
+            $reply = "### 🚀 Get Started with TaskVerge\n\nYou can start immediately with our **14-day Free Trial**:\n\n- No credit card required\n- Instant access to intuitive Kanban workspaces\n- Built-in AI triage and team collaboration\n\n👉 [Click here to sign up in 30 seconds](/register) or explore our [Capabilities](#what-it-does).";
+        } elseif (preg_match('/(security|privacy|compliance|data|gdpr|safe)/i', $msg)) {
+            $reply = "### 🛡️ Enterprise Security & Privacy\n\nYour operational data is safeguarded with bank-grade encryption:\n\n- Encrypted at rest (AES-256) and in transit (TLS 1.3)\n- Comprehensive immutable Audit Logs for compliance\n- Full compliance with our [Privacy Policy](/privacy) and [Terms of Service](/terms).\n\nFeel free to ask any specific compliance questions!";
+        } else {
+            $reply = "### 👋 Welcome to TaskVerge!\n\nI'm your **TaskVerge AI Assistant**. How can I help you today?\n\n- Ask about our **features & workflow automation**\n- Inquire about **pricing & free trials**\n- Ask for our **offices & contact details**\n- Learn how **Cortex AI** eliminates operational bottlenecks\n\nWhat would you like to explore?";
+        }
+
+        return [
+            'reply' => $reply,
+            'source' => 'TaskVerge Knowledge Engine',
+        ];
+    }
 }
+
 
