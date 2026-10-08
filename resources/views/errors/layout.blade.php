@@ -29,7 +29,7 @@
 
             <div class="flex items-center gap-3">
                 @auth
-                    <a href="{{ route('dashboard') }}" class="rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 px-3.5 py-1.5 text-xs font-semibold text-slate-200 transition-colors">
+                    <a href="{{ route('dashboard') }}" target="_blank" rel="noopener noreferrer" class="rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 px-3.5 py-1.5 text-xs font-semibold text-slate-200 transition-colors">
                         Dashboard &rarr;
                     </a>
                 @else

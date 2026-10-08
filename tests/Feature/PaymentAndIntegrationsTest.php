@@ -6,12 +6,24 @@ use App\Livewire\Checkout;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Http;
 use Livewire\Livewire;
 use Tests\TestCase;
 
 class PaymentAndIntegrationsTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Http::fake(['challenges.cloudflare.com/*' => Http::response([
+            'success' => true,
+            'action' => 'checkout',
+            'hostname' => 'localhost',
+        ])]);
+    }
 
     public function test_google_auth_redirect_route_checks_configuration(): void
     {
@@ -28,12 +40,12 @@ class PaymentAndIntegrationsTest extends TestCase
     {
         $loginResponse = $this->get('/login');
         $loginResponse->assertStatus(200);
-        $loginResponse->assertSee('CLOUDFLARE');
+        $loginResponse->assertSee('challenges.cloudflare.com/turnstile/v0/api.js');
         $loginResponse->assertSee('Continue with Google Workspace');
 
         $registerResponse = $this->get('/register');
         $registerResponse->assertStatus(200);
-        $registerResponse->assertSee('CLOUDFLARE');
+        $registerResponse->assertSee('challenges.cloudflare.com/turnstile/v0/api.js');
         $registerResponse->assertSee('Sign up with Google Workspace');
     }
 
@@ -44,7 +56,7 @@ class PaymentAndIntegrationsTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('Enterprise Intelligence');
         $response->assertSee('Operations Core');
-        $response->assertSee('CLOUDFLARE');
+        $response->assertSee('challenges.cloudflare.com/turnstile/v0/api.js');
     }
 
     public function test_checkout_page_respects_interval_parameter_from_landing_pricing(): void
@@ -81,6 +93,7 @@ class PaymentAndIntegrationsTest extends TestCase
             ->set('cardCvc', '842')
             ->set('postalCode', '94105')
             ->set('country', 'United States')
+            ->set('turnstileToken', 'test-checkout-token')
             ->call('processCheckout')
             ->assertHasNoErrors();
 

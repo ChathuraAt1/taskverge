@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Support\Turnstile;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,12 +36,16 @@ class AuthController extends Controller
     /**
      * Handle standard login attempt.
      */
-    public function login(Request $request): RedirectResponse
+    public function login(Request $request, Turnstile $turnstile): RedirectResponse
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required', 'string'],
+            'cf-turnstile-response' => ['required', 'string'],
         ]);
+
+        $turnstile->verify($credentials['cf-turnstile-response'], 'login');
+        unset($credentials['cf-turnstile-response']);
 
         $remember = $request->boolean('remember');
 
@@ -83,13 +88,16 @@ class AuthController extends Controller
     /**
      * Handle registration.
      */
-    public function register(Request $request): RedirectResponse
+    public function register(Request $request, Turnstile $turnstile): RedirectResponse
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Password::defaults()],
+            'cf-turnstile-response' => ['required', 'string'],
         ]);
+
+        $turnstile->verify($validated['cf-turnstile-response'], 'register');
 
         $user = User::create([
             'name' => $validated['name'],

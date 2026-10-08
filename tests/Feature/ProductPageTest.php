@@ -65,7 +65,8 @@ class ProductPageTest extends TestCase
         $response = $this->get('/product');
 
         $response->assertStatus(200);
-        $response->assertSee(route('dashboard'));
+        $this->assertSame('/app', parse_url(route('dashboard'), PHP_URL_PATH));
+        $response->assertSee('href="'.route('dashboard').'" target="_blank" rel="noopener noreferrer"', false);
     }
 
     public function test_authenticated_user_sees_compact_dashboard_in_navbar(): void

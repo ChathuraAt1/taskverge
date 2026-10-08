@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ContactInquiryReceived;
+use App\Support\Turnstile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -13,7 +14,7 @@ class ContactController extends Controller
     /**
      * Handle public contact form submission and send notification email.
      */
-    public function submit(Request $request): Response
+    public function submit(Request $request, Turnstile $turnstile): Response
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:120'],
@@ -22,7 +23,7 @@ class ContactController extends Controller
             'branch' => ['nullable', 'string', 'max:100'],
             'subject' => ['nullable', 'string', 'max:200'],
             'message' => ['required', 'string', 'min:10', 'max:5000'],
-            'cf-turnstile-response' => ['nullable', 'string'],
+            'cf-turnstile-response' => ['required', 'string'],
         ], [
             'name.required' => 'Please provide your full name.',
             'email.required' => 'Please provide a valid email address.',
@@ -31,12 +32,15 @@ class ContactController extends Controller
             'message.min' => 'Your message should be at least 10 characters long.',
         ]);
 
+        $turnstile->verify($validated['cf-turnstile-response'], 'contact');
+        unset($validated['cf-turnstile-response']);
+
         $recipient = config('mail.contact_recipient', 'help@taskverge.net');
 
         try {
             Mail::to($recipient)->send(new ContactInquiryReceived($validated));
         } catch (\Throwable $e) {
-            Log::error('Failed to dispatch contact inquiry email: ' . $e->getMessage(), [
+            Log::error('Failed to dispatch contact inquiry email: '.$e->getMessage(), [
                 'recipient' => $recipient,
                 'data' => $validated,
             ]);
@@ -53,7 +57,7 @@ class ContactController extends Controller
         }
 
         return redirect()
-            ->to(route('home') . '#contact')
+            ->to(route('home').'#contact')
             ->with('contact_status', $message);
     }
 }

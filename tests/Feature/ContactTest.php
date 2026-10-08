@@ -4,12 +4,24 @@ namespace Tests\Feature;
 
 use App\Mail\ContactInquiryReceived;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
 class ContactTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Http::fake(['challenges.cloudflare.com/*' => Http::response([
+            'success' => true,
+            'action' => 'contact',
+            'hostname' => 'localhost',
+        ])]);
+    }
 
     public function test_landing_page_renders_contact_section_with_branches_and_email(): void
     {
@@ -43,11 +55,12 @@ class ContactTest extends TestCase
             'branch' => 'sf',
             'subject' => 'Enterprise Workflow Setup Inquiry',
             'message' => 'We want to migrate our 50-person ops team over to TaskVerge next month.',
+            'cf-turnstile-response' => 'test-contact-token',
         ];
 
         $response = $this->post('/contact', $formData);
 
-        $response->assertRedirect(route('home') . '#contact');
+        $response->assertRedirect(route('home').'#contact');
         $response->assertSessionHas('contact_status', 'Thank you! Your message has been sent to our team at help@taskverge.net. We will get back to you shortly.');
 
         Mail::assertSent(ContactInquiryReceived::class, function (ContactInquiryReceived $mail) {
@@ -73,11 +86,12 @@ class ContactTest extends TestCase
             'name' => 'Bob Smith',
             'email' => 'bob@example.com',
             'message' => 'Testing mail failure resiliency.',
+            'cf-turnstile-response' => 'test-contact-token',
         ];
 
         $response = $this->post('/contact', $formData);
 
-        $response->assertRedirect(route('home') . '#contact');
+        $response->assertRedirect(route('home').'#contact');
         $response->assertSessionHas('contact_status');
     }
 
@@ -86,8 +100,8 @@ class ContactTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200);
-        $response->assertSee('cf-turnstile-response');
-        $response->assertSee('CLOUDFLARE');
+        $response->assertSee('data-action="contact"', false);
+        $response->assertSee('challenges.cloudflare.com/turnstile/v0/api.js');
     }
 
     public function test_contact_form_handles_json_submission_without_redirect(): void
@@ -100,7 +114,7 @@ class ContactTest extends TestCase
             'branch' => 'sf',
             'subject' => 'Workflow Automation Query',
             'message' => 'Please provide more details on our custom deployment timeline.',
-            'cf-turnstile-response' => 'test-valid-token',
+            'cf-turnstile-response' => 'test-contact-token',
         ];
 
         $response = $this->postJson('/contact', $formData);

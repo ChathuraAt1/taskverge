@@ -167,9 +167,27 @@
                         </div>
                     </div>
 
-                    <!-- Cloudflare Turnstile Verification Spin Component -->
+                    <!-- Cloudflare Turnstile verification -->
                     <div class="pt-2">
-                        <x-turnstile action="checkout" />
+                        @once
+                            <script>
+                                window.checkoutTurnstileSuccess = token => window.dispatchEvent(new CustomEvent('checkout-turnstile', { detail: { token } }));
+                                window.checkoutTurnstileExpired = () => window.dispatchEvent(new CustomEvent('checkout-turnstile', { detail: { token: '' } }));
+                            </script>
+                        @endonce
+                        <div x-data
+                             @checkout-turnstile.window="$wire.set('turnstileToken', $event.detail.token)">
+                            <div wire:ignore>
+                                <x-turnstile action="checkout"
+                                             data-callback="checkoutTurnstileSuccess"
+                                             data-expired-callback="checkoutTurnstileExpired"
+                                             data-error-callback="checkoutTurnstileExpired" />
+                            </div>
+                            @error('cf-turnstile-response')
+                                <p class="mt-2 text-xs text-rose-400">{{ $message }}</p>
+                            @enderror
+                        </div>
+
                     </div>
 
                     <!-- Action Button -->

@@ -97,7 +97,7 @@
                     @endif
                 </div>
 
-                <!-- Cloudflare Turnstile Verification Spin -->
+                <!-- Cloudflare Turnstile verification -->
                 <x-turnstile action="login" />
 
                 <button type="submit"

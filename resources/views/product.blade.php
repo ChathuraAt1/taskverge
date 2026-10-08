@@ -31,7 +31,7 @@
 
             <!-- Funnel CTAs -->
             <div class="mt-9 flex flex-wrap items-center justify-center gap-4">
-                <a href="{{ route('dashboard') }}" class="inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 px-8 py-4 text-sm font-bold text-white shadow-xl shadow-emerald-500/25 hover:from-emerald-400 hover:to-teal-500 transition-all scale-100 hover:scale-[1.02]">
+                <a href="{{ route('dashboard') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 px-8 py-4 text-sm font-bold text-white shadow-xl shadow-emerald-500/25 hover:from-emerald-400 hover:to-teal-500 transition-all scale-100 hover:scale-[1.02]">
                     <span>Launch Live Workspace</span>
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -575,7 +575,7 @@
                 </p>
 
                 <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-                    <a href="{{ route('dashboard') }}" class="inline-flex items-center gap-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 px-8 py-4 text-sm font-bold text-white shadow-xl shadow-emerald-600/30 transition-all scale-100 hover:scale-[1.02]">
+                    <a href="{{ route('dashboard') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 px-8 py-4 text-sm font-bold text-white shadow-xl shadow-emerald-600/30 transition-all scale-100 hover:scale-[1.02]">
                         <span>Enter Application Dashboard</span>
                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />

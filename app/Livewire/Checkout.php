@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Order;
 use App\Models\User;
+use App\Support\Turnstile;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
@@ -35,6 +36,8 @@ class Checkout extends Component
     public string $companyName = '';
 
     public string $businessVat = '';
+
+    public string $turnstileToken = '';
 
     // Processing State
     public bool $isProcessing = false;
@@ -197,6 +200,8 @@ class Checkout extends Component
 
             return;
         }
+
+        app(Turnstile::class)->verify($this->turnstileToken, 'checkout');
 
         $lastFour = substr($cleanCard, -4);
         $invoiceNumber = 'INV-'.date('Y').'-'.mt_rand(1000, 9999);

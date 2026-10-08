@@ -67,7 +67,7 @@
                            class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                 </div>
 
-                <!-- Cloudflare Turnstile Verification Spin -->
+                <!-- Cloudflare Turnstile verification -->
                 <x-turnstile action="register" />
 
                 <button type="submit"

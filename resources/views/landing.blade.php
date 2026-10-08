@@ -22,7 +22,7 @@
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
                 </a>
                 @auth
-                    <a href="{{ route('dashboard') }}" class="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/90 px-5 py-3.5 text-sm font-semibold text-slate-200 hover:bg-slate-800 hover:text-white transition-all">
+                    <a href="{{ route('dashboard') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/90 px-5 py-3.5 text-sm font-semibold text-slate-200 hover:bg-slate-800 hover:text-white transition-all">
                         <span>Open Dashboard</span>
                     </a>
                 @else
@@ -1450,6 +1450,7 @@ Madusha Lakshan ,Department Lead, Business Operations
                             } catch (err) {
                                 this.errorMessage = 'A network error occurred. Please check your connection and try again.';
                             } finally {
+                                if (window.turnstile) window.turnstile.reset(form.querySelector('.cf-turnstile'));
                                 this.submitting = false;
                             }
                         }

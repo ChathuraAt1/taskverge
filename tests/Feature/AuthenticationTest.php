@@ -4,11 +4,25 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 class AuthenticationTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Http::fake(function ($request) {
+            return Http::response([
+                'success' => true,
+                'action' => str_replace(['test-', '-token'], '', $request['response']),
+                'hostname' => 'localhost',
+            ]);
+        });
+    }
 
     public function test_landing_page_renders_successfully_with_commercial_content(): void
     {
@@ -43,6 +57,7 @@ class AuthenticationTest extends TestCase
         $response = $this->post('/login', [
             'email' => 'operator@taskverge.com',
             'password' => 'password',
+            'cf-turnstile-response' => 'test-login-token',
         ]);
 
         $this->assertAuthenticatedAs($user);
@@ -84,6 +99,7 @@ class AuthenticationTest extends TestCase
             'email' => 'jordan@taskverge.com',
             'password' => 'password123',
             'password_confirmation' => 'password123',
+            'cf-turnstile-response' => 'test-register-token',
         ]);
 
         $this->assertAuthenticated();
