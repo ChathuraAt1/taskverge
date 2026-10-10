@@ -97,8 +97,8 @@ class AuthenticationTest extends TestCase
         $response = $this->post('/register', [
             'name' => 'Jordan Miller',
             'email' => 'jordan@taskverge.com',
-            'password' => 'password123',
-            'password_confirmation' => 'password123',
+            'password' => 'Password123!',
+            'password_confirmation' => 'Password123!',
             'cf-turnstile-response' => 'test-register-token',
         ]);
 
@@ -110,6 +110,19 @@ class AuthenticationTest extends TestCase
             'subscription_status' => 'trialing',
         ]);
         $response->assertRedirect(route('dashboard'));
+    }
+
+    public function test_registration_password_requires_each_strength_criterion(): void
+    {
+        foreach (['Abcdefg!', 'abcdefg1!', 'ABCDEFG1!', 'Abcdefg1', 'Aa1!', 'Pass word1'] as $password) {
+            $this->from('/register')->post('/register', [
+                'name' => 'Jordan Miller',
+                'email' => 'jordan@taskverge.com',
+                'password' => $password,
+                'password_confirmation' => $password,
+                'cf-turnstile-response' => 'test-register-token',
+            ])->assertSessionHasErrors('password');
+        }
     }
 
     public function test_demo_personas_hidden_and_quick_login_forbidden_in_production(): void

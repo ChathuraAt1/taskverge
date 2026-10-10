@@ -1,4 +1,18 @@
-<div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+<div x-data="{
+        footerVisible: false,
+        init() {
+            const footer = document.getElementById('site-footer');
+            if (!footer || !('IntersectionObserver' in window)) return;
+            const observer = new IntersectionObserver(([entry]) => {
+                this.footerVisible = entry.isIntersecting;
+                if (entry.isIntersecting && this.$wire.isOpen) this.$wire.closeChat();
+            }, { threshold: 0 });
+            observer.observe(footer);
+        }
+    }"
+    x-cloak
+    x-show="!footerVisible"
+    class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
     <!-- Chat Modal Window -->
     <div 
         x-cloak

@@ -23,6 +23,23 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
+// Search engine discovery endpoints use the configured canonical APP_URL.
+Route::get('/sitemap.xml', function () {
+    $baseUrl = rtrim(config('app.url'), '/');
+    $paths = ['/', '/product', '/privacy', '/terms'];
+
+    return response()->view('seo.sitemap', [
+        'urls' => array_map(fn (string $path) => $baseUrl.$path, $paths),
+    ], 200, ['Content-Type' => 'application/xml; charset=UTF-8']);
+})->name('sitemap');
+
+Route::get('/robots.txt', function () {
+    $sitemapUrl = rtrim(config('app.url'), '/').'/sitemap.xml';
+
+    return response("User-agent: *\nAllow: /\nSitemap: {$sitemapUrl}\n", 200)
+        ->header('Content-Type', 'text/plain; charset=UTF-8');
+})->name('robots');
+
 // Public Technical Product Landing Page & Contact
 Route::view('/', 'landing')->name('home');
 Route::view('/product', 'product')->name('product');

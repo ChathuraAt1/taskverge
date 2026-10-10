@@ -55,15 +55,56 @@
                            class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                 </div>
 
-                <div>
+                <div x-data="{
+                    password: '',
+                    get checks() {
+                        return [
+                            { label: 'At least 8 characters', passed: this.password.length >= 8 },
+                            { label: 'One uppercase letter', passed: /\p{Lu}/u.test(this.password) },
+                            { label: 'One lowercase letter', passed: /\p{Ll}/u.test(this.password) },
+                            { label: 'One number', passed: /\p{N}/u.test(this.password) },
+                            { label: 'One punctuation or symbol', passed: /[^\p{L}\p{N}\s]/u.test(this.password) }
+                        ];
+                    },
+                    get score() { return this.checks.filter(check => check.passed).length; },
+                    get strength() {
+                        if (!this.password) return 'Not started';
+                        if (this.score <= 2) return 'Weak';
+                        if (this.score === 3) return 'Fair';
+                        if (this.score === 4) return 'Good';
+                        return 'Strong';
+                    }
+                }">
                     <label for="password" class="block text-xs font-medium text-slate-300">Password</label>
-                    <input id="password" name="password" type="password" required
+                    <input id="password" name="password" type="password" required minlength="8" autocomplete="new-password"
+                           x-model="password" aria-describedby="password-strength password-requirements"
                            class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
+
+                    <div id="password-strength" class="mt-3" aria-live="polite">
+                        <div class="mb-1 flex items-center justify-between text-[11px]">
+                            <span class="text-slate-400">Password strength</span>
+                            <span class="font-semibold text-slate-300" x-text="strength"></span>
+                        </div>
+                        <div class="h-1.5 overflow-hidden rounded-full bg-slate-800" role="meter" aria-label="Password strength" aria-valuemin="0" aria-valuemax="5" :aria-valuenow="score">
+                            <div class="h-full rounded-full transition-all duration-200"
+                                 :class="score < 3 ? 'bg-rose-500' : (score < 5 ? 'bg-amber-400' : 'bg-emerald-400')"
+                                 :style="'width: ' + (score * 20) + '%'"></div>
+                        </div>
+                    </div>
+
+                    <ul id="password-requirements" class="mt-3 grid grid-cols-1 gap-1 text-[11px] sm:grid-cols-2">
+                        <template x-for="check in checks" :key="check.label">
+                            <li class="flex items-center gap-1.5" :class="check.passed ? 'text-emerald-400' : 'text-slate-400'">
+                                <span aria-hidden="true" x-text="check.passed ? '✓' : '○'"></span>
+                                <span x-text="check.label"></span>
+                            </li>
+                        </template>
+                    </ul>
                 </div>
 
                 <div>
                     <label for="password_confirmation" class="block text-xs font-medium text-slate-300">Confirm Password</label>
-                    <input id="password_confirmation" name="password_confirmation" type="password" required
+                    <input id="password_confirmation" name="password_confirmation" type="password" required autocomplete="new-password"
                            class="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                 </div>
 
