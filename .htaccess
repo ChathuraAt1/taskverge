@@ -10,6 +10,8 @@
 
     # Security: Block direct access to sensitive root configuration and source files
     RewriteRule ^(artisan|composer\.(json|lock)|package(-lock)?\.json|phpunit\.xml|vite\.config\.js|CLAUDE\.md|AGENTS\.md|README\.md)$ - [F,L,NC]
+    # Allow the public sitemap route through to Laravel while blocking other XML files.
+    RewriteCond %{REQUEST_URI} !^/(public/)?sitemap\.xml$ [NC]
     RewriteRule \.(env|lock|xml|md|yml|yaml)$ - [F,L,NC]
 
     # Rewrite all remaining web traffic to the /public directory
