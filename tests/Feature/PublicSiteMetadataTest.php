@@ -47,8 +47,9 @@ class PublicSiteMetadataTest extends TestCase
     {
         config(['app.url' => 'https://www.taskverge.example/']);
 
-        $this->get('/sitemap.xml')
-            ->assertOk()
+        $sitemap = $this->get('/sitemap.xml');
+
+        $sitemap->assertOk()
             ->assertHeader('Content-Type', 'application/xml; charset=UTF-8')
             ->assertSee('<loc>https://www.taskverge.example/</loc>', false)
             ->assertSee('<loc>https://www.taskverge.example/product</loc>', false)
@@ -57,6 +58,8 @@ class PublicSiteMetadataTest extends TestCase
             ->assertDontSee('/login', false)
             ->assertDontSee('/checkout', false)
             ->assertDontSee('/app', false);
+
+        $this->assertStringStartsWith('<?xml version="1.0" encoding="UTF-8"?>', $sitemap->getContent());
 
         $this->get('/robots.txt')
             ->assertOk()
